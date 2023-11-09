@@ -5,6 +5,10 @@ VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Editor_Window", "Editor_Window\Editor_Window.vcxproj", "{C55A0D51-DCFF-4E1B-98D8-A598ACC03414}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HyeonwolEngine_Window", "HyeonwolEngine_Window\HyeonwolEngine_Window.vcxproj", "{3DFC3FF6-DDE3-4235-9267-BA0C68A2AC65}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HyeonwolEngine_Source", "HyeonwolEngine_Source\HyeonwolEngine_Source.vcxitems", "{67F1B6DC-835C-465E-9A1C-378633E24A8B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,11 +25,23 @@ Global
 		{C55A0D51-DCFF-4E1B-98D8-A598ACC03414}.Release|x64.Build.0 = Release|x64
 		{C55A0D51-DCFF-4E1B-98D8-A598ACC03414}.Release|x86.ActiveCfg = Release|Win32
 		{C55A0D51-DCFF-4E1B-98D8-A598ACC03414}.Release|x86.Build.0 = Release|Win32
+		{3DFC3FF6-DDE3-4235-9267-BA0C68A2AC65}.Debug|x64.ActiveCfg = Debug|x64
+		{3DFC3FF6-DDE3-4235-9267-BA0C68A2AC65}.Debug|x64.Build.0 = Debug|x64
+		{3DFC3FF6-DDE3-4235-9267-BA0C68A2AC65}.Debug|x86.ActiveCfg = Debug|Win32
+		{3DFC3FF6-DDE3-4235-9267-BA0C68A2AC65}.Debug|x86.Build.0 = Debug|Win32
+		{3DFC3FF6-DDE3-4235-9267-BA0C68A2AC65}.Release|x64.ActiveCfg = Release|x64
+		{3DFC3FF6-DDE3-4235-9267-BA0C68A2AC65}.Release|x64.Build.0 = Release|x64
+		{3DFC3FF6-DDE3-4235-9267-BA0C68A2AC65}.Release|x86.ActiveCfg = Release|Win32
+		{3DFC3FF6-DDE3-4235-9267-BA0C68A2AC65}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {836A22A2-7F97-49AB-99CE-D4370AA758C1}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		HyeonwolEngine_Source\HyeonwolEngine_Source.vcxitems*{3dfc3ff6-dde3-4235-9267-ba0c68a2ac65}*SharedItemsImports = 4
+		HyeonwolEngine_Source\HyeonwolEngine_Source.vcxitems*{67f1b6dc-835c-465e-9a1c-378633e24a8b}*SharedItemsImports = 9
 	EndGlobalSection
 EndGlobal
