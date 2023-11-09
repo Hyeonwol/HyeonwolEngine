@@ -27,5 +27,7 @@ namespace Hyeon
 	private:
 		float mX = 0.0f;
 		float mY = 0.0f;
+		float mSpeed = 0.01f;
+		int flag = 0;
 	};
 }

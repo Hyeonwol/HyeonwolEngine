@@ -1,12 +1,12 @@
 #include "HyeonGameObject.h"
 #include "CommonInclude.h"
-#include <random>
 
 
 namespace Hyeon
 {
 	HyeonGameObject::HyeonGameObject()
 	{
+
 	}
 
 	HyeonGameObject::~HyeonGameObject()
@@ -17,7 +17,7 @@ namespace Hyeon
 	{
 		if (GetAsyncKeyState(VK_LEFT) & 0x8000) 
 		{ 
-			mX -= 0.01f; 
+			mX -= 0.01f;
 		}
 
 		if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
@@ -39,16 +39,22 @@ namespace Hyeon
 	}
 
 	void HyeonGameObject::MonsterMoving(HWND hwnd)
-	{		
-		random_device Random;
-		uniform_real_distribution<double> newX(-10.0f, 10.0f);
-		uniform_real_distribution<double> newY(-10.0f, 10.0f);
-
-		if (mX + newX(Random) >= 0 && mX + newX(Random) <= 1600
-			&& mY + newY(Random) > 0 && mY + newY(Random) <= 900)
+	{	
+		if (900 + mX + mSpeed < 1600 && flag == 0)
 		{
-			mX += newX(Random);
-			mY += newY(Random);
+			mX += mSpeed;
+			if (900 + mX + mSpeed > 1600)
+			{
+				flag = 1;
+			}
+		}
+		else if (mX + mSpeed >= 0 && flag == 1)
+		{
+			mX -= mSpeed;
+			if (mX + mSpeed < 0)
+			{
+				flag = 0;
+			}
 		}
 	}
 
@@ -63,16 +69,10 @@ namespace Hyeon
 
 		HBRUSH oldbrush = (HBRUSH)SelectObject(hdc, bluebrush);
 
-		HPEN redpen = CreatePen(PS_SOLID, 1, RGB(255, 0, 0));
-		HPEN oldpen = (HPEN)SelectObject(hdc, redpen);
-
-		SelectObject(hdc, oldpen);
-
 		Rectangle(hdc, 100 + mX, 100 + mY, 200 + mX, 200 + mY);
 
 		SelectObject(hdc, oldbrush);
 		DeleteObject(bluebrush);
-		DeleteObject(redpen);
 	}
 
 	void HyeonGameObject::MonsterRender(HDC hdc)
@@ -85,9 +85,5 @@ namespace Hyeon
 
 		SelectObject(hdc, oldbrush);
 		DeleteObject(greenbrush);
-
 	}
-
-
-
 }
