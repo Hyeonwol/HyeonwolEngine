@@ -32,7 +32,7 @@ namespace Hyeon
 	void HyeonApplication::Update()
 	{
 		mPlayer.Update();
-		mMonster.MonsterMoving();
+		mMonster.MonsterMoving(mHwnd);
 	}
 	void HyeonApplication::LateUpdate()
 	{
@@ -42,5 +42,6 @@ namespace Hyeon
 	{
 		mPlayer.Render(mHdc);
 		mMonster.MonsterRender(mHdc);
+		
 	}
 }

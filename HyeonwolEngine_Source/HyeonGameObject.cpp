@@ -38,11 +38,11 @@ namespace Hyeon
 		
 	}
 
-	void HyeonGameObject::MonsterMoving()
+	void HyeonGameObject::MonsterMoving(HWND hwnd)
 	{		
-		std::random_device Random;
-		std::uniform_real_distribution<double> newX(-10.0f, 10.0f);
-		std::uniform_real_distribution<double> newY(-10.0f, 10.0f);
+		random_device Random;
+		uniform_real_distribution<double> newX(-10.0f, 10.0f);
+		uniform_real_distribution<double> newY(-10.0f, 10.0f);
 
 		if (mX + newX(Random) >= 0 && mX + newX(Random) <= 1600
 			&& mY + newY(Random) > 0 && mY + newY(Random) <= 900)
@@ -85,6 +85,7 @@ namespace Hyeon
 
 		SelectObject(hdc, oldbrush);
 		DeleteObject(greenbrush);
+
 	}
 
 

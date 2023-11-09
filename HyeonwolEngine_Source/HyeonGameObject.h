@@ -11,7 +11,7 @@ namespace Hyeon
 		~HyeonGameObject();
 
 		void Update();
-		void MonsterMoving();
+		void MonsterMoving(HWND hwnd);
 		void LateUpdate();
 		void Render(HDC hdc);
 		void MonsterRender(HDC hdc);
