@@ -17,9 +17,11 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonApplication.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonGameObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)HyeonInput.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonApplication.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonGameObject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)HyeonInput.cpp" />
   </ItemGroup>
 </Project>
