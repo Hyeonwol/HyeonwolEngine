@@ -1,5 +1,6 @@
 #include "HyeonGameObject.h"
 #include "CommonInclude.h"
+#include "HyeonInput.h"
 
 
 namespace Hyeon
@@ -15,22 +16,22 @@ namespace Hyeon
 
 	void HyeonGameObject::Update()
 	{
-		if (GetAsyncKeyState(VK_LEFT) & 0x8000) 
+		if (HyeonInput::GetKeyPressed(eKeyCode::A))
 		{ 
 			mX -= 0.01f;
 		}
 
-		if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
+		if (HyeonInput::GetKeyPressed(eKeyCode::D))
 		{
 			mX += 0.01f;
 		}
 
-		if (GetAsyncKeyState(VK_UP) & 0x8000)
+		if (HyeonInput::GetKeyPressed(eKeyCode::W))
 		{
 			mY -= 0.01f;
 		}
 
-		if (GetAsyncKeyState(VK_DOWN) & 0x8000)
+		if (HyeonInput::GetKeyPressed(eKeyCode::S))
 		{
 			mY += 0.01f;
 		}

@@ -31,6 +31,19 @@ namespace Hyeon
 
 		static void Initiallize();
 		static void Update();
+
+		static bool GetKeyDown(eKeyCode Code)	//방금 누른 상태
+		{
+			return	mKeys[(UINT)Code].KeyState == eKeyState::Down;
+		}
+		static bool GetKeyUp(eKeyCode Code)	//떼고 있는 상태
+		{
+			return	mKeys[(UINT)Code].KeyState == eKeyState::Up;
+		}
+		static bool GetKeyPressed(eKeyCode Code)	//누르고 있는 상태
+		{
+			return	mKeys[(UINT)Code].KeyState == eKeyState::Pressed;
+		}
 	private:
 		static vector<Key> mKeys;
 	};
