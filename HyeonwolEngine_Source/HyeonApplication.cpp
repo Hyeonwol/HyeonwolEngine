@@ -54,6 +54,7 @@ namespace Hyeon
 	{
 		mPlayer.Render(mHdc);
 		mMonster.MonsterRender(mHdc);
-		
+
+		HyeonTime::Render(mHdc);
 	}
 }
