@@ -8,9 +8,10 @@ namespace Hyeon
 	HyeonApplication::HyeonApplication()
 		: mHwnd(nullptr),
 		  mHdc(nullptr),
-		  mSpeed(0.0f),
-		  mX(0.0f),
-		  mY(0.0f)
+		  mWidth(0),
+		  mHeight(0),
+		  mBackHdc(NULL),
+	      mBackBitmap(NULL)
 	{
 
 	}
@@ -20,14 +21,31 @@ namespace Hyeon
 
 	}
 
-	void HyeonApplication::Initialize(HWND hwnd)
+	void HyeonApplication::Initialize(HWND hwnd, UINT width, UINT height)
 	{
 		mHwnd = hwnd;
 		
 		mHdc = GetDC(mHwnd);
 
-		HyeonInput::Initiallize();
+		RECT rect = { 0, 0, width, height };
+		AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
 
+		mWidth = rect.right - rect.left;
+		mHeight = rect.bottom - rect.top;
+
+		SetWindowPos(mHwnd, nullptr, 0, 0, mWidth, mHeight, 0);
+		ShowWindow(mHwnd, true);
+
+		
+		mBackBitmap = CreateCompatibleBitmap(mHdc, width, height);
+
+		mBackHdc = CreateCompatibleDC(mHdc);
+
+		HBITMAP oldBitmap = (HBITMAP)SelectObject(mBackHdc, mBackBitmap);
+		DeleteObject(oldBitmap);
+
+
+		HyeonInput::Initiallize();
 		HyeonTime::Initiallize();
 	}
 	void HyeonApplication::Run()
@@ -43,7 +61,6 @@ namespace Hyeon
 		mMonster.MonsterMoving(mHwnd);
 
 		HyeonInput::Update();
-
 		HyeonTime::Update();
 	}
 	void HyeonApplication::LateUpdate()
@@ -52,9 +69,15 @@ namespace Hyeon
 	}
 	void HyeonApplication::Render()
 	{
-		mPlayer.Render(mHdc);
-		mMonster.MonsterRender(mHdc);
+		//뒤쪽에 있는 DC에 그림을 그림
+		Rectangle(mBackHdc, 0, 0, 1600, 900);
+		mPlayer.Render(mBackHdc);
+		mMonster.MonsterRender(mBackHdc);
+		HyeonTime::Render(mBackHdc);
 
-		HyeonTime::Render(mHdc);
+		//뒤쪽 DC에 그린 그림을 앞쪽 DC에 덮어씀(복사)
+		//이러는 이유는 렌더링 중 깜박이는 잔상을 없애기 위함임
+
+		BitBlt(mHdc, 0, 0, mWidth, mHeight, mBackHdc, 0, 0, SRCCOPY);
 	}
 }
