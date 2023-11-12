@@ -1,6 +1,7 @@
 #include "HyeonApplication.h"
 #include "CommonInclude.h"
 #include "HyeonInput.h"
+#include "HyeonTime.h"
 
 namespace Hyeon
 {
@@ -26,6 +27,8 @@ namespace Hyeon
 		mHdc = GetDC(mHwnd);
 
 		HyeonInput::Initiallize();
+
+		HyeonTime::Initiallize();
 	}
 	void HyeonApplication::Run()
 	{
@@ -40,6 +43,8 @@ namespace Hyeon
 		mMonster.MonsterMoving(mHwnd);
 
 		HyeonInput::Update();
+
+		HyeonTime::Update();
 	}
 	void HyeonApplication::LateUpdate()
 	{

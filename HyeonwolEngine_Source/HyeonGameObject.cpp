@@ -1,7 +1,6 @@
 #include "HyeonGameObject.h"
-#include "CommonInclude.h"
 #include "HyeonInput.h"
-
+#include "HyeonTime.h"
 
 namespace Hyeon
 {
@@ -16,24 +15,26 @@ namespace Hyeon
 
 	void HyeonGameObject::Update()
 	{
+		const float speed = 100.0f;
+
 		if (HyeonInput::GetKeyPressed(eKeyCode::A))
 		{ 
-			mX -= 0.01f;
+			mX -= speed * HyeonTime::GetDelataTime();
 		}
 
 		if (HyeonInput::GetKeyPressed(eKeyCode::D))
 		{
-			mX += 0.01f;
+			mX += speed * HyeonTime::GetDelataTime();
 		}
 
 		if (HyeonInput::GetKeyPressed(eKeyCode::W))
 		{
-			mY -= 0.01f;
+			mY -= speed * HyeonTime::GetDelataTime();
 		}
 
 		if (HyeonInput::GetKeyPressed(eKeyCode::S))
 		{
-			mY += 0.01f;
+			mY += speed * HyeonTime::GetDelataTime();
 		}
 
 		
