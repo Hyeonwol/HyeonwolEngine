@@ -57,8 +57,8 @@ namespace Hyeon
 	void HyeonApplication::Update()
 	{
 		mPlayer.Update();
-
 		mMonster.MonsterMoving(mHwnd);
+		mBullet.BulletMoving(mHwnd);
 
 		HyeonInput::Update();
 		HyeonTime::Update();
@@ -73,6 +73,7 @@ namespace Hyeon
 		Rectangle(mBackHdc, 0, 0, 1600, 900);
 		mPlayer.Render(mBackHdc);
 		mMonster.MonsterRender(mBackHdc);
+		mBullet.BulletRender(mBackHdc);
 		HyeonTime::Render(mBackHdc);
 
 		//뒤쪽 DC에 그린 그림을 앞쪽 DC에 덮어씀(복사)

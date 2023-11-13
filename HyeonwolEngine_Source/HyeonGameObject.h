@@ -12,9 +12,11 @@ namespace Hyeon
 
 		void Update();
 		void MonsterMoving(HWND hwnd);
+		void BulletMoving(HWND hwnd);
 		void LateUpdate();
 		void Render(HDC hdc);
 		void MonsterRender(HDC hdc);
+		void BulletRender(HDC hdc);
 
 		void SetPosition(float x, float y)
 		{

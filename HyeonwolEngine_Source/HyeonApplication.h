@@ -29,5 +29,6 @@ namespace Hyeon
 
 		HyeonGameObject mPlayer;
 		HyeonGameObject mMonster;
+		HyeonGameObject mBullet;
 	};
 }

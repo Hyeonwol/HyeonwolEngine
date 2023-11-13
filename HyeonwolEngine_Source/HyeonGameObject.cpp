@@ -16,6 +16,7 @@ namespace Hyeon
 	void HyeonGameObject::Update()
 	{
 		const float speed = 100.0f;
+		float* pY = &mY;
 
 		if (HyeonInput::GetKeyPressed(eKeyCode::A))
 		{ 
@@ -60,6 +61,18 @@ namespace Hyeon
 		}
 	}
 
+	void HyeonGameObject::BulletMoving(HWND hwnd)
+	{
+		//if (GetAsyncKeyState(VK_SPACE) & 0x8000)
+		//{
+		//	mY -= mSpeed;
+		//}
+		if (50 + mY + mSpeed >= 0)
+		{
+			mY -= mSpeed;
+		}
+	}
+
 	void HyeonGameObject::LateUpdate()
 	{
 
@@ -87,5 +100,17 @@ namespace Hyeon
 
 		SelectObject(hdc, oldbrush);
 		DeleteObject(greenbrush);
+	}
+
+	void HyeonGameObject::BulletRender(HDC hdc)
+	{
+		HPEN RedPen = CreatePen(PS_SOLID, 1, RGB(255, 0, 0));
+
+		HPEN oldPen = (HPEN)SelectObject(hdc, RedPen);
+
+		Rectangle(hdc, 125 + mX, 50 + mY, 175 + mX, 100 + mY);
+
+		SelectObject(hdc, oldPen);
+		DeleteObject(oldPen);
 	}
 }
