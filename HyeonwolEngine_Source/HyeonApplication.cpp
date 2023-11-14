@@ -38,8 +38,6 @@ namespace Hyeon
 	}
 	void HyeonApplication::Update()
 	{
-		/*mMonster.MonsterMoving(mHwnd);
-		mBullet.BulletMoving(mHwnd);*/
 		HyeonInput::Update();
 		HyeonTime::Update();
 
@@ -54,6 +52,7 @@ namespace Hyeon
 		//뒤쪽에 있는 DC에 그림을 그림
 		clearRenderTarget();
 
+		HyeonTime::Render(mBackHdc);
 		HyeonSceneManager::Render(mBackHdc);
 		copyRenderTarget(mBackHdc, mHdc);
 	}
