@@ -18,6 +18,12 @@ namespace Hyeon
 		void Render();
 
 	private:
+		void clearRenderTarget();
+		void copyRenderTarget(HDC source, HDC dest);
+		void adjustWindowRect(HWND hwnd, UINT width, UINT height);
+		void createBuffer(UINT width, UINT height);
+		void initializeEtc();
+
 		HWND mHwnd;
 		HDC mHdc;
 
@@ -27,8 +33,6 @@ namespace Hyeon
 		UINT mWidth;
 		UINT mHeight;
 
-		HyeonGameObject mPlayer;
-		HyeonGameObject mMonster;
-		HyeonGameObject mBullet;
+		
 	};
 }
