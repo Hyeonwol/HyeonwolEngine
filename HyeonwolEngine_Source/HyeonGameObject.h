@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CommonInclude.h"
+#include "HyeonComponent.h"
 
 namespace Hyeon
 {
@@ -10,27 +11,36 @@ namespace Hyeon
 		HyeonGameObject();
 		~HyeonGameObject();
 
-		void Update();
-		void MonsterMoving(HWND hwnd);
-		void BulletMoving(HWND hwnd);
-		void LateUpdate();
-		void Render(HDC hdc);
-		void MonsterRender(HDC hdc);
-		void BulletRender(HDC hdc);
+		virtual void Initialize();
+		virtual void Update();
+		virtual void LateUpdate();
+		virtual void Render(HDC hdc);
 
-		void SetPosition(float x, float y)
+		template <typename T>
+		T* AddComponent()
 		{
-			mX = x;
-			mY = y;
+			T* comp = new T();
+			comp->HyeonComponent::SetOwner(this);
+			mComponents.push_back(comp);
+			return comp;
 		}
 
-		float GetPositionX() { return mX; }
-		float GetPositionY() { return mY; }
+		template <typename T>
+		T* GetComponent()
+		{
+			T* component = nullptr;
+			for (HyeonComponent* comp : mComponents)
+			{
+				component = dynamic_cast<T*>(comp);
+				if (component)
+				{
+					break;
+				}
+			}
+
+			return component;
+		}
 	private:
-		float mX = 0.0f;
-		float mY = 0.0f;
-		float mSpeed = 0.1f;
-		float mBulletSpeed = 0.1f;
-		int flag = 0;
+		vector<HyeonComponent*> mComponents;
 	};
 }

@@ -7,9 +7,6 @@ namespace Hyeon
 	void LoadScenes()
 	{
 		HyeonSceneManager::CreateScene<HyeonPlayScene>(L"PlayScene");
-		//SceneManager::CreateScene<EndScene>(L"EndScene");
-		//SceneManager::CreateScene<TitleScene>(L"TitleScene");
-
 		HyeonSceneManager::LoadScene(L"PlayScene");
 	}
 }

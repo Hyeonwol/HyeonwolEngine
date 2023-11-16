@@ -1,5 +1,8 @@
 #include "HyeonPlayScene.h"
 #include "HyeonGameObject.h"
+#include "HyeonPlayer.h"
+#include "HyeonTransform.h"
+#include "HyeonSpriteRenderer.h"
 
 namespace Hyeon
 {
@@ -11,12 +14,15 @@ namespace Hyeon
 	}
 	void HyeonPlayScene::Initialize()
 	{
-		for (size_t i = 0; i < 100; i++)
-		{
-			HyeonGameObject* obj = new HyeonGameObject();
-			obj->SetPosition(rand() % 1600, rand() % 900);
-			AddGameObject(obj);
-		}
+
+		HyeonPlayer* pl = new HyeonPlayer();
+		HyeonTransform* tr = pl->AddComponent<HyeonTransform>();
+		tr->SetPos(800, 450);
+		tr->SetName(L"TR");
+		HyeonSpriteRenderer* sr = pl->AddComponent<HyeonSpriteRenderer>();
+		sr->SetName(L"SR");
+
+		AddGameObject(pl);
 	}
 	void HyeonPlayScene::Update()
 	{

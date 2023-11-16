@@ -1,6 +1,5 @@
 #pragma once
 #include "CommonInclude.h"
-#include "HyeonGameObject.h"
 
 
 namespace Hyeon
@@ -32,7 +31,5 @@ namespace Hyeon
 
 		UINT mWidth;
 		UINT mHeight;
-
-		
 	};
 }

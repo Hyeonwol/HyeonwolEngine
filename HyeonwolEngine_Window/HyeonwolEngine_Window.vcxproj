@@ -129,9 +129,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="HyeonLoadScenes.h" />
+    <ClInclude Include="HyeonPlayer.h" />
     <ClInclude Include="HyeonPlayScene.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="HyeonPlayer.cpp" />
     <ClCompile Include="HyeonPlayScene.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
