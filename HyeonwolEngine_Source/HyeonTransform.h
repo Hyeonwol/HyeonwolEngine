@@ -3,11 +3,7 @@
 
 namespace Hyeon
 {
-	struct Pos
-	{
-		int mX = 0;
-		int mY = 0;
-	};
+	using namespace HyeonMath;
 
 	class HyeonTransform : public HyeonComponent
 	{
@@ -20,11 +16,9 @@ namespace Hyeon
 		void LateUpdate() override;
 		void Render(HDC hdc) override;
 
-		void SetPos(int x, int y) { mX = x; mY = y; }
-		int GetX() { return mX; }
-		int GetY() { return mY; }
+		void SetPos(Vector2 pos) { mPosition.X = pos.X; mPosition.Y = pos.Y; }
+		Vector2 GetPos() { return mPosition; }
 	private:
-		int mX;
-		int mY;
+		Vector2 mPosition;
 	};
 }

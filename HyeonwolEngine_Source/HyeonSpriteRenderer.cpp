@@ -6,6 +6,9 @@
 namespace Hyeon
 {
 	HyeonSpriteRenderer::HyeonSpriteRenderer()
+		:mImage(nullptr)
+		,mWidth(0)
+		,mHeight(0)
 	{
 	}
 	HyeonSpriteRenderer::~HyeonSpriteRenderer()
@@ -22,15 +25,16 @@ namespace Hyeon
 	}
 	void HyeonSpriteRenderer::Render(HDC hdc)
 	{
-		HBRUSH bluebrush = CreateSolidBrush(RGB(0, 0, 255));
-
-		HBRUSH oldbrush = (HBRUSH)SelectObject(hdc, bluebrush);
-
 		HyeonTransform* tr = GetOwner()->GetComponent<HyeonTransform>();
+		Vector2 pos = tr->GetPos();
 
-		Rectangle(hdc, 100 + tr->GetX(), 100 + tr->GetY(), 200 + tr->GetX(), 200 + tr->GetY());
-
-		SelectObject(hdc, oldbrush);
-		DeleteObject(bluebrush);
+		Gdiplus::Graphics graphics(hdc);
+		graphics.DrawImage(mImage, Gdiplus::Rect(pos.X, pos.Y, mWidth, mHeight));
+	}
+	void HyeonSpriteRenderer::ImageLoad(const wstring& path)
+	{
+		mImage = Gdiplus::Image::FromFile(path.c_str());
+		mWidth = mImage->GetWidth();
+		mHeight = mImage->GetHeight();
 	}
 }

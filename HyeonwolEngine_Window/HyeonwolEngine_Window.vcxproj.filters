@@ -1,12 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClInclude Include="HyeonPlayScene.h" />
     <ClInclude Include="HyeonLoadScenes.h" />
-    <ClInclude Include="HyeonPlayer.h" />
+    <ClInclude Include="HyeonPlayScene.h">
+      <Filter>PlayScene</Filter>
+    </ClInclude>
+    <ClInclude Include="HyeonPlayer.h">
+      <Filter>Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="HyeonPlayScene.cpp" />
-    <ClCompile Include="HyeonPlayer.cpp" />
+    <ClCompile Include="HyeonPlayScene.cpp">
+      <Filter>PlayScene</Filter>
+    </ClCompile>
+    <ClCompile Include="HyeonPlayer.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Player">
+      <UniqueIdentifier>{276d15dd-4948-45a7-bd5c-9e490058af25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlayScene">
+      <UniqueIdentifier>{39250163-79fb-4864-ab0c-336dc921dd8b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

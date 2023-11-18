@@ -14,15 +14,15 @@ namespace Hyeon
 	}
 	void HyeonPlayScene::Initialize()
 	{
-
-		HyeonPlayer* pl = new HyeonPlayer();
-		HyeonTransform* tr = pl->AddComponent<HyeonTransform>();
-		tr->SetPos(800, 450);
+		HyeonPlayer* bg = new HyeonPlayer();
+		HyeonTransform* tr = bg->AddComponent<HyeonTransform>();
+		tr->SetPos(Vector2(0, 0));
 		tr->SetName(L"TR");
-		HyeonSpriteRenderer* sr = pl->AddComponent<HyeonSpriteRenderer>();
+		HyeonSpriteRenderer* sr = bg->AddComponent<HyeonSpriteRenderer>();
 		sr->SetName(L"SR");
+		sr->ImageLoad(L"D:\\GameProgramming\\HyeonwolEngine\\Resources\\Chrono Trigger\\SNES - Chrono Trigger - Guardia Forest.png");
 
-		AddGameObject(pl);
+		AddGameObject(bg);
 	}
 	void HyeonPlayScene::Update()
 	{

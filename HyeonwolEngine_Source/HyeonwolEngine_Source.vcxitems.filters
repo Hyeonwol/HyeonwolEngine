@@ -31,6 +31,15 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonSpriteRenderer.cpp">
       <Filter>SpriteRenderer</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)HyeonMath.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)HyeonResouces.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)HyeonResource.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h" />
@@ -64,6 +73,15 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonSpriteRenderer.h">
       <Filter>SpriteRenderer</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)HyeonMath.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)HyeonResource.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)HyeonResouces.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Application">
@@ -95,6 +113,12 @@
     </Filter>
     <Filter Include="SpriteRenderer">
       <UniqueIdentifier>{38749b42-f0c6-45b5-881a-b7090776b9ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{5b4895cb-01f1-4213-a43f-7f36f82bff06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource">
+      <UniqueIdentifier>{93cdef86-cd44-4fd3-9ed3-beb569f91b69}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
