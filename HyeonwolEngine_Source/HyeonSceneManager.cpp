@@ -2,8 +2,27 @@
 
 namespace Hyeon
 {
-	std::map<std::wstring, HyeonScene*> HyeonSceneManager::mScene = {};
+	map<wstring, HyeonScene*> HyeonSceneManager::mScene = {};
 	HyeonScene* HyeonSceneManager::mActiveScene = nullptr;
+
+	HyeonScene* HyeonSceneManager::LoadScene(const wstring& name)
+	{
+		if (mActiveScene)
+		{
+			mActiveScene->OnExit();
+		}
+
+		std::map<std::wstring, HyeonScene*>::iterator iter
+			= mScene.find(name);
+
+		if (iter == mScene.end())
+			return nullptr;
+
+		mActiveScene = iter->second;
+		mActiveScene->OnEnter();
+
+		return iter->second;
+	}
 
 	void HyeonSceneManager::Initialize()
 	{

@@ -11,30 +11,16 @@ namespace Hyeon
 		{
 			T* scene = new T();
 			scene->SetName(name);
+			mActiveScene = scene;
 			scene->Initialize();
 
 			mScene.insert(std::make_pair(name, scene));
 
 			return scene;
 		}
-		static HyeonScene* LoadScene(const std::wstring& name)
-		{
-			if (mActiveScene)
-			{
-				mActiveScene->OnExit();
-			}
 
-			std::map<std::wstring, HyeonScene*>::iterator iter
-				= mScene.find(name);
-
-			if (iter == mScene.end())
-				return nullptr;
-
-			mActiveScene = iter->second;
-			mActiveScene->OnEnter();
-
-			return iter->second;
-		}
+		static HyeonScene* LoadScene(const wstring& name);
+		static HyeonScene* GetActiveScene() { return mActiveScene; }
 
 		static void Initialize();
 		static void Update();

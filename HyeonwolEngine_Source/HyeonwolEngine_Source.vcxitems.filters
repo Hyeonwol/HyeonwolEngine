@@ -89,6 +89,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonLayer.h">
       <Filter>Layer</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)HyeonObject.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Application">

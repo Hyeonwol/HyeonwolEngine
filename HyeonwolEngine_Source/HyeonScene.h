@@ -19,10 +19,11 @@ namespace Hyeon
 		virtual void OnEnter();
 		virtual void OnExit();
 
-		void AddGameObject(HyeonGameObject* gameObject, eLayerType type);
+		void AddGameObject(HyeonGameObject* gameObject, const enums::eLayerType type);
+		HyeonLayer* GetLayer(const enums::eLayerType type) { return mLayers[(UINT)type]; }
 
 	private:
-		void CreateLayers();
+		void createLayers();
 	private:
 		vector<HyeonLayer*> mLayers;
 	};

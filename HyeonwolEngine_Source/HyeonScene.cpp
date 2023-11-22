@@ -5,7 +5,7 @@ namespace Hyeon
 	HyeonScene::HyeonScene()
 		:mLayers{}
 	{
-		CreateLayers();
+		createLayers();
 	}
 	HyeonScene::~HyeonScene()
 	{
@@ -47,15 +47,15 @@ namespace Hyeon
 		}
 	}
 
-	void HyeonScene::AddGameObject(HyeonGameObject* gameObject, eLayerType type)
+	void HyeonScene::AddGameObject(HyeonGameObject* gameObject, const enums::eLayerType type)
 	{
 		mLayers[(UINT)type]->AddGameObject(gameObject);
 	}
 
-	void HyeonScene::CreateLayers()
+	void HyeonScene::createLayers()
 	{
-		mLayers.resize((UINT)eLayerType::Max);
-		for (size_t i = 0; i < (UINT)eLayerType::Max; i++)
+		mLayers.resize((UINT)enums::eLayerType::Max);
+		for (size_t i = 0; i < (UINT)enums::eLayerType::Max; i++)
 		{
 			mLayers[i] = new HyeonLayer();
 		}

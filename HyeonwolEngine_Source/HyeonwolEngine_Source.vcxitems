@@ -23,6 +23,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonInput.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonLayer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonMath.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)HyeonObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonResouces.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonResource.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonScene.h" />

@@ -20,7 +20,6 @@ namespace Hyeon
 		T* AddComponent()
 		{
 			T* comp = new T();
-			//comp->Initialize();
 			comp->HyeonComponent::SetOwner(this);
 			mComponents.push_back(comp);
 			return comp;
@@ -41,6 +40,10 @@ namespace Hyeon
 
 			return component;
 		}
+
+	private:
+		void initializeTransform();
+
 	private:
 		vector<HyeonComponent*> mComponents;
 	};

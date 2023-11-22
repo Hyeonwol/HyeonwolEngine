@@ -15,6 +15,6 @@ namespace Hyeon
 		void Render(HDC hdc) override;
 
 	private:
-
+		class HyeonPlayer* titleBg;
 	};
 }

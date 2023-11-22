@@ -19,6 +19,7 @@ namespace Hyeon
 
 	private:
 		class HyeonPlayer* bg;
+		class HyeonPlayer* Portal;
 	};
 
 }

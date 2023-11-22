@@ -1,12 +1,13 @@
 #include "HyeonGameObject.h"
 #include "HyeonInput.h"
 #include "HyeonTime.h"
+#include "HyeonTransform.h"
 
 namespace Hyeon
 {
 	HyeonGameObject::HyeonGameObject()
 	{
-
+		initializeTransform();
 	}
 
 	HyeonGameObject::~HyeonGameObject()
@@ -46,4 +47,8 @@ namespace Hyeon
 		}
 	}
 
+	void HyeonGameObject::initializeTransform()
+	{
+		AddComponent<HyeonTransform>();
+	}
 }
