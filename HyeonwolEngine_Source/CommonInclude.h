@@ -4,6 +4,7 @@
 #include <string>
 #include <map>
 #include "HyeonMath.h"
+#include "HyeonEnums.h"
 
 #include <mmsystem.h>
 #include <dinput.h>

@@ -45,7 +45,7 @@ namespace Hyeon
 	}
 	void HyeonApplication::LateUpdate()
 	{
-
+		HyeonSceneManager::LateUpdate();
 	}
 	void HyeonApplication::Render()
 	{

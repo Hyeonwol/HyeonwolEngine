@@ -3,39 +3,71 @@
 namespace Hyeon 
 {
 	HyeonScene::HyeonScene()
-		: mGameObjects{}
+		:mLayers{}
 	{
-
+		CreateLayers();
 	}
 	HyeonScene::~HyeonScene()
 	{
 	}
 	void HyeonScene::Initialize()
 	{
+		for (HyeonLayer* layer : mLayers)
+		{
+			if (layer == nullptr)
+				continue;
+			layer->Initialize();
+		}
 	}
 	void HyeonScene::Update()
 	{
-		for (HyeonGameObject* gameObj : mGameObjects)
+		for (HyeonLayer* layer : mLayers)
 		{
-			gameObj->Update();
+			if (layer == nullptr)
+				continue;
+			layer->Update();
 		}
 	}
 	void HyeonScene::LateUpdate()
 	{
-		for (HyeonGameObject* gameObj : mGameObjects)
+		for (HyeonLayer* layer : mLayers)
 		{
-			gameObj->LateUpdate();
+			if (layer == nullptr)
+				continue;
+			layer->LateUpdate();
 		}
 	}
 	void HyeonScene::Render(HDC hdc)
 	{
-		for (HyeonGameObject* gameObj : mGameObjects)
+		for (HyeonLayer* layer : mLayers)
 		{
-			gameObj->Render(hdc);
+			if (layer == nullptr)
+				continue;
+			layer->Render(hdc);
 		}
 	}
-	void HyeonScene::AddGameObject(HyeonGameObject* gameObject)
+
+	void HyeonScene::AddGameObject(HyeonGameObject* gameObject, eLayerType type)
 	{
-		mGameObjects.push_back(gameObject);
+		mLayers[(UINT)type]->AddGameObject(gameObject);
+	}
+
+	void HyeonScene::CreateLayers()
+	{
+		mLayers.resize((UINT)eLayerType::Max);
+		for (size_t i = 0; i < (UINT)eLayerType::Max; i++)
+		{
+			mLayers[i] = new HyeonLayer();
+		}
+	}
+
+	void HyeonScene::OnEnter()
+	{
+
+	}
+
+	void HyeonScene::OnExit()
+	{
+
 	}
 }

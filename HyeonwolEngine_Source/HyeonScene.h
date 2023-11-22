@@ -1,7 +1,7 @@
 #pragma once
-#include "CommonInclude.h"
 #include "HyeonEntity.h"
 #include "HyeonGameObject.h"
+#include "HyeonLayer.h"
 
 namespace Hyeon
 {
@@ -16,8 +16,14 @@ namespace Hyeon
 		virtual void LateUpdate();
 		virtual void Render(HDC hdc);
 
-		void AddGameObject(HyeonGameObject* gameObject);
+		virtual void OnEnter();
+		virtual void OnExit();
+
+		void AddGameObject(HyeonGameObject* gameObject, eLayerType type);
+
 	private:
-		vector<HyeonGameObject*> mGameObjects;
+		void CreateLayers();
+	private:
+		vector<HyeonLayer*> mLayers;
 	};
 }

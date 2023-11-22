@@ -19,6 +19,11 @@ namespace Hyeon
 		}
 		static HyeonScene* LoadScene(const std::wstring& name)
 		{
+			if (mActiveScene)
+			{
+				mActiveScene->OnExit();
+			}
+
 			std::map<std::wstring, HyeonScene*>::iterator iter
 				= mScene.find(name);
 
@@ -26,6 +31,7 @@ namespace Hyeon
 				return nullptr;
 
 			mActiveScene = iter->second;
+			mActiveScene->OnEnter();
 
 			return iter->second;
 		}
