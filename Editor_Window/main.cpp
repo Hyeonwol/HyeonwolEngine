@@ -3,7 +3,8 @@
 
 #include "framework.h"
 #include "Editor_Window.h"
-#include "..//HyeonwolEngine_Source/HyeonApplication.h"
+#include "..\\HyeonwolEngine_Source\HyeonApplication.h"
+#include "..\\HyeonwolEngine_Window\HyeonLoadResources.h"
 #include "..\\HyeonwolEngine_Window\HyeonLoadScenes.h"
 
 Hyeon::HyeonApplication Application;
@@ -129,6 +130,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    Gdiplus::GdiplusStartup(&gpToken, &gpsi, NULL);
 
+   Hyeon::LoadResources();
    Hyeon::LoadScenes();
    return TRUE;
 }

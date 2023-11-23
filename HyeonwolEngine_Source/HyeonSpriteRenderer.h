@@ -1,6 +1,7 @@
 #pragma once
 #include "HyeonEntity.h"
 #include "HyeonComponent.h"
+#include "HyeonTexture.h"
 
 namespace Hyeon
 {
@@ -15,10 +16,10 @@ namespace Hyeon
 		void LateUpdate() override;
 		void Render(HDC hdc) override;
 
-		void ImageLoad(const wstring& path);
+		void SetTexture(graphics::HyeonTexture* Texture) { mTexture = Texture; }
+		void SetSize(HyeonMath::Vector2 size) { mSize = size; }
 	private:
-		Gdiplus::Image* mImage;
-		UINT mWidth;
-		UINT mHeight;
+		graphics::HyeonTexture* mTexture;
+		HyeonMath::Vector2 mSize;
 	};
 }

@@ -11,6 +11,7 @@
     <ClInclude Include="HyeonTitleScene.h">
       <Filter>TitleScene</Filter>
     </ClInclude>
+    <ClInclude Include="HyeonLoadResources.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HyeonPlayScene.cpp">

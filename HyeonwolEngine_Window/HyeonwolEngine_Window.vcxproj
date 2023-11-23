@@ -129,6 +129,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="HyeonLoadResources.h" />
     <ClInclude Include="HyeonLoadScenes.h" />
     <ClInclude Include="HyeonPlayer.h" />
     <ClInclude Include="HyeonPlayScene.h" />

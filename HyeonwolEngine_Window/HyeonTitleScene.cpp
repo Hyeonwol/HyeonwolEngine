@@ -5,6 +5,8 @@
 #include "HyeonInput.h"
 #include "HyeonSceneManager.h"
 #include "HyeonObject.h"
+#include "HyeonResources.h"
+#include "HyeonTexture.h"
 
 namespace Hyeon
 {
@@ -17,20 +19,14 @@ namespace Hyeon
 	void HyeonTitleScene::Initialize()
 	{
 		titleBg = object::Instantiate<HyeonPlayer>
-			(enums::eLayerType::BackGround, Vector2(0, 0));
+			(enums::eLayerType::BackGround);
 		
 		HyeonSpriteRenderer* sr = titleBg->AddComponent<HyeonSpriteRenderer>();
-		sr->ImageLoad(L"D:\\GameProgramming\\HyeonwolEngine\\Resources\\Chrono Trigger\\Title.png");
-		HyeonScene::Initialize();
-		/*titleBg = new HyeonPlayer();
-		HyeonTransform* tr = titleBg->AddComponent<HyeonTransform>();
-		tr->SetPos(Vector2(0, 0));
-		tr->SetName(L"TR");
-		HyeonSpriteRenderer* sr = titleBg->AddComponent<HyeonSpriteRenderer>();
-		sr->SetName(L"SR");
-		sr->ImageLoad(L"D:\\GameProgramming\\HyeonwolEngine\\Resources\\Chrono Trigger\\Title.png");
+		graphics::HyeonTexture* bg = HyeonResources::Find<graphics::HyeonTexture>(L"Title");
+		sr->SetTexture(bg);
 
-		AddGameObject(titleBg, enums::eLayerType::BackGround);*/
+		HyeonScene::Initialize();
+		
 	}
 	void HyeonTitleScene::Update()
 	{

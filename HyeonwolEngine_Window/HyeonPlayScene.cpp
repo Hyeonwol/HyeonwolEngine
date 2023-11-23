@@ -5,6 +5,8 @@
 #include "HyeonInput.h"
 #include "HyeonSceneManager.h"
 #include "HyeonObject.h"
+#include "HyeonResources.h"
+#include "HyeonTexture.h"
 
 
 namespace Hyeon
@@ -19,15 +21,18 @@ namespace Hyeon
 	{
 		//µÞ¹è°æ
 		bg = object::Instantiate<HyeonPlayer>
-			(enums::eLayerType::BackGround, Vector2(0.0f, 0.0f));
+			(enums::eLayerType::BackGround);
 		HyeonSpriteRenderer* sr = bg->AddComponent<HyeonSpriteRenderer>();
-		sr->ImageLoad(L"D:\\GameProgramming\\HyeonwolEngine\\Resources\\Chrono Trigger\\SNES - Chrono Trigger - Guardia Forest.png");
+		
+		graphics::HyeonTexture* bg = HyeonResources::Find<graphics::HyeonTexture>(L"BG");
+		sr->SetTexture(bg);
 
 		//Æ÷Å»ÀÌ¹ÌÁö
 		Portal = object::Instantiate<HyeonPlayer>
-			(enums::eLayerType::Object, Vector2(350, 280));
+			(enums::eLayerType::Object, HyeonMath::Vector2(350,280));
 		HyeonSpriteRenderer* Portalsr = Portal->AddComponent<HyeonSpriteRenderer>();
-		Portalsr->ImageLoad(L"D:\\GameProgramming\\HyeonwolEngine\\Resources\\Chrono Trigger\\Chrono Trigger - Gate.png");
+		graphics::HyeonTexture* Portal = HyeonResources::Find<graphics::HyeonTexture>(L"Portal");
+		Portalsr->SetTexture(Portal);
 
 		HyeonScene::Initialize();
 	}
@@ -55,7 +60,5 @@ namespace Hyeon
 	}
 	void HyeonPlayScene::OnExit()
 	{
-		//HyeonTransform* tr = bg->GetComponent<HyeonTransform>();
-		//tr->SetPos(Vector2(0, 0));
 	}
 }

@@ -1,14 +1,15 @@
 #include "HyeonSpriteRenderer.h"
 #include "HyeonGameObject.h"
 #include "HyeonTransform.h"
+#include "HyeonTexture.h"
 
 
 namespace Hyeon
 {
 	HyeonSpriteRenderer::HyeonSpriteRenderer()
-		:mImage(nullptr)
-		,mWidth(0)
-		,mHeight(0)
+		:HyeonComponent(),
+		mTexture(nullptr),
+		mSize(Vector2::One)
 	{
 	}
 	HyeonSpriteRenderer::~HyeonSpriteRenderer()
@@ -25,16 +26,29 @@ namespace Hyeon
 	}
 	void HyeonSpriteRenderer::Render(HDC hdc)
 	{
+		if (mTexture == nullptr)
+			assert(false);
+
+
 		HyeonTransform* tr = GetOwner()->GetComponent<HyeonTransform>();
 		Vector2 pos = tr->GetPos();
 
-		Gdiplus::Graphics graphics(hdc);
-		graphics.DrawImage(mImage, Gdiplus::Rect(pos.X, pos.Y, mWidth, mHeight));
-	}
-	void HyeonSpriteRenderer::ImageLoad(const wstring& path)
-	{
-		mImage = Gdiplus::Image::FromFile(path.c_str());
-		mWidth = mImage->GetWidth();
-		mHeight = mImage->GetHeight();
+		if (mTexture->GetTextureType() == 
+			graphics::HyeonTexture::eTextureType::Bmp)
+		{
+			TransparentBlt(hdc, pos.X, pos.Y,
+				mTexture->GetWidth() * mSize.X, mTexture->GetHeight() * mSize.Y,
+				mTexture->GetHdc(), 0, 0, mTexture->GetWidth(), mTexture->GetHeight(),
+				RGB(255, 0, 255));
+		}
+
+		else if (mTexture->GetTextureType() ==
+			graphics::HyeonTexture::eTextureType::Png)
+		{
+			Gdiplus::Graphics graphics(hdc);
+			graphics.DrawImage(mTexture->GetImg(),
+				Gdiplus::Rect(pos.X, pos.Y, 
+					mTexture->GetWidth() * mSize.X, mTexture->GetHeight() * mSize.Y));
+		}
 	}
 }

@@ -8,6 +8,7 @@
 
 #include <mmsystem.h>
 #include <dinput.h>
+#include <assert.h>
 
 #pragma comment(lib, "Msimg32.lib")
 #pragma comment(lib, "winmm.lib")

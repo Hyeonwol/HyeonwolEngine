@@ -34,7 +34,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonMath.cpp">
       <Filter>Math</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)HyeonResouces.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)HyeonResources.cpp">
       <Filter>Resource</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonResource.cpp">
@@ -42,6 +42,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonLayer.cpp">
       <Filter>Layer</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)HyeonTexture.cpp">
+      <Filter>Texture</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -82,7 +85,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonResource.h">
       <Filter>Resource</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)HyeonResouces.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)HyeonResources.h">
       <Filter>Resource</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonEnums.h" />
@@ -90,6 +93,9 @@
       <Filter>Layer</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)HyeonTexture.h">
+      <Filter>Texture</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Application">
@@ -130,6 +136,9 @@
     </Filter>
     <Filter Include="Layer">
       <UniqueIdentifier>{4b95d2af-bc4f-45eb-8a1f-022b52738023}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Texture">
+      <UniqueIdentifier>{b0115f63-2533-49ee-82d7-050f541cd66e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
