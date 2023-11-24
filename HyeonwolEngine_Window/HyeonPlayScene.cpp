@@ -7,6 +7,9 @@
 #include "HyeonObject.h"
 #include "HyeonResources.h"
 #include "HyeonTexture.h"
+#include "HyeonCamera.h"
+#include "HyeonRenderer.h"
+#include "HyeonPlayerScript.h"
 
 
 namespace Hyeon
@@ -19,20 +22,37 @@ namespace Hyeon
 	}
 	void HyeonPlayScene::Initialize()
 	{
-		//뒷배경
-		bg = object::Instantiate<HyeonPlayer>
+		//메인 카메라
+		HyeonGameObject* camera = object::Instantiate<HyeonGameObject>
+			(enums::eLayerType::None, Vector2(344.0f, 442.0f));
+		HyeonCamera* cameraComp = camera->AddComponent<HyeonCamera>();
+		renderer::mainCamera = cameraComp;
+
+
+		//플레이어(크로노)
+		mPlayer = object::Instantiate<HyeonPlayer>
 			(enums::eLayerType::BackGround);
-		HyeonSpriteRenderer* sr = bg->AddComponent<HyeonSpriteRenderer>();
-		
-		graphics::HyeonTexture* bg = HyeonResources::Find<graphics::HyeonTexture>(L"BG");
-		sr->SetTexture(bg);
+		HyeonSpriteRenderer* sr = mPlayer->AddComponent<HyeonSpriteRenderer>();
+		//sr->SetSize(Vector2(3.0f, 3.0f));
+		mPlayer->AddComponent<HyeonPlayerScript>();
+
+		graphics::HyeonTexture* mPlayerTexture = HyeonResources::Find<graphics::HyeonTexture>(L"Chrono");
+		sr->SetTexture(mPlayerTexture);
+
+		//뒷배경
+		HyeonGameObject* bg = object::Instantiate<HyeonGameObject>
+			(enums::eLayerType::BackGround);
+		HyeonSpriteRenderer* bgSr = bg->AddComponent<HyeonSpriteRenderer>();
+		//bgSr->SetSize(Vector2(3.0f, 3.0f));
+		graphics::HyeonTexture* bgTexture = HyeonResources::Find<graphics::HyeonTexture>(L"BG");
+		bgSr->SetTexture(bgTexture);
 
 		//포탈이미지
-		Portal = object::Instantiate<HyeonPlayer>
-			(enums::eLayerType::Object, HyeonMath::Vector2(350,280));
+		HyeonGameObject* Portal = object::Instantiate<HyeonGameObject>
+			(enums::eLayerType::Object, Vector2(350.0f,280.0f));
 		HyeonSpriteRenderer* Portalsr = Portal->AddComponent<HyeonSpriteRenderer>();
-		graphics::HyeonTexture* Portal = HyeonResources::Find<graphics::HyeonTexture>(L"Portal");
-		Portalsr->SetTexture(Portal);
+		graphics::HyeonTexture* PortalTexture = HyeonResources::Find<graphics::HyeonTexture>(L"Portal");
+		Portalsr->SetTexture(PortalTexture);
 
 		HyeonScene::Initialize();
 	}

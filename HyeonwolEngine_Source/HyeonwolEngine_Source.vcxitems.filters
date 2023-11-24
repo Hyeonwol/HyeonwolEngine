@@ -46,6 +46,15 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonTexture.cpp">
       <Filter>Texture</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)HyeonCamera.cpp">
+      <Filter>Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)HyeonRenderer.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)HyeonScript.cpp">
+      <Filter>Script</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h" />
@@ -96,6 +105,15 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonTexture.h">
       <Filter>Texture</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)HyeonCamera.h">
+      <Filter>Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)HyeonRenderer.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)HyeonScript.h">
+      <Filter>Script</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Application">
@@ -139,6 +157,15 @@
     </Filter>
     <Filter Include="Texture">
       <UniqueIdentifier>{b0115f63-2533-49ee-82d7-050f541cd66e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Camera">
+      <UniqueIdentifier>{8e70b966-826c-4496-b792-9a94647b1fb6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer">
+      <UniqueIdentifier>{b2d088a1-9cad-46cb-96b8-c02ab63ae686}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script">
+      <UniqueIdentifier>{7186f67f-9921-4603-8f16-124e98421698}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -18,12 +18,12 @@ namespace Hyeon
 	}
 	void HyeonTitleScene::Initialize()
 	{
-		titleBg = object::Instantiate<HyeonPlayer>
+		HyeonGameObject* titleBg = object::Instantiate<HyeonGameObject>
 			(enums::eLayerType::BackGround);
 		
 		HyeonSpriteRenderer* sr = titleBg->AddComponent<HyeonSpriteRenderer>();
-		graphics::HyeonTexture* bg = HyeonResources::Find<graphics::HyeonTexture>(L"Title");
-		sr->SetTexture(bg);
+		graphics::HyeonTexture* titleBgTexture = HyeonResources::Find<graphics::HyeonTexture>(L"Title");
+		sr->SetTexture(titleBgTexture);
 
 		HyeonScene::Initialize();
 		

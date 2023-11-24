@@ -7,6 +7,7 @@ namespace Hyeon
 {
 	HyeonGameObject::HyeonGameObject()
 	{
+		mComponents.resize((UINT)enums::eComponentType::End);
 		initializeTransform();
 	}
 
@@ -18,6 +19,9 @@ namespace Hyeon
 	{
 		for (HyeonComponent* comp : mComponents)
 		{
+			if (comp == nullptr)
+				continue;
+
 			comp->Initialize();
 		}
 	}
@@ -26,6 +30,9 @@ namespace Hyeon
 	{
 		for (HyeonComponent* comp : mComponents)
 		{
+			if (comp == nullptr)
+				continue;
+
 			comp->Update();
 		}
 	}
@@ -35,6 +42,9 @@ namespace Hyeon
 	{
 		for (HyeonComponent* comp : mComponents)
 		{
+			if (comp == nullptr)
+				continue;
+
 			comp->LateUpdate();
 		}
 	}
@@ -43,6 +53,9 @@ namespace Hyeon
 	{
 		for (HyeonComponent* comp : mComponents)
 		{
+			if (comp == nullptr)
+				continue;
+
 			comp->Render(hdc);
 		}
 	}

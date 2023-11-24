@@ -2,12 +2,13 @@
 #include "HyeonGameObject.h"
 #include "HyeonTransform.h"
 #include "HyeonTexture.h"
+#include "HyeonRenderer.h"
 
 
 namespace Hyeon
 {
 	HyeonSpriteRenderer::HyeonSpriteRenderer()
-		:HyeonComponent(),
+		:HyeonComponent(enums::eComponentType::SpriteRenderer),
 		mTexture(nullptr),
 		mSize(Vector2::One)
 	{
@@ -32,6 +33,8 @@ namespace Hyeon
 
 		HyeonTransform* tr = GetOwner()->GetComponent<HyeonTransform>();
 		Vector2 pos = tr->GetPos();
+
+		pos = renderer::mainCamera->CalculatePos(pos);
 
 		if (mTexture->GetTextureType() == 
 			graphics::HyeonTexture::eTextureType::Bmp)

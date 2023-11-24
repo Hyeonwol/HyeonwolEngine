@@ -8,7 +8,7 @@ namespace Hyeon
 	class HyeonComponent : public HyeonEntity
 	{
 	public:
-		HyeonComponent();
+		HyeonComponent(enums::eComponentType type);
 		~HyeonComponent();
 
 		virtual void Initialize();
@@ -18,7 +18,10 @@ namespace Hyeon
 
 		void SetOwner(HyeonGameObject* owner) { mOwner = owner; }
 		HyeonGameObject* GetOwner() { return mOwner; }
+		enums::eComponentType GetType() { return mType; }
+
 	private:
 		HyeonGameObject* mOwner;
+		enums::eComponentType mType;
 	};
 }

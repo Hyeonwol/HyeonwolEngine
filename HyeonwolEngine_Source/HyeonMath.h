@@ -21,5 +21,20 @@ namespace Hyeon::HyeonMath
 			 Y(_y)
 		{
 		}
+
+		Vector2 operator+(Vector2 other)
+		{
+			return Vector2(X + other.X, Y + other.Y);
+		}
+
+		Vector2 operator-(Vector2 other)
+		{
+			return Vector2(X - other.X, Y - other.Y);
+		}
+
+		Vector2 operator/(float value)
+		{
+			return Vector2(X / value, Y / value);
+		}
 	};
 }

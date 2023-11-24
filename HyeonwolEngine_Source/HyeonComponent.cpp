@@ -2,7 +2,8 @@
 
 namespace Hyeon
 {
-	HyeonComponent::HyeonComponent()
+	HyeonComponent::HyeonComponent(enums::eComponentType type)
+		:mType(type)
 	{
 	}
 

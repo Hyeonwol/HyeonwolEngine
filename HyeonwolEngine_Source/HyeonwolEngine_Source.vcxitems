@@ -16,6 +16,7 @@
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonApplication.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)HyeonCamera.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonComponent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonEnums.h" />
@@ -24,10 +25,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonLayer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonMath.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)HyeonRenderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonResources.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonResource.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonScene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonSceneManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)HyeonScript.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonSpriteRenderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonTexture.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonTime.h" />
@@ -35,16 +38,19 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonApplication.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)HyeonCamera.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonComponent.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonEntity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonGameObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonInput.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonLayer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonMath.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)HyeonRenderer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonResources.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonResource.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonScene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonSceneManager.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)HyeonScript.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonSpriteRenderer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonTexture.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonTime.cpp" />

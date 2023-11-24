@@ -12,6 +12,9 @@
       <Filter>TitleScene</Filter>
     </ClInclude>
     <ClInclude Include="HyeonLoadResources.h" />
+    <ClInclude Include="HyeonPlayerScript.h">
+      <Filter>PlayerScript</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HyeonPlayScene.cpp">
@@ -23,6 +26,9 @@
     <ClCompile Include="HyeonTitleScene.cpp">
       <Filter>TitleScene</Filter>
     </ClCompile>
+    <ClCompile Include="HyeonPlayerScript.cpp">
+      <Filter>PlayerScript</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Player">
@@ -33,6 +39,9 @@
     </Filter>
     <Filter Include="TitleScene">
       <UniqueIdentifier>{86f509b9-cc0a-4aa5-a570-f6fc12c25721}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlayerScript">
+      <UniqueIdentifier>{c654ddbe-07a4-4261-b3ce-3c4d1e8bb8a5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

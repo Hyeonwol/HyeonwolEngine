@@ -18,6 +18,7 @@ namespace Hyeon
 		void OnExit() override;
 
 	private:
+		class HyeonPlayer* mPlayer;
 		class HyeonPlayer* bg;
 		class HyeonPlayer* Portal;
 	};

@@ -15,5 +15,8 @@ namespace Hyeon
 		HyeonResources::Load<graphics::HyeonTexture>(L"Title",
 			L"..\\Resources\\Chrono Trigger\\Title.png");
 
+		HyeonResources::Load<graphics::HyeonTexture>(L"Chrono",
+			L"..\\Resources\\Chrono Trigger\\SNES - Chrono Trigger - Crono.png");
+
 	}
 }

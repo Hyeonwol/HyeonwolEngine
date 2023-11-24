@@ -3,6 +3,7 @@
 namespace Hyeon
 {
 	HyeonTransform::HyeonTransform()
+		:HyeonComponent(enums::eComponentType::Transform)
 	{
 	}
 	HyeonTransform::~HyeonTransform()
