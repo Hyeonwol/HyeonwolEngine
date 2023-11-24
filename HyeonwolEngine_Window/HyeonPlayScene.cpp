@@ -24,7 +24,7 @@ namespace Hyeon
 	{
 		//메인 카메라
 		HyeonGameObject* camera = object::Instantiate<HyeonGameObject>
-			(enums::eLayerType::None, Vector2(344.0f, 442.0f));
+			(enums::eLayerType::None, Vector2(392.0f, 395.0f));
 		HyeonCamera* cameraComp = camera->AddComponent<HyeonCamera>();
 		renderer::mainCamera = cameraComp;
 
