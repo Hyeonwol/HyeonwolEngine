@@ -11,5 +11,6 @@ namespace Hyeon
 		HyeonSceneManager::CreateScene<HyeonPlayScene>(L"PlayScene");
 		
 		HyeonSceneManager::LoadScene(L"TitleScene");
+		//HyeonSceneManager::LoadScene(L"PlayScene");
 	}
 }

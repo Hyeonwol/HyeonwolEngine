@@ -28,17 +28,6 @@ namespace Hyeon
 		HyeonCamera* cameraComp = camera->AddComponent<HyeonCamera>();
 		renderer::mainCamera = cameraComp;
 
-
-		//플레이어(크로노)
-		mPlayer = object::Instantiate<HyeonPlayer>
-			(enums::eLayerType::BackGround);
-		HyeonSpriteRenderer* sr = mPlayer->AddComponent<HyeonSpriteRenderer>();
-		//sr->SetSize(Vector2(3.0f, 3.0f));
-		mPlayer->AddComponent<HyeonPlayerScript>();
-
-		graphics::HyeonTexture* mPlayerTexture = HyeonResources::Find<graphics::HyeonTexture>(L"Chrono");
-		sr->SetTexture(mPlayerTexture);
-
 		//뒷배경
 		HyeonGameObject* bg = object::Instantiate<HyeonGameObject>
 			(enums::eLayerType::BackGround);
@@ -53,6 +42,16 @@ namespace Hyeon
 		HyeonSpriteRenderer* Portalsr = Portal->AddComponent<HyeonSpriteRenderer>();
 		graphics::HyeonTexture* PortalTexture = HyeonResources::Find<graphics::HyeonTexture>(L"Portal");
 		Portalsr->SetTexture(PortalTexture);
+
+		//플레이어(크로노)
+		mPlayer = object::Instantiate<HyeonPlayer>
+			(enums::eLayerType::Player, Vector2(0.0f,0.0f));
+		HyeonSpriteRenderer* sr = mPlayer->AddComponent<HyeonSpriteRenderer>();
+		sr->SetSize(Vector2(1.5f, 1.5f));
+		mPlayer->AddComponent<HyeonPlayerScript>();
+
+		graphics::HyeonTexture* mPlayerTexture = HyeonResources::Find<graphics::HyeonTexture>(L"Chrono");
+		sr->SetTexture(mPlayerTexture);
 
 		HyeonScene::Initialize();
 	}

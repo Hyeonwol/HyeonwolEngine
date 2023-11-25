@@ -13,10 +13,10 @@ namespace Hyeon
 			L"..\\Resources\\Chrono Trigger\\Chrono Trigger - Gate.png");
 
 		HyeonResources::Load<graphics::HyeonTexture>(L"Title",
-			L"..\\Resources\\Chrono Trigger\\Title.png");
+			L"..\\Resources\\Chrono Trigger\\Title.bmp");
 
 		HyeonResources::Load<graphics::HyeonTexture>(L"Chrono",
-			L"..\\Resources\\Chrono Trigger\\SNES - Chrono Trigger - Crono.png");
+			L"..\\Resources\\Chrono Trigger\\SNES - Chrono Trigger - Crono.bmp");
 
 	}
 }

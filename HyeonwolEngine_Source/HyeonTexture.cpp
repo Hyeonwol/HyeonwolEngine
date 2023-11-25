@@ -16,11 +16,11 @@ namespace Hyeon::graphics
 	{
 		wstring ext = path.substr(path.find_last_of(L".") + 1);
 
-		//확장자: bmp
+		//확장자: bmp  //현재 mBitmap이 항상 nullptr인 현상 있음. 질문할 것
 		if (ext == L"bmp")
 		{
 			mType = eTextureType::Bmp;
-			mBitmap = (HBITMAP)LoadImageW(nullptr, path.c_str(), IMAGE_BITMAP
+			mBitmap = (HBITMAP)LoadImageW(NULL, path.c_str(), IMAGE_BITMAP
 				, 0, 0, LR_LOADFROMFILE | LR_CREATEDIBSECTION);
 
 			if (mBitmap == nullptr)
