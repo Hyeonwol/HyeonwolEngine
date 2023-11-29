@@ -1,6 +1,8 @@
 #pragma once
 #include "CommonInclude.h"
 
+using namespace Hyeon::HyeonMath;
+
 namespace Hyeon
 {
 	class HyeonEntity

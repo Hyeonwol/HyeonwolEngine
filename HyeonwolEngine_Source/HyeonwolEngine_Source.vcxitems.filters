@@ -55,6 +55,12 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonScript.cpp">
       <Filter>Script</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)HyeonAnimator.cpp">
+      <Filter>Animator</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)HyeonAnimation.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h" />
@@ -114,6 +120,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonScript.h">
       <Filter>Script</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)HyeonAnimator.h">
+      <Filter>Animator</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)HyeonAnimation.h">
+      <Filter>Animation</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Application">
@@ -166,6 +178,12 @@
     </Filter>
     <Filter Include="Script">
       <UniqueIdentifier>{7186f67f-9921-4603-8f16-124e98421698}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Animator">
+      <UniqueIdentifier>{975b8473-8214-48d4-be0d-bca6b74eef4d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Animation">
+      <UniqueIdentifier>{56f219f5-4f93-4739-aed4-748089c53322}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

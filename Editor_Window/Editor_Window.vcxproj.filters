@@ -48,6 +48,9 @@
     <Image Include="Editor_Window.ico">
       <Filter>리소스 파일</Filter>
     </Image>
+    <Image Include="..\Resources\Chrono Trigger\Title.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

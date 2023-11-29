@@ -6,6 +6,7 @@ namespace Hyeon::enums
 	{
 		Transform, 
 		SpriteRenderer, 
+		Animator, 
 		Script, 
 		Camera, 
 		End
@@ -26,6 +27,7 @@ namespace Hyeon::enums
 	{
 		Texture, 
 		AudioClip,
+		Animation, 
 		Prefab,
 		End
 	};

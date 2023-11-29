@@ -15,6 +15,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)HyeonAnimation.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)HyeonAnimator.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonApplication.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonCamera.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonComponent.h" />
@@ -37,6 +39,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonTransform.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)HyeonAnimation.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)HyeonAnimator.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonApplication.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonCamera.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonComponent.cpp" />

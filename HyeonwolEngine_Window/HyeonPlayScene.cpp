@@ -10,6 +10,7 @@
 #include "HyeonCamera.h"
 #include "HyeonRenderer.h"
 #include "HyeonPlayerScript.h"
+#include "HyeonAnimator.h"
 
 
 namespace Hyeon
@@ -27,6 +28,7 @@ namespace Hyeon
 			(enums::eLayerType::None, Vector2(392.0f, 395.0f));
 		HyeonCamera* cameraComp = camera->AddComponent<HyeonCamera>();
 		renderer::mainCamera = cameraComp;
+		//camera->AddComponent<HyeonPlayerScript>();
 
 		//뒷배경
 		HyeonGameObject* bg = object::Instantiate<HyeonGameObject>
@@ -46,12 +48,18 @@ namespace Hyeon
 		//플레이어(크로노)
 		mPlayer = object::Instantiate<HyeonPlayer>
 			(enums::eLayerType::Player, Vector2(0.0f,0.0f));
-		HyeonSpriteRenderer* sr = mPlayer->AddComponent<HyeonSpriteRenderer>();
-		sr->SetSize(Vector2(1.5f, 1.5f));
+		/*HyeonSpriteRenderer* sr = mPlayer->AddComponent<HyeonSpriteRenderer>();
+		sr->SetSize(Vector2(1.5f, 1.5f));*/
 		mPlayer->AddComponent<HyeonPlayerScript>();
 
 		graphics::HyeonTexture* mPlayerTexture = HyeonResources::Find<graphics::HyeonTexture>(L"Chrono");
-		sr->SetTexture(mPlayerTexture);
+		HyeonAnimator* animator = mPlayer->AddComponent<HyeonAnimator>();
+		animator->CreateAnimation(L"ChronoMoving", mPlayerTexture, 
+			Vector2(124.0f, 0.0f), Vector2(22.0f, 44.0f), 
+			Vector2::Zero, 6, 0.5f);
+
+		animator->PlayAnimation(L"ChronoMoving", true);
+		//sr->SetTexture(mPlayerTexture);
 
 		HyeonScene::Initialize();
 	}

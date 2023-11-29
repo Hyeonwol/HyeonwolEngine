@@ -141,6 +141,7 @@
     <ResourceCompile Include="Editor_Window.rc" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\Resources\Chrono Trigger\Title.bmp" />
     <Image Include="Editor_Window.ico" />
     <Image Include="small.ico" />
   </ItemGroup>
