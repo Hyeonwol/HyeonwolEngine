@@ -28,11 +28,11 @@ namespace Hyeon
 		if (mTarget)
 		{
 			HyeonTransform* tr = mTarget->GetComponent<HyeonTransform>();
-			mLookPosition = tr->GetPos();
+			mLookPosition = tr->GetPosition();
 		}
 
 		HyeonTransform* cameraTr = GetOwner()->GetComponent<HyeonTransform>();
-		mLookPosition = cameraTr->GetPos();
+		mLookPosition = cameraTr->GetPosition();
 
 		mDistance = mLookPosition - (mResolution / 2.0f);
 	}

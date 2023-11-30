@@ -52,14 +52,33 @@ namespace Hyeon
 		sr->SetSize(Vector2(1.5f, 1.5f));*/
 		mPlayer->AddComponent<HyeonPlayerScript>();
 
-		graphics::HyeonTexture* mPlayerTexture = HyeonResources::Find<graphics::HyeonTexture>(L"Chrono");
+		graphics::HyeonTexture* mPlayerTexture = HyeonResources::Find<graphics::HyeonTexture>
+			(L"Chrono");
 		HyeonAnimator* animator = mPlayer->AddComponent<HyeonAnimator>();
-		animator->CreateAnimation(L"ChronoMoving", mPlayerTexture, 
-			Vector2(124.0f, 0.0f), Vector2(22.0f, 44.0f), 
-			Vector2::Zero, 6, 0.5f);
+		animator->CreateAnimation(L"Relax", mPlayerTexture, 
+			Vector2(57.0f, 11.0f), Vector2(20.0f, 42.0f), 
+			Vector2::Zero, 3, 0.1f);
+		animator->CreateAnimation(L"DownWalk", mPlayerTexture,
+			Vector2(128.0f, 11.0f), Vector2(20.0f, 42.0f),
+			Vector2::Zero, 6, 0.1f);
+		animator->CreateAnimation(L"UpWalk", mPlayerTexture,
+			Vector2(128.0f, 56.0f), Vector2(20.0f, 42.0f),
+			Vector2::Zero, 6, 0.1f);
+		animator->CreateAnimation(L"RightWalk", mPlayerTexture,
+			Vector2(123.0f, 98.0f), Vector2(24.0f, 42.0f),
+			Vector2::Zero, 6, 0.1f);
+		animator->CreateAnimation(L"DrawWeapon", mPlayerTexture,
+			Vector2(280.0f, 11.0f), Vector2(22.0f, 42.0f),
+			Vector2::Zero, 6, 0.1f);
+		animator->CreateAnimation(L"Attack", mPlayerTexture,
+			Vector2(280.0f, 135.0f), Vector2(24.0f, 56.0f),
+			Vector2::Zero, 4, 0.1f);
 
-		animator->PlayAnimation(L"ChronoMoving", true);
-		//sr->SetTexture(mPlayerTexture);
+		animator->PlayAnimation(L"Relax");
+
+		mPlayer->GetComponent<HyeonTransform>()->SetPosition(Vector2(100.0f, 100.0f));
+		mPlayer->GetComponent<HyeonTransform>()->SetScale(Vector2(2.0f, 2.0f));
+		
 
 		HyeonScene::Initialize();
 	}

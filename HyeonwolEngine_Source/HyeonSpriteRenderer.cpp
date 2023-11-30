@@ -32,7 +32,9 @@ namespace Hyeon
 
 
 		HyeonTransform* tr = GetOwner()->GetComponent<HyeonTransform>();
-		Vector2 pos = tr->GetPos();
+		Vector2 pos = tr->GetPosition();
+		float rot = tr->GetRotation();
+		Vector2 scale = tr->GetScale();
 
 		pos = renderer::mainCamera->CalculatePos(pos);
 
@@ -40,18 +42,34 @@ namespace Hyeon
 			graphics::HyeonTexture::eTextureType::Bmp)
 		{
 			TransparentBlt(hdc, pos.X, pos.Y,
-				mTexture->GetWidth() * mSize.X, mTexture->GetHeight() * mSize.Y,
+				mTexture->GetWidth() * mSize.X * scale.X, 
+				mTexture->GetHeight() * mSize.Y * scale.Y,
 				mTexture->GetHdc(), 0, 0, mTexture->GetWidth(), mTexture->GetHeight(),
 				RGB(255, 0, 255));
 		}
 
 		else if (mTexture->GetTextureType() ==
 			graphics::HyeonTexture::eTextureType::Png)
-		{
+		{	//투명화시킬 픽셀의 색의 범위
+			Gdiplus::ImageAttributes imgAtt = {};
+			imgAtt.SetColorKey(Gdiplus::Color(230, 230, 230), 
+				Gdiplus::Color(255, 255, 255));
+
 			Gdiplus::Graphics graphics(hdc);
+
+			graphics.TranslateTransform(pos.X, pos.Y);
+			graphics.RotateTransform(rot);
+			graphics.TranslateTransform(-pos.X, -pos.Y);
+
 			graphics.DrawImage(mTexture->GetImg(),
-				Gdiplus::Rect(pos.X, pos.Y, 
-					mTexture->GetWidth() * mSize.X, mTexture->GetHeight() * mSize.Y));
+				Gdiplus::Rect(
+					pos.X, pos.Y, 
+					mTexture->GetWidth() * mSize.X * scale.X, 
+					mTexture->GetHeight() * mSize.Y * scale.Y
+				), 0, 0, 
+			mTexture->GetWidth(), mTexture->GetHeight(), 
+				Gdiplus::UnitPixel, 
+				nullptr);
 		}
 	}
 }

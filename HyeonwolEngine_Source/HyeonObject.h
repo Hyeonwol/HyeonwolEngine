@@ -30,7 +30,7 @@ namespace Hyeon::object
 		layer->AddGameObject(gameObj);
 
 		HyeonTransform* tr = gameObj->GetComponent<HyeonTransform>();
-		tr->SetPos(pos);
+		tr->SetPosition(pos);
 
 		return gameObj;
 	}

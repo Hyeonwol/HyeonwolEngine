@@ -20,6 +20,7 @@ namespace Hyeon::enums
 		//Tree(Map?)
 		//Character (Monster, NPC, ...)
 		Player, 
+		Particle, 
 		Max = 16
 	};
 
