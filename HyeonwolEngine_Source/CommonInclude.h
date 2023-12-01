@@ -1,8 +1,11 @@
 #pragma once
 #include <windows.h>
+#include <algorithm>
 #include <vector>
 #include <string>
 #include <map>
+#include <functional>
+
 #include "HyeonMath.h"
 #include "HyeonEnums.h"
 

@@ -131,12 +131,16 @@
   <ItemGroup>
     <ClInclude Include="HyeonLoadResources.h" />
     <ClInclude Include="HyeonLoadScenes.h" />
+    <ClInclude Include="HyeonMonster.h" />
+    <ClInclude Include="HyeonMonsterScript.h" />
     <ClInclude Include="HyeonPlayer.h" />
     <ClInclude Include="HyeonPlayerScript.h" />
     <ClInclude Include="HyeonPlayScene.h" />
     <ClInclude Include="HyeonTitleScene.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="HyeonMonster.cpp" />
+    <ClCompile Include="HyeonMonsterScript.cpp" />
     <ClCompile Include="HyeonPlayer.cpp" />
     <ClCompile Include="HyeonPlayerScript.cpp" />
     <ClCompile Include="HyeonPlayScene.cpp" />

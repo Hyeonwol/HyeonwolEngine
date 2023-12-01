@@ -17,6 +17,7 @@ namespace Hyeon::enums
 		None, 
 		BackGround, 
 		Object, 
+		Monster, 
 		//Tree(Map?)
 		//Character (Monster, NPC, ...)
 		Player, 

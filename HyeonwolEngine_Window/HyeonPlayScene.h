@@ -19,7 +19,6 @@ namespace Hyeon
 
 	private:
 		class HyeonPlayer* mPlayer;
-		
 	};
 
 }

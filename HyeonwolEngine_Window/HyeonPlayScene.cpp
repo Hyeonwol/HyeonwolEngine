@@ -11,6 +11,8 @@
 #include "HyeonRenderer.h"
 #include "HyeonPlayerScript.h"
 #include "HyeonAnimator.h"
+#include "HyeonMonster.h"
+#include "HyeonMonsterScript.h"
 
 
 namespace Hyeon
@@ -45,11 +47,43 @@ namespace Hyeon
 		graphics::HyeonTexture* PortalTexture = HyeonResources::Find<graphics::HyeonTexture>(L"Portal");
 		Portalsr->SetTexture(PortalTexture);
 
+
+		//임프
+
+		/*HyeonMonster* imp = object::Instantiate<HyeonMonster>(enums::eLayerType::Monster);
+
+		imp->AddComponent<HyeonMonsterScript>();
+
+		graphics::HyeonTexture* ImpTex = HyeonResources::Find<graphics::HyeonTexture>
+			(L"Imp");
+		HyeonAnimator* impAnimator = imp->AddComponent<HyeonAnimator>();
+		impAnimator->CreateAnimation(L"ImpDownWalk", ImpTex,
+			Vector2(208.0f, 357.0f), Vector2(30.0f, 30.0f),
+			Vector2::Zero, 3, 0.1f);
+		impAnimator->CreateAnimation(L"ImpUpWalk", ImpTex,
+			Vector2(208.0f, 420.0f), Vector2(30.0f, 30.0f),
+			Vector2::Zero, 3, 0.1f);
+		impAnimator->CreateAnimation(L"ImpLeftWalk", ImpTex,
+			Vector2(208.0f, 390.0f), Vector2(30.0f, 30.0f),
+			Vector2::Zero, 3, 0.1f);
+		impAnimator->CreateAnimation(L"ImpRightWalk", ImpTex,
+			Vector2(208.0f, 450.0f), Vector2(30.0f, 30.0f),
+			Vector2::Zero, 3, 0.1f);
+		impAnimator->CreateAnimation(L"ImpLaugh", ImpTex,
+			Vector2(293.0f, 481.0f), Vector2(40.0f, 34.0f),
+			Vector2::Zero, 2, 0.1f);
+		impAnimator->CreateAnimation(L"ImpJump", ImpTex,
+			Vector2(208.0f, 510.0f), Vector2(30.0f, 30.0f),
+			Vector2::Zero, 3, 0.1f);
+
+		impAnimator->PlayAnimation(L"ImpLaugh", false);
+		imp->GetComponent<HyeonTransform>()->SetPosition(Vector2(300.0f, 300.0f));
+		imp->GetComponent<HyeonTransform>()->SetScale(Vector2(2.0f, 2.0f));*/
+
+
 		//플레이어(크로노)
 		mPlayer = object::Instantiate<HyeonPlayer>
 			(enums::eLayerType::Player, Vector2(0.0f,0.0f));
-		/*HyeonSpriteRenderer* sr = mPlayer->AddComponent<HyeonSpriteRenderer>();
-		sr->SetSize(Vector2(1.5f, 1.5f));*/
 		mPlayer->AddComponent<HyeonPlayerScript>();
 
 		graphics::HyeonTexture* mPlayerTexture = HyeonResources::Find<graphics::HyeonTexture>

@@ -10,7 +10,7 @@ namespace Hyeon
 		HyeonSceneManager::CreateScene<HyeonTitleScene>(L"TitleScene");
 		HyeonSceneManager::CreateScene<HyeonPlayScene>(L"PlayScene");
 		
-		HyeonSceneManager::LoadScene(L"TitleScene");
-		//HyeonSceneManager::LoadScene(L"PlayScene");
+		//HyeonSceneManager::LoadScene(L"TitleScene");
+		HyeonSceneManager::LoadScene(L"PlayScene");
 	}
 }

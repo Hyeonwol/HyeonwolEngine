@@ -120,5 +120,6 @@ namespace Hyeon
 	}
 	void HyeonPlayerScript::attack()
 	{
+		
 	}
 }

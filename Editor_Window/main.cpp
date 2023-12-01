@@ -132,6 +132,9 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    Hyeon::LoadResources();
    Hyeon::LoadScenes();
+
+   int a = 0;
+   srand(UINT(&a));
    return TRUE;
 }
 
