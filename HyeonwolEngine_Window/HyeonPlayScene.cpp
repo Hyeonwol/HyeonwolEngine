@@ -147,6 +147,21 @@ namespace Hyeon
 		ChronoAnimator->CreateAnimation(L"ChronoLeftAttack", mChronoTexture2,
 			Vector2(0.0f, 93.0f), Vector2(34.0f, 57.0f),
 			Vector2::Zero, 5, 0.1f);
+		
+		//Skill1
+		ChronoAnimator->CreateAnimation(L"ChronoRightSkill1", mChronoTexture2,
+			Vector2(0.0f, 228.0f), Vector2(40.0f, 50.0f),
+			Vector2::Zero, 5, 0.1f);
+		ChronoAnimator->CreateAnimation(L"ChronoLeftSkill1", mChronoTexture2,
+			Vector2(0.0f, 285.0f), Vector2(40.0f, 56.0f),
+			Vector2::Zero, 5, 0.1f);
+		//Skill2
+		ChronoAnimator->CreateAnimation(L"ChronoRightSkill2", mChronoTexture2,
+			Vector2(0.0f, 340.0f), Vector2(30.0f, 50.0f),
+			Vector2::Zero, 5, 0.1f);
+		ChronoAnimator->CreateAnimation(L"ChronoLeftSkill2", mChronoTexture2,
+			Vector2(147.0f, 340.0f), Vector2(30.0f, 50.0f),
+			Vector2::Zero, 5, 0.1f);
 
 		ChronoAnimator->PlayAnimation(L"ChronoDownRelax");
 

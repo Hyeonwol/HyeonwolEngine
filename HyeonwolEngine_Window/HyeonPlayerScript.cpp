@@ -149,6 +149,35 @@ namespace Hyeon
 			}
 		}
 
+		if (HyeonInput::GetKeyDown(eKeyCode::K))	//Skill1
+		{
+			if (mDir == HyeonPlayerScript::eDir::Right)
+			{
+				mState = HyeonPlayerScript::eState::Attack;
+				mAnimator->PlayAnimation(L"ChronoRightSkill1", false);
+			}
+			else if (mDir == HyeonPlayerScript::eDir::Left)
+			{
+				mState = HyeonPlayerScript::eState::Attack;
+				mAnimator->PlayAnimation(L"ChronoLeftSkill1", false);
+			}
+		}
+
+		if (HyeonInput::GetKeyDown(eKeyCode::L))
+		{
+			if (mDir == HyeonPlayerScript::eDir::Right)
+			{
+				mState = HyeonPlayerScript::eState::Attack;
+				mAnimator->PlayAnimation(L"ChronoRightSkill2", false);
+			}
+			else if (mDir == HyeonPlayerScript::eDir::Left)
+			{
+				mState = HyeonPlayerScript::eState::Attack;
+				mAnimator->PlayAnimation(L"ChronoLeftSkill2", false);
+			}
+			
+		}
+
 		if ((HyeonInput::GetKeyPressed(eKeyCode::W) ||	//Moving
 			HyeonInput::GetKeyPressed(eKeyCode::A) ||
 			HyeonInput::GetKeyPressed(eKeyCode::S) ||
