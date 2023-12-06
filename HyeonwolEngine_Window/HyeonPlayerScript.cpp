@@ -9,6 +9,8 @@ namespace Hyeon
 {
 	HyeonPlayerScript::HyeonPlayerScript()
 		:mState(HyeonPlayerScript::eState::Relax), 
+		 mDir(HyeonPlayerScript::eDir::Down), 
+		 mTime(0.0f), 
 		 mAnimator(nullptr)
 	{
 	}
@@ -32,10 +34,10 @@ namespace Hyeon
 			move();
 			break;
 		case HyeonPlayerScript::eState::DrawWeapon:
-			drawWeapon();
+			afterDrawWeapon();
 			break;
 		case HyeonPlayerScript::eState::Attack:
-			attack();
+			afterAttack();
 			break;
 		default:
 			break;
@@ -47,37 +49,43 @@ namespace Hyeon
 	void HyeonPlayerScript::Render(HDC hdc)
 	{
 	}
+
 	void HyeonPlayerScript::relax()
 	{
-		if (HyeonInput::GetKeyPressed(eKeyCode::D))
+
+		if ((HyeonInput::GetKeyPressed(eKeyCode::W) ||
+			HyeonInput::GetKeyPressed(eKeyCode::A) ||
+			HyeonInput::GetKeyPressed(eKeyCode::S) ||
+			HyeonInput::GetKeyPressed(eKeyCode::D)))
+				walking();
+
+		
+		if (HyeonInput::GetKeyPressed(eKeyCode::Z))  //DrawWeapon
 		{
-			mState = HyeonPlayerScript::eState::Walk;
-			mAnimator->PlayAnimation(L"RightWalk");
+			if (mDir == HyeonPlayerScript::eDir::Up)
+			{
+				mState = HyeonPlayerScript::eState::DrawWeapon;
+				mAnimator->PlayAnimation(L"ChronoUpDrawWeapon", false);
+			}
+			else if (mDir == HyeonPlayerScript::eDir::Left)
+			{
+				mState = HyeonPlayerScript::eState::DrawWeapon;
+				mAnimator->PlayAnimation(L"ChronoLeftDrawWeapon", false);
+			}
+			else if (mDir == HyeonPlayerScript::eDir::Down)
+			{
+				mState = HyeonPlayerScript::eState::DrawWeapon;
+				mAnimator->PlayAnimation(L"ChronoDownDrawWeapon", false);
+			}
+			else if (mDir == HyeonPlayerScript::eDir::Right)
+			{
+				mState = HyeonPlayerScript::eState::DrawWeapon;
+				mAnimator->PlayAnimation(L"ChronoRightDrawWeapon", false);
+			}
 		}
-		//if (HyeonInput::GetKeyPressed(eKeyCode::A))
-		//{
-		//	mState = HyeonPlayerScript::eState::Walk;
-		//}
-		if (HyeonInput::GetKeyPressed(eKeyCode::W))
-		{
-			mState = HyeonPlayerScript::eState::Walk;
-			mAnimator->PlayAnimation(L"UpWalk");
-		}
-		if (HyeonInput::GetKeyPressed(eKeyCode::S))
-		{
-			mState = HyeonPlayerScript::eState::Walk;
-			mAnimator->PlayAnimation(L"DownWalk");
-		}
-		if (HyeonInput::GetKeyPressed(eKeyCode::Z))
-		{
-			mState = HyeonPlayerScript::eState::DrawWeapon;
-			mAnimator->PlayAnimation(L"DrawWeapon", false);
-		}
-		if (GetKeyState(VK_SPACE) & 0x8000)
-		{
-			mState = HyeonPlayerScript::eState::Attack;
-			mAnimator->PlayAnimation(L"Attack", false);
-		}
+
+		if (mState == eState::DrawWeapon)
+			afterDrawWeapon();
 	}
 	void HyeonPlayerScript::move()
 	{
@@ -87,6 +95,11 @@ namespace Hyeon
 		if (HyeonInput::GetKeyPressed(eKeyCode::D))
 		{
 			pos.X += 100.0f * HyeonTime::GetDelataTime();
+		}
+
+		else if (HyeonInput::GetKeyPressed(eKeyCode::A))
+		{
+			pos.X -= 100.0f * HyeonTime::GetDelataTime();
 		}
 
 		else if(HyeonInput::GetKeyPressed(eKeyCode::W))
@@ -99,27 +112,129 @@ namespace Hyeon
 			pos.Y += 100.0f * HyeonTime::GetDelataTime();
 		}
 
+		
 		tr->SetPosition(pos);
 
 		if (HyeonInput::GetKeyUp(eKeyCode::W) || 
+			HyeonInput::GetKeyUp(eKeyCode::A) ||
 			HyeonInput::GetKeyUp(eKeyCode::S) ||
 			HyeonInput::GetKeyUp(eKeyCode::D))
 		{
-			mState = HyeonPlayerScript::eState::Relax;
-			mAnimator->PlayAnimation(L"Relax", false);
+			relaxing();
 		}
 	}
-	void HyeonPlayerScript::drawWeapon()
+	void HyeonPlayerScript::afterDrawWeapon()
 	{
-		if (HyeonInput::GetKeyDown(eKeyCode::W) ||
-			HyeonInput::GetKeyDown(eKeyCode::S) ||
-			HyeonInput::GetKeyDown(eKeyCode::D))
+		if (GetKeyState(VK_SPACE) & 0x8000)		//Attack
+		{
+			if (mDir == HyeonPlayerScript::eDir::Up)
+			{
+				mState = HyeonPlayerScript::eState::Attack;
+				mAnimator->PlayAnimation(L"ChronoUpAttack", false);
+			}
+			else if (mDir == HyeonPlayerScript::eDir::Left)
+			{
+				mState = HyeonPlayerScript::eState::Attack;
+				mAnimator->PlayAnimation(L"ChronoLeftAttack", false);
+			}
+			else if (mDir == HyeonPlayerScript::eDir::Down)
+			{
+				mState = HyeonPlayerScript::eState::Attack;
+				mAnimator->PlayAnimation(L"ChronoDownAttack", false);
+			}
+			else if (mDir == HyeonPlayerScript::eDir::Right)
+			{
+				mState = HyeonPlayerScript::eState::Attack;
+				mAnimator->PlayAnimation(L"ChronoRightAttack", false);
+			}
+		}
+
+		if ((HyeonInput::GetKeyPressed(eKeyCode::W) ||	//Moving
+			HyeonInput::GetKeyPressed(eKeyCode::A) ||
+			HyeonInput::GetKeyPressed(eKeyCode::S) ||
+			HyeonInput::GetKeyPressed(eKeyCode::D)))
+				walking();
+	}
+	void HyeonPlayerScript::afterAttack()
+	{
+		mTime += HyeonTime::GetDelataTime();
+
+		if (mTime > 1.0f)
+		{
+			//DrawWeapon
+			if (mDir == HyeonPlayerScript::eDir::Up)
+			{
+				mState = HyeonPlayerScript::eState::DrawWeapon;
+				mAnimator->PlayAnimation(L"ChronoUpDrawWeapon", false);
+			}
+			else if (mDir == HyeonPlayerScript::eDir::Left)
+			{
+				mState = HyeonPlayerScript::eState::DrawWeapon;
+				mAnimator->PlayAnimation(L"ChronoLeftDrawWeapon", false);
+			}
+			else if (mDir == HyeonPlayerScript::eDir::Down)
+			{
+				mState = HyeonPlayerScript::eState::DrawWeapon;
+				mAnimator->PlayAnimation(L"ChronoDownDrawWeapon", false);
+			}
+			else if (mDir == HyeonPlayerScript::eDir::Right)
+			{
+				mState = HyeonPlayerScript::eState::DrawWeapon;
+				mAnimator->PlayAnimation(L"ChronoRightDrawWeapon", false);
+			}
+			mTime = 0.0f;
+		}
+	}
+
+	void HyeonPlayerScript::walking()
+	{
+		if (HyeonInput::GetKeyPressed(eKeyCode::D))
 		{
 			mState = HyeonPlayerScript::eState::Walk;
+			mAnimator->PlayAnimation(L"ChronoRightWalk");
+		}
+		else if (HyeonInput::GetKeyPressed(eKeyCode::A))
+		{
+			mState = HyeonPlayerScript::eState::Walk;
+			mAnimator->PlayAnimation(L"ChronoLeftWalk");
+		}
+		else if (HyeonInput::GetKeyPressed(eKeyCode::W))
+		{
+			mState = HyeonPlayerScript::eState::Walk;
+			mAnimator->PlayAnimation(L"ChronoUpWalk");
+		}
+		else if (HyeonInput::GetKeyPressed(eKeyCode::S))
+		{
+			mState = HyeonPlayerScript::eState::Walk;
+			mAnimator->PlayAnimation(L"ChronoDownWalk");
 		}
 	}
-	void HyeonPlayerScript::attack()
+	void HyeonPlayerScript::relaxing()
 	{
-		
+		if (HyeonInput::GetKeyUp(eKeyCode::W))
+		{
+			mState = HyeonPlayerScript::eState::Relax;
+			mDir = HyeonPlayerScript::eDir::Up;
+			mAnimator->PlayAnimation(L"ChronoUpRelax", false);
+		}
+		else if (HyeonInput::GetKeyUp(eKeyCode::S))
+		{
+			mState = HyeonPlayerScript::eState::Relax;
+			mDir = HyeonPlayerScript::eDir::Down;
+			mAnimator->PlayAnimation(L"ChronoDownRelax", false);
+		}
+
+		else if (HyeonInput::GetKeyUp(eKeyCode::D))
+		{
+			mState = HyeonPlayerScript::eState::Relax;
+			mDir = HyeonPlayerScript::eDir::Right;
+			mAnimator->PlayAnimation(L"ChronoRightRelax", false);
+		}
+		else if (HyeonInput::GetKeyUp(eKeyCode::A))
+		{
+			mState = HyeonPlayerScript::eState::Relax;
+			mDir = HyeonPlayerScript::eDir::Left;
+			mAnimator->PlayAnimation(L"ChronoLeftRelax", false);
+		}
 	}
 }

@@ -14,6 +14,15 @@ namespace Hyeon
 			Attack, 
 		};
 
+		enum class eDir
+		{
+			Left, 
+			Right, 
+			Up, 
+			Down
+		};
+
+
 		HyeonPlayerScript();
 		~HyeonPlayerScript();
 
@@ -25,11 +34,15 @@ namespace Hyeon
 	private:
 		void relax();
 		void move();
-		void drawWeapon();
-		void attack();
-		
+		void afterDrawWeapon();
+		void afterAttack();
+		void walking();
+		void relaxing();
+	
 	private:
 		eState mState;
+		eDir mDir;
+		float mTime;
 		class HyeonAnimator* mAnimator;
 	};
 }

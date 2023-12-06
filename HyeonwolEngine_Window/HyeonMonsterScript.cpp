@@ -20,7 +20,7 @@ namespace Hyeon
 	void HyeonMonsterScript::Update()
 	{
 		if (mAnimator == nullptr)
-			mAnimator->GetOwner()->GetComponent<HyeonAnimator>();
+			mAnimator = GetOwner()->GetComponent<HyeonAnimator>();
 
 		switch (mState)
 		{
@@ -29,9 +29,6 @@ namespace Hyeon
 			break;
 		case eState::Walk:
 			move();
-			break;
-		case eState::Jump:
-			jump();
 			break;
 		default:
 			assert(false);
@@ -53,9 +50,9 @@ namespace Hyeon
 			int direction = rand() % 4;
 			mDirection = (eDirection)direction;
 			PlayWalkAnimationByDir(mDirection);
+			
 			mTime = 0.0f;
 		}
-
 	}
 	void HyeonMonsterScript::move()
 	{
@@ -63,34 +60,14 @@ namespace Hyeon
 
 		if (mTime > 2.0f)
 		{
-			int isJump = rand() % 2;
-			if (isJump)
-			{
-				mState = HyeonMonsterScript::eState::Jump;
-				mAnimator->PlayAnimation(L"ImpJump", false);
-			}
-			else
-			{
-				mState = HyeonMonsterScript::eState::Laugh;
-				mAnimator->PlayAnimation(L"ImpLaugh", false);
-			}
+			mState = HyeonMonsterScript::eState::Laugh;
+			mAnimator->PlayAnimation(L"ImpLaugh", false);
+		}
 
-			HyeonTransform* tr = GetOwner()->GetComponent<HyeonTransform>();
-			translate(tr);
-		}
+		HyeonTransform* tr = GetOwner()->GetComponent<HyeonTransform>();
+		translate(tr);
 	}
-	void HyeonMonsterScript::jump()
-	{
-		mTime += HyeonTime::GetDelataTime();
-		if (mTime > 1.0f)
-		{
-			mState = HyeonMonsterScript::eState::Walk;
-			int direction = rand() % 4;
-			mDirection = (eDirection)direction;
-			PlayWalkAnimationByDir(mDirection);
-			mTime = 0.0f;
-		}
-	}
+
 	void HyeonMonsterScript::PlayWalkAnimationByDir(eDirection dir)
 	{
 		switch (dir)

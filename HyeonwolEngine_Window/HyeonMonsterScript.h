@@ -11,7 +11,6 @@ namespace Hyeon
 		{
 			Laugh, 
 			Walk, 
-			Jump, 
 		};
 
 		enum class eDirection
@@ -34,7 +33,6 @@ namespace Hyeon
 	private:
 		void laugh();
 		void move();
-		void jump();
 
 		void PlayWalkAnimationByDir(eDirection dir);
 		void translate(HyeonTransform* tr);
