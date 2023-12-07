@@ -9,6 +9,11 @@ namespace Hyeon
 	}
 	HyeonScene::~HyeonScene()
 	{
+		for (HyeonLayer* layer : mLayers)
+		{
+			delete layer;
+			layer = nullptr;
+		}
 	}
 	void HyeonScene::Initialize()
 	{

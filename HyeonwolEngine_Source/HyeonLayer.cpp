@@ -9,6 +9,13 @@ namespace Hyeon
 
 	HyeonLayer::~HyeonLayer()
 	{
+		for (HyeonGameObject* gameobj : mGameObjects)
+		{
+			if (gameobj == nullptr)
+				continue;
+			delete gameobj;
+			gameobj = nullptr;
+		}
 	}
 
 	void HyeonLayer::Initialize()

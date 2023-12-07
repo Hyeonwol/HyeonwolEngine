@@ -18,9 +18,10 @@ namespace Hyeon
 		void LateUpdate() override;
 		void Render(HDC hdc) override;
 
+		void SetTarget(HyeonGameObject* target) { mTarget = target; }
 
 	private:
-		HyeonGameObject* mTarget;	//¿Ö class GameObject?
+		class HyeonGameObject* mTarget;
 		Vector2 mDistance;
 		Vector2 mResolution;
 		Vector2 mLookPosition;

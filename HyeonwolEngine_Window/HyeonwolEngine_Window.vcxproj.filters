@@ -21,6 +21,9 @@
     <ClInclude Include="HyeonMonsterScript.h">
       <Filter>MonsterScript</Filter>
     </ClInclude>
+    <ClInclude Include="HyeonBattleScene.h">
+      <Filter>BattleScene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HyeonPlayScene.cpp">
@@ -41,6 +44,9 @@
     <ClCompile Include="HyeonMonsterScript.cpp">
       <Filter>MonsterScript</Filter>
     </ClCompile>
+    <ClCompile Include="HyeonBattleScene.cpp">
+      <Filter>BattleScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Player">
@@ -60,6 +66,9 @@
     </Filter>
     <Filter Include="MonsterScript">
       <UniqueIdentifier>{142d31c2-b4de-4445-bb08-7111827902a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="BattleScene">
+      <UniqueIdentifier>{e751a363-c4da-4426-b26b-276f54e0122e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

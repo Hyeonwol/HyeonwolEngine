@@ -30,7 +30,7 @@ namespace Hyeon
 			(enums::eLayerType::None, Vector2(392.0f, 395.0f));
 		HyeonCamera* cameraComp = camera->AddComponent<HyeonCamera>();
 		renderer::mainCamera = cameraComp;
-		//camera->AddComponent<HyeonPlayerScript>();  카메라 오류 있음. 질문할 것
+		
 
 		//뒷배경
 		HyeonGameObject* bg = object::Instantiate<HyeonGameObject>
@@ -80,6 +80,8 @@ namespace Hyeon
 		Chrono = object::Instantiate<HyeonPlayer>
 			(enums::eLayerType::Player, Vector2(0.0f,0.0f));
 		Chrono->AddComponent<HyeonPlayerScript>();
+
+		cameraComp->SetTarget(Chrono);
 
 		graphics::HyeonTexture* mChronoTexture = HyeonResources::Find<graphics::HyeonTexture>
 			(L"Chrono");
@@ -151,17 +153,17 @@ namespace Hyeon
 		//Skill1
 		ChronoAnimator->CreateAnimation(L"ChronoRightSkill1", mChronoTexture2,
 			Vector2(0.0f, 228.0f), Vector2(40.0f, 50.0f),
-			Vector2::Zero, 5, 0.1f);
+			Vector2::Zero, 5, 0.12f);
 		ChronoAnimator->CreateAnimation(L"ChronoLeftSkill1", mChronoTexture2,
 			Vector2(0.0f, 285.0f), Vector2(40.0f, 56.0f),
-			Vector2::Zero, 5, 0.1f);
+			Vector2::Zero, 5, 0.12f);
 		//Skill2
 		ChronoAnimator->CreateAnimation(L"ChronoRightSkill2", mChronoTexture2,
 			Vector2(0.0f, 340.0f), Vector2(30.0f, 50.0f),
-			Vector2::Zero, 5, 0.1f);
+			Vector2::Zero, 5, 0.12f);
 		ChronoAnimator->CreateAnimation(L"ChronoLeftSkill2", mChronoTexture2,
 			Vector2(147.0f, 340.0f), Vector2(30.0f, 50.0f),
-			Vector2::Zero, 5, 0.1f);
+			Vector2::Zero, 5, 0.12f);
 
 		ChronoAnimator->PlayAnimation(L"ChronoDownRelax");
 

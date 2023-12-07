@@ -42,4 +42,13 @@ namespace Hyeon
 	{
 		mActiveScene->Render(hdc);
 	}
+
+	void HyeonSceneManager::Release()
+	{
+		for (auto& iter : mScene)
+		{
+			delete iter.second;
+			iter.second = nullptr;
+		}
+	}
 }

@@ -3,6 +3,7 @@
 #include "HyeonInput.h"
 #include "HyeonTime.h"
 #include "HyeonSceneManager.h"
+#include "HyeonResources.h"
 
 namespace Hyeon
 {
@@ -55,6 +56,12 @@ namespace Hyeon
 		HyeonTime::Render(mBackHdc);
 		HyeonSceneManager::Render(mBackHdc);
 		copyRenderTarget(mBackHdc, mHdc);
+	}
+
+	void HyeonApplication::Release()
+	{
+		HyeonSceneManager::Release();
+		HyeonResources::Release();
 	}
 
 	void HyeonApplication::clearRenderTarget()

@@ -11,21 +11,28 @@ namespace Hyeon
 	}
 	HyeonAnimator::~HyeonAnimator()
 	{
+		for (auto& iter : mAnimations)
+		{
+			delete iter.second;
+			iter.second = nullptr;
+		}
 	}
 	void HyeonAnimator::Initialize()
 	{
 	}
 	void HyeonAnimator::Update()
 	{
-		if (mActiveAnimation)
-		{
-			mActiveAnimation->Update();
+		mActiveAnimation->Update();
 
-			if (mActiveAnimation->isComplete()==true
-				&& mbLoop==true)
-			{
+		Events* events = FindEvents(mActiveAnimation->GetName());
+
+		if (mActiveAnimation->isComplete() == true)
+		{
+			if (events)
+				events->completeEvent();
+
+			if (mbLoop == true)
 				mActiveAnimation->Reset();
-			}
 		}
 	}
 	void HyeonAnimator::LateUpdate()
@@ -48,10 +55,15 @@ namespace Hyeon
 			return;
 
 		animation = new HyeonAnimation();
+		animation->SetName(name);
 		animation->CreateAnimation(name, spriteSheet, leftTop, size, 
 			offset, spriteLength, duration);
 
 		animation->SetAnimator(this);
+
+		Events* events = new Events();
+		mEvents.insert(make_pair(name, events));
+
 		mAnimations.insert(make_pair(name, animation));
 	}
 	HyeonAnimation* HyeonAnimator::FindAnimation(const wstring& name)
@@ -69,8 +81,43 @@ namespace Hyeon
 		if (animation == nullptr)
 			return;
 
+		if (mActiveAnimation)
+		{
+			Events* currentEvents = FindEvents(mActiveAnimation->GetName());
+			if (currentEvents)
+				currentEvents->endEvent();
+		}
+
+		Events* nextEvents = FindEvents(animation->GetName());
+
+		if (nextEvents)
+			nextEvents->startEvent();
+
 		mActiveAnimation = animation;
 		mActiveAnimation->Reset();
 		mbLoop = loop;
+	}
+	HyeonAnimator::Events* HyeonAnimator::FindEvents(const wstring& name)
+	{
+		auto iter = mEvents.find(name);
+		if (iter == mEvents.end())
+			return nullptr;
+
+		return iter->second;
+	}
+	function<void()>& HyeonAnimator::GetStartEvent(const wstring& name)
+	{
+		Events* events = FindEvents(name);
+		return events->startEvent.mEvent;
+	}
+	function<void()>& HyeonAnimator::GetCompleteEvent(const wstring& name)
+	{
+		Events* events = FindEvents(name);
+		return events->completeEvent.mEvent;
+	}
+	function<void()>& HyeonAnimator::GetEndEvent(const wstring& name)
+	{
+		Events* events = FindEvents(name);
+		return events->endEvent.mEvent;
 	}
 }

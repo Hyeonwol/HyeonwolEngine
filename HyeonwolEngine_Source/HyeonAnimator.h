@@ -17,7 +17,7 @@ namespace Hyeon
 			void operator()()
 			{
 				if (mEvent)
-						mEvent;
+						mEvent();
 			}
 
 			function<void()> mEvent;
@@ -25,9 +25,9 @@ namespace Hyeon
 
 		struct Events
 		{
-			Event mStartEvent;
-			Event mCompleteEvent;
-			Event mEndEvent;
+			Event startEvent;
+			Event completeEvent;
+			Event endEvent;
 		};
 
 		HyeonAnimator();
@@ -48,6 +48,11 @@ namespace Hyeon
 
 		HyeonAnimation* FindAnimation(const wstring& name);
 		void PlayAnimation(const wstring& name, bool loop = true);
+
+		Events* FindEvents(const wstring& name);
+		function<void()>& GetStartEvent(const wstring& name);
+		function<void()>& GetCompleteEvent(const wstring& name);
+		function<void()>& GetEndEvent(const wstring& name);
 
 		bool IsComplete() { return mActiveAnimation->isComplete(); }
 

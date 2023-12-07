@@ -13,6 +13,13 @@ namespace Hyeon
 
 	HyeonGameObject::~HyeonGameObject()
 	{
+		for (HyeonComponent* comp : mComponents)
+		{
+			if (comp == nullptr)
+				continue;
+			delete comp;
+			comp = nullptr;
+		}
 	}
 
 	void HyeonGameObject::Initialize()

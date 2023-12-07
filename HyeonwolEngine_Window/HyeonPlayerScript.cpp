@@ -188,7 +188,7 @@ namespace Hyeon
 	{
 		mTime += HyeonTime::GetDelataTime();
 
-		if (mTime > 1.0f)
+		if (mTime > 0.8f)
 		{
 			//DrawWeapon
 			if (mDir == HyeonPlayerScript::eDir::Up)
