@@ -20,6 +20,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonApplication.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonCamera.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonComponent.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)HyeonDestroy.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonEnums.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonGameObject.h" />
@@ -44,6 +45,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonApplication.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonCamera.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonComponent.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)HyeonDestroy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonEntity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonGameObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonInput.cpp" />

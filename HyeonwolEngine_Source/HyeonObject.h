@@ -35,8 +35,11 @@ namespace Hyeon::object
 		return gameObj;
 	}
 
-	static void Destroy(HyeonGameObject* obj)
+	static void Destroy(HyeonGameObject* gameObj)
 	{
-		obj->Death();
+		if (gameObj == nullptr)
+			return;
+
+		gameObj->Death();
 	}
 }

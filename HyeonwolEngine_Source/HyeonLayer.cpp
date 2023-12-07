@@ -34,9 +34,7 @@ namespace Hyeon
 		{
 			if (gameObj == nullptr)
 				continue;
-			HyeonGameObject::eState state = gameObj->GetActive();
-			if (state == HyeonGameObject::eState::Paused
-				|| state == HyeonGameObject::eState::Dead)
+			if (gameObj->isActive() == false)
 				continue;
 
 			gameObj->Update();
@@ -49,9 +47,7 @@ namespace Hyeon
 		{
 			if (gameObj == nullptr)
 				continue;
-			HyeonGameObject::eState state = gameObj->GetActive();
-			if (state == HyeonGameObject::eState::Paused
-				|| state == HyeonGameObject::eState::Dead)
+			if (gameObj->isActive() == false)
 				continue;
 
 
@@ -65,9 +61,7 @@ namespace Hyeon
 		{
 			if (gameObj == nullptr)
 				continue;
-			HyeonGameObject::eState state = gameObj->GetActive();
-			if (state == HyeonGameObject::eState::Paused
-				|| state == HyeonGameObject::eState::Dead)
+			if (gameObj->isActive() == false)
 				continue;
 
 			gameObj->Render(hdc);
@@ -76,23 +70,10 @@ namespace Hyeon
 
 	void HyeonLayer::Destroy()
 	{
-		for (GameObjectIter iter = mGameObjects.begin();
-			iter != mGameObjects.end(); )
-		{
-			HyeonGameObject::eState active = (*iter)->GetActive();
-			if (active == HyeonGameObject::eState::Dead)
-			{
-				HyeonGameObject* deathObj = (*iter);
-				iter = mGameObjects.erase(iter);
-
-				delete deathObj;
-				deathObj = nullptr;
-
-				continue;
-			}
-
-			iter++;
-		}
+		vector<HyeonGameObject*> deleteObjects = {};
+		findDeadGameObjects(deleteObjects);
+		eraseGameObject();
+		deleteGameObjects(deleteObjects);
 	}
 
 	void HyeonLayer::AddGameObject(HyeonGameObject* gameObject)
@@ -100,5 +81,33 @@ namespace Hyeon
 		if (gameObject == nullptr)
 			return;
 		mGameObjects.push_back(gameObject);
+	}
+
+	void HyeonLayer::findDeadGameObjects(OUT vector<HyeonGameObject*>& gameObjs)
+	{
+		for (HyeonGameObject* gameObj : mGameObjects)
+		{
+			HyeonGameObject::eState active = gameObj->GetState();
+			if (active == HyeonGameObject::eState::Dead)
+				gameObjs.push_back(gameObj);
+		}
+	}
+
+	void HyeonLayer::deleteGameObjects(vector<HyeonGameObject*> deleteObjs)
+	{
+		for (HyeonGameObject* obj : deleteObjs)
+		{
+			delete obj;
+			obj = nullptr;
+		}
+	}
+
+	void HyeonLayer::eraseGameObject()
+	{
+		erase_if(mGameObjects,
+			[](HyeonGameObject* gameObj)
+			{
+				return (gameObj)->isDead();
+			});
 	}
 }

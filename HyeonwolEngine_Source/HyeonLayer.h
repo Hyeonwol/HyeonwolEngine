@@ -17,6 +17,11 @@ namespace Hyeon
 		virtual void Destroy();
 
 		void AddGameObject(HyeonGameObject* gameObject);
+	
+	private:
+		void findDeadGameObjects(OUT vector<HyeonGameObject*>& gameObjs);
+		void deleteGameObjects(vector<HyeonGameObject*> gameObjs);
+		void eraseGameObject();
 	private:
 		vector<HyeonGameObject*> mGameObjects;
 		typedef vector<HyeonGameObject*>::iterator GameObjectIter;
