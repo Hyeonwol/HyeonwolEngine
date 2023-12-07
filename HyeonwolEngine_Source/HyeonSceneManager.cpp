@@ -43,6 +43,11 @@ namespace Hyeon
 		mActiveScene->Render(hdc);
 	}
 
+	void HyeonSceneManager::Destroy()
+	{
+		mActiveScene->Destroy();
+	}
+
 	void HyeonSceneManager::Release()
 	{
 		for (auto& iter : mScene)

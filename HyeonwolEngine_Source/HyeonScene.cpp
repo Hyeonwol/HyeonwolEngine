@@ -52,6 +52,17 @@ namespace Hyeon
 		}
 	}
 
+	void HyeonScene::Destroy()
+	{
+		for (HyeonLayer* layer : mLayers)
+		{
+			if (layer == nullptr)
+				continue;
+
+			layer->Destroy();
+		}
+	}
+
 	void HyeonScene::AddGameObject(HyeonGameObject* gameObject, const enums::eLayerType type)
 	{
 		mLayers[(UINT)type]->AddGameObject(gameObject);

@@ -14,9 +14,11 @@ namespace Hyeon
 		virtual void Update();
 		virtual void LateUpdate();
 		virtual void Render(HDC hdc);
+		virtual void Destroy();
 
 		void AddGameObject(HyeonGameObject* gameObject);
 	private:
 		vector<HyeonGameObject*> mGameObjects;
+		typedef vector<HyeonGameObject*>::iterator GameObjectIter;
 	};
 }

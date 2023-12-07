@@ -36,6 +36,7 @@ namespace Hyeon
 		Update();
 		LateUpdate();
 		Render();
+		Destroy();
 	}
 	void HyeonApplication::Update()
 	{
@@ -56,6 +57,10 @@ namespace Hyeon
 		HyeonTime::Render(mBackHdc);
 		HyeonSceneManager::Render(mBackHdc);
 		copyRenderTarget(mBackHdc, mHdc);
+	}
+	void HyeonApplication::Destroy()
+	{
+
 	}
 
 	void HyeonApplication::Release()

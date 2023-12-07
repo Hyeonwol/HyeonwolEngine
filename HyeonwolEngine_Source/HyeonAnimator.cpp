@@ -1,4 +1,6 @@
 #include "HyeonAnimator.h"
+#include "HyeonResources.h"
+#include "HyeonTexture.h"
 
 namespace Hyeon
 {

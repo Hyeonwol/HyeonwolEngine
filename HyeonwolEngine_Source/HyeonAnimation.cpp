@@ -60,19 +60,25 @@ namespace Hyeon
 		if (type == graphics::HyeonTexture::eTextureType::Bmp)
 		{
 
-			BLENDFUNCTION func = {};
-			func.BlendOp = AC_SRC_OVER;
-			func.BlendFlags = 0;
-			func.AlphaFormat = AC_SRC_ALPHA;
-			func.SourceConstantAlpha = 255; //0(완전투명)~255(완전불투명)
+			//BLENDFUNCTION func = {};
+			//func.BlendOp = AC_SRC_OVER;
+			//func.BlendFlags = 0;
+			//func.AlphaFormat = AC_SRC_ALPHA;
+			//func.SourceConstantAlpha = 255; //0(완전투명)~255(완전불투명)
 
 			HDC imgHdc = mTexture->GetHdc();
 
 
-			TransparentBlt(hdc, pos.X, pos.Y,
-				sprite.size.X * scale.X, sprite.size.Y * scale.Y,
-				imgHdc, sprite.leftTop.X, sprite.leftTop.Y,
-				sprite.size.X, sprite.size.Y,
+			TransparentBlt(hdc, 
+				pos.X - (sprite.size.X / 2.0f), 
+				pos.Y - (sprite.size.Y / 2.0f),
+				sprite.size.X * scale.X, 
+				sprite.size.Y * scale.Y,
+				imgHdc, 
+				sprite.leftTop.X, 
+				sprite.leftTop.Y,
+				sprite.size.X, 
+				sprite.size.Y,
 				RGB(255, 0, 255));
 
 

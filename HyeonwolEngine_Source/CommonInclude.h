@@ -5,6 +5,7 @@
 #include <string>
 #include <map>
 #include <functional>
+#include <filesystem>
 
 #include "HyeonMath.h"
 #include "HyeonEnums.h"

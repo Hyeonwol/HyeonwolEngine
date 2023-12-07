@@ -34,6 +34,16 @@ namespace Hyeon
 			return resource;
 		}
 
+		static void Insert(const wstring& key, HyeonResource* resource)
+		{
+			if (key == L"")
+				return;
+			if (resource == nullptr)
+				return;
+
+			mResources.insert(make_pair(key, resource));
+		}
+
 		static void Release()
 		{
 			for (auto& iter : mResources)

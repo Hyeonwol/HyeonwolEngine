@@ -1,12 +1,39 @@
 #include "HyeonTexture.h"
 #include "HyeonApplication.h"
+#include "HyeonResources.h"
 
 extern Hyeon::HyeonApplication Application;
 
 namespace Hyeon::graphics
 {
+	HyeonTexture* HyeonTexture::Create(const wstring& name, UINT width, UINT height)
+	{
+		HyeonTexture* image = HyeonResources::Find<HyeonTexture>(name);
+
+		if (image)
+			return image;
+
+		image = new HyeonTexture();
+		image->SetName(name);
+		image->SetWidth(width);
+		image->SetHeight(height);
+
+		HDC hdc = Application.GetHdc();
+		HWND hwnd = Application.GetHwnd();
+
+		image->mBitmap = CreateCompatibleBitmap(hdc, width, height);
+		image->mHDC = CreateCompatibleDC(hdc);
+
+		HBITMAP oldBitmap = (HBITMAP)SelectObject(image->mHDC, image->mBitmap);
+		DeleteObject(oldBitmap);
+
+		HyeonResources::Insert(name + L"Image", image);
+
+		return image;
+	}
 	HyeonTexture::HyeonTexture()
-		:HyeonResource(enums::eResourceType::Texture)
+		:HyeonResource(enums::eResourceType::Texture), 
+		 mbAlpha(false)
 	{
 	}
 	HyeonTexture::~HyeonTexture()

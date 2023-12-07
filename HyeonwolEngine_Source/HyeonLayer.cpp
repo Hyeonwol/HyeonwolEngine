@@ -34,6 +34,11 @@ namespace Hyeon
 		{
 			if (gameObj == nullptr)
 				continue;
+			HyeonGameObject::eState state = gameObj->GetActive();
+			if (state == HyeonGameObject::eState::Paused
+				|| state == HyeonGameObject::eState::Dead)
+				continue;
+
 			gameObj->Update();
 		}
 	}
@@ -44,6 +49,12 @@ namespace Hyeon
 		{
 			if (gameObj == nullptr)
 				continue;
+			HyeonGameObject::eState state = gameObj->GetActive();
+			if (state == HyeonGameObject::eState::Paused
+				|| state == HyeonGameObject::eState::Dead)
+				continue;
+
+
 			gameObj->LateUpdate();
 		}
 	}
@@ -54,9 +65,36 @@ namespace Hyeon
 		{
 			if (gameObj == nullptr)
 				continue;
+			HyeonGameObject::eState state = gameObj->GetActive();
+			if (state == HyeonGameObject::eState::Paused
+				|| state == HyeonGameObject::eState::Dead)
+				continue;
+
 			gameObj->Render(hdc);
 		}
 	}
+
+	void HyeonLayer::Destroy()
+	{
+		for (GameObjectIter iter = mGameObjects.begin();
+			iter != mGameObjects.end(); )
+		{
+			HyeonGameObject::eState active = (*iter)->GetActive();
+			if (active == HyeonGameObject::eState::Dead)
+			{
+				HyeonGameObject* deathObj = (*iter);
+				iter = mGameObjects.erase(iter);
+
+				delete deathObj;
+				deathObj = nullptr;
+
+				continue;
+			}
+
+			iter++;
+		}
+	}
+
 	void HyeonLayer::AddGameObject(HyeonGameObject* gameObject)
 	{
 		if (gameObject == nullptr)

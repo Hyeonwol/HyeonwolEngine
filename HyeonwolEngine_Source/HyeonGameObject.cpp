@@ -6,6 +6,7 @@
 namespace Hyeon
 {
 	HyeonGameObject::HyeonGameObject()
+		: mState(eState::Active)
 	{
 		mComponents.resize((UINT)enums::eComponentType::End);
 		initializeTransform();
