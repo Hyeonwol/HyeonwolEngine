@@ -3,11 +3,18 @@
 #include "CommonInclude.h"
 #include "HyeonComponent.h"
 
+namespace Hyeon::object
+{
+	void Destroy(HyeonGameObject* gameObject);
+}
+
 namespace Hyeon
 {
 	class HyeonGameObject
 	{
 	public:
+		friend void object::Destroy(HyeonGameObject* obj);
+
 		enum class eState
 		{
 			Active, 
@@ -56,12 +63,11 @@ namespace Hyeon
 			if (power == false) mState = eState::Paused;
 		}
 		bool isActive() { return mState == eState::Active; }
-		void Death() { mState = eState::Dead; }
 		bool isDead() { return mState == eState::Dead; }
 
 	private:
 		void initializeTransform();
-
+		void death() { mState = eState::Dead; }
 	private:
 		eState mState;
 		vector<HyeonComponent*> mComponents;

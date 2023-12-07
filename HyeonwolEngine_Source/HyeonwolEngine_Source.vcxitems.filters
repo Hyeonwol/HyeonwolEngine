@@ -61,9 +61,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonAnimation.cpp">
       <Filter>Animation</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)HyeonDestroy.cpp">
-      <Filter>Destroy</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h" />
@@ -129,9 +126,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonAnimation.h">
       <Filter>Animation</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)HyeonDestroy.h">
-      <Filter>Destroy</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Application">
@@ -190,9 +184,6 @@
     </Filter>
     <Filter Include="Animation">
       <UniqueIdentifier>{56f219f5-4f93-4739-aed4-748089c53322}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Destroy">
-      <UniqueIdentifier>{870637a6-e702-4591-a25b-ffa1f85347f0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

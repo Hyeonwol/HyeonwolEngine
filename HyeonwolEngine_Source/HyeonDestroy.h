@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Hyeon
+namespace Hyeon::object
 {
 	static void Destroy(class HyeonGameObject* obj);
 }

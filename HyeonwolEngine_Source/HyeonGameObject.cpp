@@ -3,6 +3,15 @@
 #include "HyeonTime.h"
 #include "HyeonTransform.h"
 
+namespace Hyeon::object
+{
+	void Destroy(HyeonGameObject* gameObject)
+	{
+		if (gameObject != nullptr)
+			gameObject->death();
+	}
+}
+
 namespace Hyeon
 {
 	HyeonGameObject::HyeonGameObject()

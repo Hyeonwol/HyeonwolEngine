@@ -1,7 +1,7 @@
 #include "HyeonDestroy.h"
 #include "HyeonGameObject.h"
 
-namespace Hyeon
+namespace Hyeon::object
 {
 	void Destroy(HyeonGameObject* obj)
 	{
