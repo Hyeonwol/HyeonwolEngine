@@ -61,6 +61,18 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonAnimation.cpp">
       <Filter>Animation</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)HyeonCollider.cpp">
+      <Filter>Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)HyeonBoxCollider2D.cpp">
+      <Filter>BoxCollider2D</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)HyeonCircleCollider2D.cpp">
+      <Filter>CircleCollider2D</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)HyeonCollisionManager.cpp">
+      <Filter>CollisionManager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h" />
@@ -126,6 +138,18 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonAnimation.h">
       <Filter>Animation</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)HyeonCollider.h">
+      <Filter>Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)HyeonBoxCollider2D.h">
+      <Filter>BoxCollider2D</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)HyeonCircleCollider2D.h">
+      <Filter>CircleCollider2D</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)HyeonCollisionManager.h">
+      <Filter>CollisionManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Application">
@@ -184,6 +208,18 @@
     </Filter>
     <Filter Include="Animation">
       <UniqueIdentifier>{56f219f5-4f93-4739-aed4-748089c53322}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Collider">
+      <UniqueIdentifier>{c785eb9b-deed-4506-916b-21f2044ec80b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="BoxCollider2D">
+      <UniqueIdentifier>{86e13723-f1dd-4a0b-bb22-886d0039e63e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CircleCollider2D">
+      <UniqueIdentifier>{1523d31e-f08c-4f5a-8e88-8bd2846f986f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CollisionManager">
+      <UniqueIdentifier>{4b925cdd-e6ac-436a-ba99-7a52f3c700ee}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

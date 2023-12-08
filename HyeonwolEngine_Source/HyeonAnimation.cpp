@@ -59,47 +59,56 @@ namespace Hyeon
 		graphics::HyeonTexture::eTextureType type = mTexture->GetTextureType();
 		if (type == graphics::HyeonTexture::eTextureType::Bmp)
 		{
-
-			//BLENDFUNCTION func = {};
-			//func.BlendOp = AC_SRC_OVER;
-			//func.BlendFlags = 0;
-			//func.AlphaFormat = AC_SRC_ALPHA;
-			//func.SourceConstantAlpha = 255; //0(완전투명)~255(완전불투명)
-
 			HDC imgHdc = mTexture->GetHdc();
-
-
-			TransparentBlt(hdc, 
-				pos.X - (sprite.size.X / 2.0f), 
-				pos.Y - (sprite.size.Y / 2.0f),
-				sprite.size.X * scale.X, 
-				sprite.size.Y * scale.Y,
-				imgHdc, 
-				sprite.leftTop.X, 
-				sprite.leftTop.Y,
-				sprite.size.X, 
-				sprite.size.Y,
-				RGB(255, 0, 255));
-
-
-			//현재 알파블렌드 사용 시 마젠타색이 지워지지 않는 증상 있음. 
-			//선생님께 질문드릴 것
-
-			/*AlphaBlend(hdc,
-				pos.X, pos.Y,
-				sprite.size.X, sprite.size.Y,
-				imgHdc,
-				sprite.leftTop.X,
-				sprite.leftTop.Y,
-				sprite.size.X,
-				sprite.size.Y,
-				func);*/
-
 			
+			if (mTexture->IsAlpha())
+			{
+				BLENDFUNCTION func = {};
+				func.BlendOp = AC_SRC_OVER;
+				func.BlendFlags = 0;
+				func.AlphaFormat = AC_SRC_ALPHA;
+				func.SourceConstantAlpha = 255; //0(완전투명)~255(완전불투명)
+
+				//알파블렌드에서 마젠타색 제거 불가능. 질문드릴 것.
+				//ans: 원래 불가능. 이미지 파일 자체에서 알파값 수정을 통해 제거해야 함.
+				AlphaBlend(hdc,
+					pos.X - (sprite.size.X / 2.0f) + sprite.offset.X,
+					pos.Y - (sprite.size.Y / 2.0f) + sprite.offset.Y,
+					sprite.size.X * scale.X,
+					sprite.size.Y * scale.Y,
+					imgHdc,
+					sprite.leftTop.X,
+					sprite.leftTop.Y,
+					sprite.size.X,
+					sprite.size.Y,
+					func);
+			}
+
+			else
+			{
+				TransparentBlt(hdc,
+					pos.X - (sprite.size.X / 2.0f),
+					pos.Y - (sprite.size.Y / 2.0f),
+					sprite.size.X * scale.X,
+					sprite.size.Y * scale.Y,
+					imgHdc,
+					sprite.leftTop.X,
+					sprite.leftTop.Y,
+					sprite.size.X,
+					sprite.size.Y,
+					RGB(255, 0, 255));
+			}
+
+			Rectangle(hdc, pos.X, pos.Y, pos.X + 10, pos.Y + 20);
 		}
 		
 		else if (type == graphics::HyeonTexture::eTextureType::Png)
 		{
+			Gdiplus::ImageAttributes imgAtt = {};
+
+			imgAtt.SetColorKey(Gdiplus::Color(230, 230, 230), Gdiplus::Color(255, 255, 255));
+
+
 			Gdiplus::Graphics GdiGraphics(hdc);
 			GdiGraphics.TranslateTransform(pos.X, pos.Y);
 			GdiGraphics.RotateTransform(rot);
@@ -120,8 +129,6 @@ namespace Hyeon
 				nullptr
 			);
 		}
-		
-		
 	}
 	void HyeonAnimation::CreateAnimation(const wstring& name, 
 		graphics::HyeonTexture* spriteSheet, 

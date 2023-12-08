@@ -41,11 +41,39 @@ namespace Hyeon
 		if (mTexture->GetTextureType() == 
 			graphics::HyeonTexture::eTextureType::Bmp)
 		{
-			TransparentBlt(hdc, pos.X, pos.Y,
-				mTexture->GetWidth() * mSize.X * scale.X, 
-				mTexture->GetHeight() * mSize.Y * scale.Y,
-				mTexture->GetHdc(), 0, 0, mTexture->GetWidth(), mTexture->GetHeight(),
-				RGB(255, 0, 255));
+			if (mTexture->IsAlpha())
+			{
+				BLENDFUNCTION func = {};
+				func.BlendOp = AC_SRC_OVER;
+				func.BlendFlags = 0;
+				func.AlphaFormat = AC_SRC_ALPHA;
+				func.SourceConstantAlpha = 255; //0(완전투명)~255(완전불투명)
+
+				AlphaBlend(hdc,
+					pos.X,
+					pos.Y,
+					mTexture->GetWidth() * mSize.X * scale.X,
+					mTexture->GetHeight() * mSize.Y * scale.Y,
+					mTexture->GetHdc(),
+					0,0,
+					mTexture->GetWidth(),
+					mTexture->GetHeight(),
+					func);
+			}
+
+			else
+			{
+				TransparentBlt(hdc,
+					pos.X,
+					pos.Y,
+					mTexture->GetWidth() * mSize.X * scale.X,
+					mTexture->GetHeight() * mSize.Y * scale.Y,
+					mTexture->GetHdc(),
+					0,0,
+					mTexture->GetWidth(),
+					mTexture->GetHeight(),
+					RGB(255, 0, 255));
+			}
 		}
 
 		else if (mTexture->GetTextureType() ==

@@ -24,6 +24,11 @@ namespace Hyeon::graphics
 		image->mBitmap = CreateCompatibleBitmap(hdc, width, height);
 		image->mHDC = CreateCompatibleDC(hdc);
 
+		HBRUSH transparentBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
+		HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, transparentBrush);
+		Rectangle(image->GetHdc(), -1, -1, image->GetWidth() + 1, image->GetHeight() + 1);
+		SelectObject(hdc, oldBrush);
+
 		HBITMAP oldBitmap = (HBITMAP)SelectObject(image->mHDC, image->mBitmap);
 		DeleteObject(oldBitmap);
 
@@ -57,6 +62,11 @@ namespace Hyeon::graphics
 
 			mWidth = info.bmWidth;
 			mHeight = info.bmHeight;
+
+			if (info.bmBitsPixel == 32)
+				mbAlpha = true;
+			else if (info.bmBitsPixel == 24)
+				mbAlpha = false;
 
 			HDC mainDC(Application.GetHdc());
 			mHDC = CreateCompatibleDC(mainDC);

@@ -4,11 +4,9 @@
 #include <vector>
 #include <string>
 #include <map>
+#include <bitset>
 #include <functional>
 #include <filesystem>
-
-#include "HyeonMath.h"
-#include "HyeonEnums.h"
 
 #include <mmsystem.h>
 #include <dinput.h>
@@ -19,5 +17,8 @@
 
 #include <gdiplus.h>
 #pragma comment(lib, "gdiplus.lib")
+
+#include "HyeonEnums.h"
+#include "HyeonMath.h"
 
 using namespace std;

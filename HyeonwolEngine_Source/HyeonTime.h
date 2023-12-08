@@ -10,7 +10,7 @@ namespace Hyeon
 		static void Initiallize();
 		static void Update();
 		static void Render(HDC hdc);
-		static float GetDelataTime() { return DeltaTime; }
+		__forceinline static float GetDelataTime() { return DeltaTime; }
 
 	private:
 		static LARGE_INTEGER CPUFreq;

@@ -18,7 +18,11 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonAnimation.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonAnimator.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonApplication.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)HyeonBoxCollider2D.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonCamera.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)HyeonCircleCollider2D.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)HyeonCollider.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)HyeonCollisionManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonComponent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonEnums.h" />
@@ -42,7 +46,11 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonAnimation.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonAnimator.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonApplication.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)HyeonBoxCollider2D.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonCamera.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)HyeonCircleCollider2D.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)HyeonCollider.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)HyeonCollisionManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonComponent.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonEntity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonGameObject.cpp" />

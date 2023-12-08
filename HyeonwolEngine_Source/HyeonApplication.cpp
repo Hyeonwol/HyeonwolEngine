@@ -4,6 +4,7 @@
 #include "HyeonTime.h"
 #include "HyeonSceneManager.h"
 #include "HyeonResources.h"
+#include "HyeonCollisionManager.h"
 
 namespace Hyeon
 {
@@ -29,6 +30,7 @@ namespace Hyeon
 		createBuffer(width, height);
 		initializeEtc();
 
+		HyeonCollisionManager::Initialize();
 		HyeonSceneManager::Initialize();
 	}
 	void HyeonApplication::Run()
@@ -43,10 +45,12 @@ namespace Hyeon
 		HyeonInput::Update();
 		HyeonTime::Update();
 
+		HyeonCollisionManager::Update();
 		HyeonSceneManager::Update();
 	}
 	void HyeonApplication::LateUpdate()
 	{
+		HyeonCollisionManager::LateUpdate();
 		HyeonSceneManager::LateUpdate();
 	}
 	void HyeonApplication::Render()
@@ -55,6 +59,7 @@ namespace Hyeon
 		clearRenderTarget();
 
 		HyeonTime::Render(mBackHdc);
+		HyeonCollisionManager::Render(mBackHdc);
 		HyeonSceneManager::Render(mBackHdc);
 		copyRenderTarget(mBackHdc, mHdc);
 	}
@@ -71,7 +76,13 @@ namespace Hyeon
 
 	void HyeonApplication::clearRenderTarget()
 	{
+		HBRUSH grayBrush = (HBRUSH)CreateSolidBrush(RGB(128, 128, 128));
+		HBRUSH oldBrush = (HBRUSH)SelectObject(mBackHdc, grayBrush);
+
 		Rectangle(mBackHdc, -1, -1, 1601, 901);
+
+		(HBRUSH)SelectObject(mBackHdc, oldBrush);
+		DeleteObject(grayBrush);
 	}
 
 	void HyeonApplication::copyRenderTarget(HDC source, HDC dest)

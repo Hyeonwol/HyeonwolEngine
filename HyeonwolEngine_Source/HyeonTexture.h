@@ -27,6 +27,7 @@ namespace Hyeon::graphics
 		HDC GetHdc() { return mHDC; }
 		eTextureType GetTextureType() { return mType; }
 		Gdiplus::Image* GetImg() { return mImg; }
+		bool IsAlpha() { return mbAlpha; }
 
 	private:
 		bool mbAlpha;

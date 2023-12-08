@@ -13,6 +13,8 @@
 #include "HyeonAnimator.h"
 #include "HyeonMonster.h"
 #include "HyeonMonsterScript.h"
+#include "HyeonBoxCollider2D.h"
+#include "HyeonCollisionManager.h"
 
 
 namespace Hyeon
@@ -25,6 +27,7 @@ namespace Hyeon
 	}
 	void HyeonPlayScene::Initialize()
 	{
+		HyeonCollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Monster, true);
 		//메인 카메라
 		HyeonGameObject* camera = object::Instantiate<HyeonGameObject>
 			(enums::eLayerType::None, Vector2(392.0f, 395.0f));
@@ -80,6 +83,9 @@ namespace Hyeon
 		Chrono = object::Instantiate<HyeonPlayer>
 			(enums::eLayerType::Player, Vector2(0.0f,0.0f));
 		Chrono->AddComponent<HyeonPlayerScript>();
+
+		HyeonBoxCollider2D* collider = Chrono->AddComponent<HyeonBoxCollider2D>();
+		collider->SetOffset(Vector2(-50.0f, -50.0f));
 
 		cameraComp->SetTarget(Chrono);
 
