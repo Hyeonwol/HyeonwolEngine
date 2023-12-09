@@ -1,9 +1,14 @@
 #include "HyeonCollider.h"
+#include "HyeonScript.h"
+#include "HyeonGameObject.h"
 
 namespace Hyeon
 {
+	UINT HyeonCollider::CollisionID = 1;
 	HyeonCollider::HyeonCollider()
-		:HyeonComponent(enums::eComponentType::Collider)
+		:HyeonComponent(enums::eComponentType::Collider),
+		mID(CollisionID++),
+		mSize(Vector2::One)
 	{
 	}
 	HyeonCollider::~HyeonCollider()
@@ -20,5 +25,20 @@ namespace Hyeon
 	}
 	void HyeonCollider::Render(HDC hdc)
 	{
+	}
+	void HyeonCollider::OnCollisionEnter(HyeonCollider* other)
+	{
+		HyeonScript* script = GetOwner()->GetComponent<HyeonScript>();
+		script->OnCollisionEnter(other);
+	}
+	void HyeonCollider::OnCollisionStay(HyeonCollider* other)
+	{
+		HyeonScript* script = GetOwner()->GetComponent<HyeonScript>();
+		script->OnCollisionStay(other);
+	}
+	void HyeonCollider::OnCollisionExit(HyeonCollider* other)
+	{
+		HyeonScript* script = GetOwner()->GetComponent<HyeonScript>();
+		script->OnCollisionExit(other);
 	}
 }

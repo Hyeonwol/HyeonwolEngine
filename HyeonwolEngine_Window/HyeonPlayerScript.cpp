@@ -50,6 +50,19 @@ namespace Hyeon
 	{
 	}
 
+	void HyeonPlayerScript::OnCollisionEnter(HyeonCollider* other)
+	{
+		other->GetOwner()->GetComponent<HyeonTransform>()->SetPosition(Vector2(400.0f, 500.0f));
+	}
+
+	void HyeonPlayerScript::OnCollisionStay(HyeonCollider* other)
+	{
+	}
+
+	void HyeonPlayerScript::OnCollisionExit(HyeonCollider* other)
+	{
+	}
+
 	void HyeonPlayerScript::relax()
 	{
 

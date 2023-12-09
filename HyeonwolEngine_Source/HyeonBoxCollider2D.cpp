@@ -35,8 +35,8 @@ namespace Hyeon
 
 		Rectangle(hdc, pos.X + offset.X,
 			pos.Y + offset.Y,
-			pos.X + offset.X + 100,
-			pos.Y + offset.Y + 100);
+			pos.X + offset.X + 100 * GetSize().X,
+			pos.Y + offset.Y + 100)* GetSize().Y;
 
 		SelectObject(hdc, oldBrush);
 		SelectObject(hdc, oldPen);

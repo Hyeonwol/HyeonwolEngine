@@ -55,6 +55,8 @@ namespace Hyeon
 
 		imp->AddComponent<HyeonMonsterScript>();
 
+		HyeonBoxCollider2D* impBoxCollider = imp->AddComponent<HyeonBoxCollider2D>();
+
 		graphics::HyeonTexture* ImpTex = HyeonResources::Find<graphics::HyeonTexture>
 			(L"Imp");
 		HyeonAnimator* impAnimator = imp->AddComponent<HyeonAnimator>();

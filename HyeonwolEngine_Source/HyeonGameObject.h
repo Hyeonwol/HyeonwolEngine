@@ -2,6 +2,7 @@
 
 #include "CommonInclude.h"
 #include "HyeonComponent.h"
+#include "HyeonCollider.h"
 
 namespace Hyeon::object
 {

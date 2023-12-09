@@ -31,6 +31,10 @@ namespace Hyeon
 		void LateUpdate() override;
 		void Render(HDC hdc) override;
 
+		void OnCollisionEnter(HyeonCollider* other) override;
+		void OnCollisionStay(HyeonCollider* other) override;
+		void OnCollisionExit(HyeonCollider* other) override;
+
 	private:
 		void relax();
 		void move();
