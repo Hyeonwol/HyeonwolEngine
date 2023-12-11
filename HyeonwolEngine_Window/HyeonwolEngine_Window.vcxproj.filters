@@ -12,7 +12,7 @@
       <Filter>TitleScene</Filter>
     </ClInclude>
     <ClInclude Include="HyeonLoadResources.h" />
-    <ClInclude Include="HyeonPlayerScript.h">
+    <ClInclude Include="HyeonBattlePlayerScript.h">
       <Filter>PlayerScript</Filter>
     </ClInclude>
     <ClInclude Include="HyeonMonster.h">
@@ -23,6 +23,9 @@
     </ClInclude>
     <ClInclude Include="HyeonBattleScene.h">
       <Filter>BattleScene</Filter>
+    </ClInclude>
+    <ClInclude Include="HyeonMovePlayerScript.h">
+      <Filter>PlayerScript</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -35,7 +38,7 @@
     <ClCompile Include="HyeonTitleScene.cpp">
       <Filter>TitleScene</Filter>
     </ClCompile>
-    <ClCompile Include="HyeonPlayerScript.cpp">
+    <ClCompile Include="HyeonBattlePlayerScript.cpp">
       <Filter>PlayerScript</Filter>
     </ClCompile>
     <ClCompile Include="HyeonMonster.cpp">
@@ -46,6 +49,9 @@
     </ClCompile>
     <ClCompile Include="HyeonBattleScene.cpp">
       <Filter>BattleScene</Filter>
+    </ClCompile>
+    <ClCompile Include="HyeonMovePlayerScript.cpp">
+      <Filter>PlayerScript</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

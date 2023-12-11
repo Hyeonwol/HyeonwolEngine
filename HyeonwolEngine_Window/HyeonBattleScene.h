@@ -14,9 +14,8 @@ namespace Hyeon
         void LateUpdate() override;
         void Render(HDC hdc) override;
 
-
     private:
-        class HyeonPlayer* Ayla;
+        class HyeonPlayer* Chrono;
         class HyeonMonster* GreenImp;
     };
 }

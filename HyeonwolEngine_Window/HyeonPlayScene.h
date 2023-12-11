@@ -18,8 +18,7 @@ namespace Hyeon
 		void OnExit() override;
 
 	private:
-		class HyeonPlayer* Chrono;
-		
+		class HyeonPlayer* Ayla;
 	};
 
 }

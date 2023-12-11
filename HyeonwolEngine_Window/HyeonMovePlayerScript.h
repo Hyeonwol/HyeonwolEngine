@@ -1,30 +1,27 @@
 #pragma once
-#include "..\\HyeonwolEngine_Source\HyeonScript.h"
+#include "..//HyeonwolEngine_Source/HyeonScript.h"
 
 namespace Hyeon
 {
-	class HyeonPlayerScript : public HyeonScript
+	class HyeonMovePlayerScript : public HyeonScript
 	{
 	public:
 		enum class eState
 		{
-			Relax, 
-			Walk, 
-			DrawWeapon, 
-			Attack, 
+			Relax,
+			Move,
 		};
 
 		enum class eDir
 		{
-			Left, 
-			Right, 
-			Up, 
+			Left,
+			Right,
+			Up,
 			Down
 		};
 
-
-		HyeonPlayerScript();
-		~HyeonPlayerScript();
+		HyeonMovePlayerScript();
+		~HyeonMovePlayerScript();
 
 		void Initialize() override;
 		void Update() override;
@@ -36,17 +33,17 @@ namespace Hyeon
 		void OnCollisionExit(HyeonCollider* other) override;
 
 	private:
-		void relax();
-		void move();
-		void afterDrawWeapon();
-		void afterAttack();
-		void walking();
 		void relaxing();
-	
+		void moving();
+		void walkingAnimation();
+		void relaxingAnimation();
+		void runnungAnimation();
+
 	private:
 		eState mState;
 		eDir mDir;
 		float mTime;
+		bool isRunning;
 		class HyeonAnimator* mAnimator;
 	};
 }

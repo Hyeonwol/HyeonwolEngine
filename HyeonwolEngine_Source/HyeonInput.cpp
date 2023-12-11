@@ -14,7 +14,7 @@ namespace Hyeon
 		'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L',
 		'Z', 'X', 'C', 'V', 'B', 'N', 'M', 
 		VK_LEFT, VK_RIGHT, VK_DOWN, VK_UP, 
-		VK_LBUTTON, VK_MBUTTON, VK_RBUTTON
+		VK_LBUTTON, VK_MBUTTON, VK_RBUTTON, 
 	};
 
 	void HyeonInput::Initiallize()
