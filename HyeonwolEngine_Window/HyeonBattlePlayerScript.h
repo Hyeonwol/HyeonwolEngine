@@ -12,12 +12,11 @@ namespace Hyeon
 			Attack, 
 		};
 
-		enum class eDir
+		enum class Character
 		{
-			Left, 
-			Right, 
-			Up, 
-			Down
+			Chrono, 
+			Ayla, 
+			Marle, 
 		};
 
 		HyeonBattlePlayerScript();
@@ -29,16 +28,16 @@ namespace Hyeon
 		void Render(HDC hdc) override;
 
 	private:
-		void drawWeapon();
 		void afterDrawWeapon();
 		void afterAttack();
 
 	private:
 		eState mState;
-		eDir mDir;
+		Character mChosenChar;
 		class HyeonAnimator* mAnimator;
 		float mTime;
 		int mHp;
 		int mStamina;
+		Vector2 playerToMonster;
 	};
 }

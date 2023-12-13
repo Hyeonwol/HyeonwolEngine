@@ -18,8 +18,6 @@
 #include "HyeonCollisionManager.h"
 #include "HyeonMovePlayerScript.h"
 
-
-
 namespace Hyeon
 {
 	HyeonBattleScene::HyeonBattleScene()
@@ -35,7 +33,7 @@ namespace Hyeon
 		HyeonGameObject* bg = object::Instantiate<HyeonGameObject>
 			(enums::eLayerType::BackGround);
 		HyeonSpriteRenderer* bgSr = bg->AddComponent<HyeonSpriteRenderer>();
-		bgSr->SetSize(Vector2(4.0f, 4.0f));
+		bgSr->SetSize(Vector2(6.0f, 6.0f));
 
 		graphics::HyeonTexture* bgTexture = HyeonResources::Find<graphics::HyeonTexture>(L"BG");
 		bgSr->SetTexture(bgTexture);
@@ -47,6 +45,8 @@ namespace Hyeon
 
 		graphics::HyeonTexture* ImpTex = HyeonResources::Find<graphics::HyeonTexture>
 			(L"Imp");
+
+		HyeonBoxCollider2D* ImpBoxCollider = GreenImp->AddComponent<HyeonBoxCollider2D>();
 
 		HyeonAnimator* GreenImpAnimator = GreenImp->AddComponent<HyeonAnimator>();
 
@@ -68,7 +68,7 @@ namespace Hyeon
 
 		GreenImpAnimator->PlayAnimation(L"GreenImpIdle");
 
-		GreenImp->GetComponent<HyeonTransform>()->SetPosition(Vector2(450.0f, 450.0f));
+		GreenImp->GetComponent<HyeonTransform>()->SetPosition(Vector2(650.0f, 750.0f));
 		GreenImp->GetComponent<HyeonTransform>()->SetScale(Vector2(6.0f, 6.0f));
 
 		//플레이어(크로노)
@@ -82,57 +82,33 @@ namespace Hyeon
 		graphics::HyeonTexture* mChronoTexture2 = HyeonResources::Find<graphics::HyeonTexture>
 			(L"ChronoSheet2");
 
+		HyeonBoxCollider2D* ChronoCollider = Chrono->AddComponent<HyeonBoxCollider2D>();
+
 		HyeonAnimator* ChronoAnimator = Chrono->AddComponent<HyeonAnimator>();
 
 		//DrawWeapon
-		ChronoAnimator->CreateAnimation(L"ChronoDownDrawWeapon", mChronoTexture,
-			Vector2(280.0f, 11.0f), Vector2(22.4f, 42.0f),
-			Vector2::Zero, 6, 0.1f);
-		ChronoAnimator->CreateAnimation(L"ChronoUpDrawWeapon", mChronoTexture,
-			Vector2(280.0f, 59.0f), Vector2(22.68f, 41.8f),
-			Vector2::Zero, 6, 0.1f);
 		ChronoAnimator->CreateAnimation(L"ChronoLeftDrawWeapon", mChronoTexture,
 			Vector2(280.0f, 97.0f), Vector2(31.8f, 39.8f),
 			Vector2::Zero, 6, 0.1f);
-		ChronoAnimator->CreateAnimation(L"ChronoRightDrawWeapon", mChronoTexture2,
-			Vector2(0.0f, 44.0f), Vector2(32.6f, 42.0f),
-			Vector2::Zero, 6, 0.1f);
 
 		//Attack
-		ChronoAnimator->CreateAnimation(L"ChronoDownAttack", mChronoTexture2,
-			Vector2(0.0f, 165.0f), Vector2(39.6f, 58.0f),
-			Vector2::Zero, 5, 0.1f);
-
-		ChronoAnimator->CreateAnimation(L"ChronoUpAttack", mChronoTexture,
-			Vector2(275.0f, 190.0f), Vector2(31.6f, 53.8f),
-			Vector2::Zero, 5, 0.1f);
-
-		ChronoAnimator->CreateAnimation(L"ChronoRightAttack", mChronoTexture,
-			Vector2(277.0f, 245.0f), Vector2(34.3f, 54.5f),
-			Vector2::Zero, 5, 0.1f);
-
 		ChronoAnimator->CreateAnimation(L"ChronoLeftAttack", mChronoTexture2,
 			Vector2(0.0f, 93.0f), Vector2(34.0f, 57.0f),
 			Vector2::Zero, 5, 0.1f);
 
 		//Skill1
-		ChronoAnimator->CreateAnimation(L"ChronoRightSkill1", mChronoTexture2,
-			Vector2(0.0f, 228.0f), Vector2(40.0f, 50.0f),
-			Vector2::Zero, 5, 0.12f);
 		ChronoAnimator->CreateAnimation(L"ChronoLeftSkill1", mChronoTexture2,
 			Vector2(0.0f, 285.0f), Vector2(40.0f, 56.0f),
 			Vector2::Zero, 5, 0.12f);
+
 		//Skill2
-		ChronoAnimator->CreateAnimation(L"ChronoRightSkill2", mChronoTexture2,
-			Vector2(0.0f, 340.0f), Vector2(30.0f, 50.0f),
-			Vector2::Zero, 5, 0.12f);
 		ChronoAnimator->CreateAnimation(L"ChronoLeftSkill2", mChronoTexture2,
 			Vector2(147.0f, 340.0f), Vector2(30.0f, 50.0f),
 			Vector2::Zero, 5, 0.12f);
 
 		ChronoAnimator->PlayAnimation(L"ChronoLeftDrawWeapon", false);
 
-		Chrono->GetComponent<HyeonTransform>()->SetPosition(Vector2(600.0f, 700.0f));
+		Chrono->GetComponent<HyeonTransform>()->SetPosition(Vector2(900.0f, 1200.0f));
 		Chrono->GetComponent<HyeonTransform>()->SetScale(Vector2(6.0f, 6.0f));
 
 		//에이라
@@ -147,36 +123,23 @@ namespace Hyeon
 			(L"AylaSheet2");
 
 		HyeonAnimator* AylaAnimator = Ayla->AddComponent<HyeonAnimator>();
-		//	//DrawWeapon
-	//	AylaAnimator->CreateAnimation(L"DownDrawWeapon", mAylaTexture,
-	//		Vector2(280.0f, 11.0f), Vector2(22.4f, 42.0f),
-	//		Vector2::Zero, 6, 0.1f);
-	//	AylaAnimator->CreateAnimation(L"UpDrawWeapon", mAylaTexture,
-	//		Vector2(280.0f, 59.0f), Vector2(22.68f, 41.8f),
-	//		Vector2::Zero, 6, 0.1f);
-	//	AylaAnimator->CreateAnimation(L"LeftDrawWeapon", mAylaTexture,
-	//		Vector2(280.0f, 97.0f), Vector2(31.8f, 39.8f),
-	//		Vector2::Zero, 6, 0.1f);
+		//DrawWeapon
 		AylaAnimator->CreateAnimation(L"AylaRightDrawWeapon", mAylaTexture,
 			Vector2(262.0f, 44.0f), Vector2(26.0f, 37.0f),
 			Vector2::Zero, 3, 0.1f);
-	//	//Attack
-	//	//AylaAnimator->CreateAnimation(L"DownAttack", mChronoTexture2,
-	//	//	Vector2(0.0f, 165.0f), Vector2(39.6f, 58.0f),
-	//	//	Vector2::Zero, 5, 0.1f);
-	//	AylaAnimator->CreateAnimation(L"UpAttack", mAylaTexture,
-	//		Vector2(275.0f, 190.0f), Vector2(31.6f, 53.8f),
-	//		Vector2::Zero, 5, 0.1f);
+		//Attack
 		AylaAnimator->CreateAnimation(L"AylaRightAttack", mAylaTexture,
-			Vector2(277.0f, 245.0f), Vector2(34.3f, 54.5f),
-			Vector2::Zero, 5, 0.1f);
-	//	//AylaAnimator->CreateAnimation(L"LeftAttack", mChronoTexture2,
-	//	//	Vector2(0.0f, 93.0f), Vector2(34.0f, 57.0f),
-	//	//	Vector2::Zero, 5, 0.1f);
+			Vector2(261.0f, 126.0f), Vector2(31.0f, 36.0f),
+			Vector2::Zero, 3, 0.2f);
+
+		//Skill1
+		AylaAnimator->CreateAnimation(L"AylaRightSkill1", mAylaTexture2,
+			Vector2(130.0f, 40.0f), Vector2(30.0f, 40.0f),
+			Vector2::Zero, 6, 0.1f);
 
 		AylaAnimator->PlayAnimation(L"AylaRightDrawWeapon", false);
 
-		Ayla->GetComponent<HyeonTransform>()->SetPosition(Vector2(200.0f, 700.0f));
+		Ayla->GetComponent<HyeonTransform>()->SetPosition(Vector2(400.0f, 1200.0f));
 		Ayla->GetComponent<HyeonTransform>()->SetScale(Vector2(6.0f, 6.0f));
 
 		HyeonScene::Initialize();
@@ -194,5 +157,12 @@ namespace Hyeon
 		HyeonScene::Render(hdc);
 		wchar_t str[50] = L"Battle Scene";
 		TextOut(hdc, 0, 0, str, 13);
+	}
+	void HyeonBattleScene::OnEnter()
+	{
+		
+	}
+	void HyeonBattleScene::OnExit()
+	{
 	}
 }

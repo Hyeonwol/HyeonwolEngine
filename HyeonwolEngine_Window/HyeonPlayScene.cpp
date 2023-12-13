@@ -32,7 +32,7 @@ namespace Hyeon
 		
 		//메인 카메라
 		HyeonGameObject* camera = object::Instantiate<HyeonGameObject>
-			(enums::eLayerType::None, Vector2(392.0f, 395.0f));
+			(enums::eLayerType::None);
 		HyeonCamera* cameraComp = camera->AddComponent<HyeonCamera>();
 		renderer::mainCamera = cameraComp;
 
@@ -40,7 +40,7 @@ namespace Hyeon
 		HyeonGameObject* bg = object::Instantiate<HyeonGameObject>
 			(enums::eLayerType::BackGround/*, Vector2(-230.0f, -130)*/);
 		HyeonSpriteRenderer* bgSr = bg->AddComponent<HyeonSpriteRenderer>();
-		bgSr->SetSize(Vector2(4.0f, 4.0f));
+		bgSr->SetSize(Vector2(6.0f, 6.0f));
 	
 		graphics::HyeonTexture* bgTexture = HyeonResources::Find<graphics::HyeonTexture>(L"BG");
 		bgSr->SetTexture(bgTexture);
@@ -172,6 +172,7 @@ namespace Hyeon
 	}
 	void HyeonPlayScene::OnEnter()
 	{
+		
 	}
 	void HyeonPlayScene::OnExit()
 	{
