@@ -129,6 +129,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="HyeonBattleMonsterScript.h" />
     <ClInclude Include="HyeonBattleScene.h" />
     <ClInclude Include="HyeonLoadResources.h" />
     <ClInclude Include="HyeonLoadScenes.h" />
@@ -141,6 +142,7 @@
     <ClInclude Include="HyeonTitleScene.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="HyeonBattleMonsterScript.cpp" />
     <ClCompile Include="HyeonBattleScene.cpp" />
     <ClCompile Include="HyeonMonster.cpp" />
     <ClCompile Include="HyeonMonsterScript.cpp" />

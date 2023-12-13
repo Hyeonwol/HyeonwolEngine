@@ -62,6 +62,8 @@ namespace Hyeon
 		{
 			mState = HyeonMonsterScript::eState::Laugh;
 			mAnimator->PlayAnimation(L"ImpLaugh", false);
+
+			mTime = 0.0f;
 		}
 
 		HyeonTransform* tr = GetOwner()->GetComponent<HyeonTransform>();

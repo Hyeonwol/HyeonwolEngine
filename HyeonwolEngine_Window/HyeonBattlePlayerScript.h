@@ -38,5 +38,7 @@ namespace Hyeon
 		eDir mDir;
 		class HyeonAnimator* mAnimator;
 		float mTime;
+		int mHp;
+		int mStamina;
 	};
 }

@@ -29,18 +29,19 @@ namespace Hyeon
 	void HyeonPlayScene::Initialize()
 	{
 		HyeonCollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Monster, true);
+		
 		//메인 카메라
 		HyeonGameObject* camera = object::Instantiate<HyeonGameObject>
 			(enums::eLayerType::None, Vector2(392.0f, 395.0f));
 		HyeonCamera* cameraComp = camera->AddComponent<HyeonCamera>();
 		renderer::mainCamera = cameraComp;
-		
 
 		//뒷배경
 		HyeonGameObject* bg = object::Instantiate<HyeonGameObject>
-			(enums::eLayerType::BackGround);
+			(enums::eLayerType::BackGround/*, Vector2(-230.0f, -130)*/);
 		HyeonSpriteRenderer* bgSr = bg->AddComponent<HyeonSpriteRenderer>();
-		
+		bgSr->SetSize(Vector2(4.0f, 4.0f));
+	
 		graphics::HyeonTexture* bgTexture = HyeonResources::Find<graphics::HyeonTexture>(L"BG");
 		bgSr->SetTexture(bgTexture);
 
@@ -57,6 +58,8 @@ namespace Hyeon
 		imp->AddComponent<HyeonMonsterScript>();
 
 		HyeonBoxCollider2D* impBoxCollider = imp->AddComponent<HyeonBoxCollider2D>();
+		//impBoxCollider->SetSize(Vector2(0.8f, 0.8f));
+		impBoxCollider->SetOffset(Vector2(-10, 10));
 
 		graphics::HyeonTexture* ImpTex = HyeonResources::Find<graphics::HyeonTexture>
 			(L"Imp");
@@ -78,14 +81,20 @@ namespace Hyeon
 			Vector2::Zero, 2, 0.1f);
 
 		impAnimator->PlayAnimation(L"ImpLaugh", false);
-		imp->GetComponent<HyeonTransform>()->SetPosition(Vector2(300.0f, 300.0f));
-		imp->GetComponent<HyeonTransform>()->SetScale(Vector2(2.0f, 2.0f));
+		imp->GetComponent<HyeonTransform>()->SetPosition(Vector2(1300.0f, 1300.0f));
+		imp->GetComponent<HyeonTransform>()->SetScale(Vector2(6.0f, 6.0f));
 		
-		////동료(에이라)
+		//동료(에이라)
 		Ayla = object::Instantiate<HyeonPlayer>
 			(enums::eLayerType::Player, Vector2(0.0f, 0.0f));
 		Ayla->AddComponent<HyeonMovePlayerScript>();
 		
+		cameraComp->SetTarget(Ayla);
+
+		HyeonBoxCollider2D* AylaBoxCollider = Ayla->AddComponent<HyeonBoxCollider2D>();
+		AylaBoxCollider->SetSize(Vector2(0.8f, 1.6f));
+		AylaBoxCollider->SetOffset(Vector2(-10, -10));
+
 		graphics::HyeonTexture* mAylaTexture = HyeonResources::Find<graphics::HyeonTexture>
 			(L"Ayla");
 		graphics::HyeonTexture* mAylaTexture2 = HyeonResources::Find<graphics::HyeonTexture>
@@ -128,34 +137,17 @@ namespace Hyeon
 		AylaAnimator->CreateAnimation(L"UpRun", mAylaTexture,
 			Vector2(131.0f, 123.0f), Vector2(28.00f, 42.0f),
 			Vector2::Zero, 3, 0.1f);
-		/*AylaAnimator->CreateAnimation(L"LeftRun", mAylaTexture,
-			Vector2(280.0f, 97.0f), Vector2(31.8f, 39.8f),
-			Vector2::Zero, 6, 0.1f);
 		AylaAnimator->CreateAnimation(L"RightRun", mAylaTexture,
-			Vector2(0.0f, 44.0f), Vector2(32.6f, 42.0f),
-			Vector2::Zero, 6, 0.1f);*/
-		
-		//Attack
-		//AylaAnimator->CreateAnimation(L"DownAttack", mChronoTexture2,
-		//	Vector2(0.0f, 165.0f), Vector2(39.6f, 58.0f),
-		//	Vector2::Zero, 5, 0.1f);
-		
-		/*AylaAnimator->CreateAnimation(L"UpAttack", mAylaTexture,
-			Vector2(275.0f, 190.0f), Vector2(31.6f, 53.8f),
-			Vector2::Zero, 5, 0.1f);
-		
-		AylaAnimator->CreateAnimation(L"RightAttack", mAylaTexture,
-			Vector2(277.0f, 245.0f), Vector2(34.3f, 54.5f),
-			Vector2::Zero, 5, 0.1f);*/
-		
-		//AylaAnimator->CreateAnimation(L"LeftAttack", mChronoTexture2,
-		//	Vector2(0.0f, 93.0f), Vector2(34.0f, 57.0f),
-		//	Vector2::Zero, 5, 0.1f);
+			Vector2(114.5f, 165.0f), Vector2(32.0f, 34.0f),
+			Vector2::Zero, 3, 0.1f);
+		AylaAnimator->CreateAnimation(L"LeftRun", mAylaTexture2,
+			Vector2(180.0f, 0.0f), Vector2(40.0f, 30.0f),
+			Vector2::Zero, 3, 0.1f);
 		
 		AylaAnimator->PlayAnimation(L"DownRelax", false);
 		
-		Ayla->GetComponent<HyeonTransform>()->SetPosition(Vector2(100.0f, 100.0f));
-		Ayla->GetComponent<HyeonTransform>()->SetScale(Vector2(2.0f, 2.0f));
+		Ayla->GetComponent<HyeonTransform>()->SetPosition(Vector2(1600.0f, 600.0f));
+		Ayla->GetComponent<HyeonTransform>()->SetScale(Vector2(6.0f, 6.0f));
 		
 		HyeonScene::Initialize();
 	}

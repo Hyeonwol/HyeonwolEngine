@@ -9,8 +9,11 @@ namespace Hyeon
 {
 	HyeonBattlePlayerScript::HyeonBattlePlayerScript()
 		:mState(HyeonBattlePlayerScript::eState::DrawWeapon), 
-		 mDir(HyeonBattlePlayerScript::eDir::Down), 
-		 mAnimator(nullptr)
+		 mDir(HyeonBattlePlayerScript::eDir::Left), 
+		 mAnimator(nullptr), 
+		 mTime(0.0f), 
+		 mHp(0), 
+		 mStamina(0)
 	{
 	}
 	HyeonBattlePlayerScript::~HyeonBattlePlayerScript()
@@ -51,18 +54,20 @@ namespace Hyeon
 			HyeonInput::GetKeyPressed(eKeyCode::S) ||
 			HyeonInput::GetKeyPressed(eKeyCode::D)))
 				walking();*/
+
 		
-		if (mDir == HyeonBattlePlayerScript::eDir::Up)
+		/*if (mDir == HyeonBattlePlayerScript::eDir::Up)
 		{
 			mState = HyeonBattlePlayerScript::eState::DrawWeapon;
 			mAnimator->PlayAnimation(L"ChronoUpDrawWeapon", false);
 		}
-		else if (mDir == HyeonBattlePlayerScript::eDir::Left)
+		else */if (mDir == HyeonBattlePlayerScript::eDir::Left)
 		{
 			mState = HyeonBattlePlayerScript::eState::DrawWeapon;
 			mAnimator->PlayAnimation(L"ChronoLeftDrawWeapon", false);
+			mDir = HyeonBattlePlayerScript::eDir::Right;
 		}
-		else if (mDir == HyeonBattlePlayerScript::eDir::Down)
+		/*else if (mDir == HyeonBattlePlayerScript::eDir::Down)
 		{
 			mState = HyeonBattlePlayerScript::eState::DrawWeapon;
 			mAnimator->PlayAnimation(L"ChronoDownDrawWeapon", false);
@@ -71,7 +76,7 @@ namespace Hyeon
 		{
 			mState = HyeonBattlePlayerScript::eState::DrawWeapon;
 			mAnimator->PlayAnimation(L"ChronoRightDrawWeapon", false);
-		}
+		}*/
 
 		afterDrawWeapon();
 	}
@@ -115,17 +120,17 @@ namespace Hyeon
 	{
 		if (GetKeyState(VK_SPACE) & 0x8000)		//Attack
 		{
-			if (mDir == HyeonBattlePlayerScript::eDir::Up)
+			/*if (mDir == HyeonBattlePlayerScript::eDir::Up)
 			{
 				mState = HyeonBattlePlayerScript::eState::Attack;
 				mAnimator->PlayAnimation(L"ChronoUpAttack", false);
 			}
-			else if (mDir == HyeonBattlePlayerScript::eDir::Left)
+			else */if (mDir == HyeonBattlePlayerScript::eDir::Left)
 			{
 				mState = HyeonBattlePlayerScript::eState::Attack;
 				mAnimator->PlayAnimation(L"ChronoLeftAttack", false);
 			}
-			else if (mDir == HyeonBattlePlayerScript::eDir::Down)
+			/*else if (mDir == HyeonBattlePlayerScript::eDir::Down)
 			{
 				mState = HyeonBattlePlayerScript::eState::Attack;
 				mAnimator->PlayAnimation(L"ChronoDownAttack", false);
@@ -134,17 +139,17 @@ namespace Hyeon
 			{
 				mState = HyeonBattlePlayerScript::eState::Attack;
 				mAnimator->PlayAnimation(L"ChronoRightAttack", false);
-			}
+			}*/
 		}
 
 		if (HyeonInput::GetKeyDown(eKeyCode::K))	//Skill1
 		{
-			if (mDir == HyeonBattlePlayerScript::eDir::Right)
+			/*if (mDir == HyeonBattlePlayerScript::eDir::Right)
 			{
 				mState = HyeonBattlePlayerScript::eState::Attack;
 				mAnimator->PlayAnimation(L"ChronoRightSkill1", false);
 			}
-			else if (mDir == HyeonBattlePlayerScript::eDir::Left)
+			else */if (mDir == HyeonBattlePlayerScript::eDir::Left)
 			{
 				mState = HyeonBattlePlayerScript::eState::Attack;
 				mAnimator->PlayAnimation(L"ChronoLeftSkill1", false);
@@ -153,12 +158,12 @@ namespace Hyeon
 
 		if (HyeonInput::GetKeyDown(eKeyCode::L))
 		{
-			if (mDir == HyeonBattlePlayerScript::eDir::Right)
+			/*if (mDir == HyeonBattlePlayerScript::eDir::Right)
 			{
 				mState = HyeonBattlePlayerScript::eState::Attack;
 				mAnimator->PlayAnimation(L"ChronoRightSkill2", false);
 			}
-			else if (mDir == HyeonBattlePlayerScript::eDir::Left)
+			else */if (mDir == HyeonBattlePlayerScript::eDir::Left)
 			{
 				mState = HyeonBattlePlayerScript::eState::Attack;
 				mAnimator->PlayAnimation(L"ChronoLeftSkill2", false);
@@ -179,17 +184,17 @@ namespace Hyeon
 		if (mTime > 0.8f)
 		{
 			//DrawWeapon
-			if (mDir == HyeonBattlePlayerScript::eDir::Up)
+			/*if (mDir == HyeonBattlePlayerScript::eDir::Up)
 			{
 				mState = HyeonBattlePlayerScript::eState::DrawWeapon;
 				mAnimator->PlayAnimation(L"ChronoUpDrawWeapon", false);
 			}
-			else if (mDir == HyeonBattlePlayerScript::eDir::Left)
+			else */if (mDir == HyeonBattlePlayerScript::eDir::Left)
 			{
 				mState = HyeonBattlePlayerScript::eState::DrawWeapon;
 				mAnimator->PlayAnimation(L"ChronoLeftDrawWeapon", false);
 			}
-			else if (mDir == HyeonBattlePlayerScript::eDir::Down)
+			/*else if (mDir == HyeonBattlePlayerScript::eDir::Down)
 			{
 				mState = HyeonBattlePlayerScript::eState::DrawWeapon;
 				mAnimator->PlayAnimation(L"ChronoDownDrawWeapon", false);
@@ -198,7 +203,7 @@ namespace Hyeon
 			{
 				mState = HyeonBattlePlayerScript::eState::DrawWeapon;
 				mAnimator->PlayAnimation(L"ChronoRightDrawWeapon", false);
-			}
+			}*/
 			mTime = 0.0f;
 		}
 	}
@@ -253,5 +258,17 @@ namespace Hyeon
 			mDir = HyeonPlayerScript::eDir::Left;
 			mAnimator->PlayAnimation(L"ChronoLeftRelax", false);
 		}
+	}*/
+
+	/*void HyeonBattlePlayerScript::setDir()
+	{
+		if (HyeonInput::GetKeyDown(eKeyCode::W))
+			mDir = HyeonBattlePlayerScript::eDir::Up;
+		else if (HyeonInput::GetKeyDown(eKeyCode::A))
+			mDir = HyeonBattlePlayerScript::eDir::Left;
+		else if (HyeonInput::GetKeyDown(eKeyCode::S))
+			mDir = HyeonBattlePlayerScript::eDir::Down;
+		else if (HyeonInput::GetKeyDown(eKeyCode::D))
+			mDir = HyeonBattlePlayerScript::eDir::Right;
 	}*/
 }

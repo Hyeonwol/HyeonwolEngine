@@ -2,6 +2,7 @@
 #include "..\\HyeonwolEngine_Source\HyeonSceneManager.h"
 #include "HyeonPlayScene.h"
 #include "HyeonTitleScene.h"
+#include "HyeonBattleScene.h"
 
 namespace Hyeon
 {
@@ -9,8 +10,10 @@ namespace Hyeon
 	{
 		HyeonSceneManager::CreateScene<HyeonTitleScene>(L"TitleScene");
 		HyeonSceneManager::CreateScene<HyeonPlayScene>(L"PlayScene");
+		HyeonSceneManager::CreateScene<HyeonBattleScene>(L"ForestBattleScene");
 		
 		//HyeonSceneManager::LoadScene(L"TitleScene");
-		HyeonSceneManager::LoadScene(L"PlayScene");
+		//HyeonSceneManager::LoadScene(L"PlayScene");
+		HyeonSceneManager::LoadScene(L"ForestBattleScene");
 	}
 }

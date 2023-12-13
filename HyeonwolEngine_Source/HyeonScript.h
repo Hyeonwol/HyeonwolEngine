@@ -17,8 +17,9 @@ namespace Hyeon
         virtual void OnCollisionEnter(class HyeonCollider* other);
         virtual void OnCollisionStay(class HyeonCollider* other);
         virtual void OnCollisionExit(class HyeonCollider* other);
-
+        
+        Vector2 CollisionLocation;
     private:
-
+        
     };
 }

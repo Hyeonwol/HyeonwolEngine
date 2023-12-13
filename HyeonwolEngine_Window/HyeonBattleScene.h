@@ -16,6 +16,7 @@ namespace Hyeon
 
     private:
         class HyeonPlayer* Chrono;
+        class HyeonPlayer* Ayla;
         class HyeonMonster* GreenImp;
     };
 }

@@ -5,6 +5,7 @@
 #include "HyeonAnimator.h"
 #include "HyeonCollider.h"
 #include "HyeonTime.h"
+#include "HyeonSceneManager.h"
 
 namespace Hyeon
 {
@@ -47,6 +48,7 @@ namespace Hyeon
 	}
 	void HyeonMovePlayerScript::OnCollisionEnter(HyeonCollider* other)
 	{
+		HyeonSceneManager::LoadScene(L"ForestBattleScene");
 	}
 	void HyeonMovePlayerScript::OnCollisionStay(HyeonCollider* other)
 	{
@@ -110,22 +112,22 @@ namespace Hyeon
 		{
 			if (HyeonInput::GetKeyPressed(eKeyCode::D))
 			{
-				pos.X += 150.0f * HyeonTime::GetDelataTime();
+				pos.X += 250.0f * HyeonTime::GetDelataTime();
 			}
 
 			else if (HyeonInput::GetKeyPressed(eKeyCode::A))
 			{
-				pos.X -= 150.0f * HyeonTime::GetDelataTime();
+				pos.X -= 250.0f * HyeonTime::GetDelataTime();
 			}
 
 			else if (HyeonInput::GetKeyPressed(eKeyCode::W))
 			{
-				pos.Y -= 150.0f * HyeonTime::GetDelataTime();
+				pos.Y -= 250.0f * HyeonTime::GetDelataTime();
 			}
 
 			else if (HyeonInput::GetKeyPressed(eKeyCode::S))
 			{
-				pos.Y += 150.0f * HyeonTime::GetDelataTime();
+				pos.Y += 250.0f * HyeonTime::GetDelataTime();
 			}
 		}
 
@@ -193,17 +195,17 @@ namespace Hyeon
 	}
 	void HyeonMovePlayerScript::runnungAnimation()
 	{
-		/*if (HyeonInput::GetKeyPressed(eKeyCode::D))
+		if (HyeonInput::GetKeyPressed(eKeyCode::D))
 		{
 			mState = HyeonMovePlayerScript::eState::Move;
-			mAnimator->PlayAnimation(L"RightWalk");
+			mAnimator->PlayAnimation(L"RightRun");
 		}
-		else if (HyeonInput::GetKeyPressed(eKeyCode::A))
+		if (HyeonInput::GetKeyPressed(eKeyCode::A))
 		{
 			mState = HyeonMovePlayerScript::eState::Move;
-			mAnimator->PlayAnimation(L"LeftWalk");
-		}*/
-		if (HyeonInput::GetKeyPressed(eKeyCode::W))
+			mAnimator->PlayAnimation(L"LeftRun");
+		}
+		else if (HyeonInput::GetKeyPressed(eKeyCode::W))
 		{
 			mState = HyeonMovePlayerScript::eState::Move;
 			mAnimator->PlayAnimation(L"UpRun");

@@ -112,8 +112,14 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
    hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
-   const UINT width = 766;
-   const UINT height = 752;
+   const UINT width = 1200;
+   const UINT height = 1000;
+   
+   //배경 원래 해상도
+   //766, 752
+
+   //const UINT width = 300;    //원래 해상도
+   //const UINT height = 250;
 
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
       CW_USEDEFAULT, 0, width, height, nullptr, nullptr, hInstance, nullptr);

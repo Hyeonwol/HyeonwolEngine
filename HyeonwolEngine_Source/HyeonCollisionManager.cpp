@@ -133,11 +133,11 @@ namespace Hyeon
 
 		//size 세팅을 1, 1로 하면 기본 크기는 100pixel
 		Vector2 leftSize = left->GetSize() * 100.0f;
-		Vector2 righttSize = right->GetSize() * 100.0f;
+		Vector2 rightSize = right->GetSize() * 100.0f;
 
 		//AABB Collision
-		if (fabs(leftPos.X - rightPos.X) < fabs(leftPos.X / 2.0f + rightPos.X / 2.0f)
-			&& fabs(leftPos.Y - rightPos.Y) < fabs(leftPos.Y / 2.0f + rightPos.Y / 2.0f))
+		if (fabs(leftPos.X - rightPos.X) < fabs(leftSize.X / 2.0f + rightSize.X / 2.0f)
+			&& fabs(leftPos.Y - rightPos.Y) < fabs(leftSize.Y / 2.0f + rightSize.Y / 2.0f))
 		{
 			return true;
 		}
