@@ -10,13 +10,14 @@ namespace Hyeon
 		{
 			DrawWeapon, 
 			Attack, 
+			Dead
 		};
 
 		enum class Character
 		{
 			Chrono, 
 			Ayla, 
-			Marle, 
+			Robo, 
 		};
 
 		HyeonBattlePlayerScript();
@@ -27,6 +28,10 @@ namespace Hyeon
 		void LateUpdate() override;
 		void Render(HDC hdc) override;
 
+		void OnCollisionEnter(HyeonCollider* other) override;
+		void OnCollisionStay(HyeonCollider* other) override;
+		void OnCollisionExit(HyeonCollider* other) override;
+	
 	private:
 		void afterDrawWeapon();
 		void afterAttack();
@@ -38,6 +43,8 @@ namespace Hyeon
 		float mTime;
 		int mHp;
 		int mStamina;
+		bool isAylaUseSkill1;
+		bool isRoboUseSkill;
 		Vector2 playerToMonster;
 	};
 }

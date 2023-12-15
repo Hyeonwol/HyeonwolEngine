@@ -2,6 +2,11 @@
 #include "HyeonTime.h"
 #include "HyeonAnimator.h"
 #include "HyeonGameObject.h"
+#include "HyeonCamera.h"
+#include "HyeonRenderer.h"
+
+
+extern Hyeon::HyeonCamera* Hyeon::renderer::mainCamera;
 
 namespace Hyeon
 {

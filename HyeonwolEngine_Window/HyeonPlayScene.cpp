@@ -172,7 +172,8 @@ namespace Hyeon
 	}
 	void HyeonPlayScene::OnEnter()
 	{
-		
+		renderer::mainCamera->SetTarget(Ayla);
+		renderer::mainCamera->Update();
 	}
 	void HyeonPlayScene::OnExit()
 	{

@@ -20,12 +20,21 @@ namespace Hyeon
 		
 		HyeonResources::Load<graphics::HyeonTexture>(L"ChronoSheet2",
 			L"..\\Resources\\Chrono Trigger\\ChronoSheet2.bmp");
+
+		HyeonResources::Load<graphics::HyeonTexture>(L"ChronoSheet3",
+			L"..\\Resources\\Chrono Trigger\\ChronoSheet3.bmp");
 		
 		HyeonResources::Load<graphics::HyeonTexture>(L"Ayla",
 			L"..\\Resources\\Chrono Trigger\\SNES - Chrono Trigger - Ayla.bmp");
 
 		HyeonResources::Load<graphics::HyeonTexture>(L"AylaSheet2",
 			L"..\\Resources\\Chrono Trigger\\MakingAylaSheet.bmp");
+
+		HyeonResources::Load<graphics::HyeonTexture>(L"Robo",
+			L"..\\Resources\\Chrono Trigger\\SNES - Chrono Trigger - Robo.bmp");
+
+		HyeonResources::Load<graphics::HyeonTexture>(L"RoboSheet2",
+			L"..\\Resources\\Chrono Trigger\\RoboSheet2.bmp");
 
 		HyeonResources::Load<graphics::HyeonTexture>(L"Imp",
 			L"..\\Resources\\Chrono Trigger\\SNES - Chrono Trigger - Blue Imp Green Imp Mud Imp & Stone Imp.bmp");

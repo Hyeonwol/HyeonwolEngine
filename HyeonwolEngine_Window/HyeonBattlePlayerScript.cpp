@@ -4,6 +4,8 @@
 #include "HyeonGameObject.h"
 #include "HyeonAnimator.h"
 #include "HyeonTime.h"
+#include "HyeonEntity.h"
+#include "HyeonBattleScene.h"
 
 namespace Hyeon
 {
@@ -13,6 +15,8 @@ namespace Hyeon
 		 mAnimator(nullptr), 
 		 mTime(0.0f), 
 		 mHp(0), 
+		 isAylaUseSkill1(false), 
+		 isRoboUseSkill(false), 
 		 mStamina(0)
 	{
 	}
@@ -29,11 +33,13 @@ namespace Hyeon
 
 		switch (mState)
 		{
-		case HyeonBattlePlayerScript::eState::DrawWeapon:
+		case eState::DrawWeapon:
 			afterDrawWeapon();
 			break;
-		case HyeonBattlePlayerScript::eState::Attack:
+		case eState::Attack:
 			afterAttack();
+			break;
+		case eState::Dead:
 			break;
 		default:
 			assert(false);
@@ -47,6 +53,20 @@ namespace Hyeon
 	{
 	}
 
+	void HyeonBattlePlayerScript::OnCollisionEnter(HyeonCollider* other)
+	{
+		mState = HyeonBattlePlayerScript::eState::Attack;
+		mAnimator->PlayAnimation(L"ChronoLeftAttack", false);
+	}
+
+	void HyeonBattlePlayerScript::OnCollisionStay(HyeonCollider* other)
+	{
+	}
+
+	void HyeonBattlePlayerScript::OnCollisionExit(HyeonCollider* other)
+	{
+	}
+
 	void HyeonBattlePlayerScript::afterDrawWeapon()
 	{
 		if (GetKeyState(VK_F1) & 0x8000)
@@ -54,17 +74,19 @@ namespace Hyeon
 		else if (GetKeyState(VK_F2) & 0x8000)
 			mChosenChar = Character::Ayla;
 		else if (GetKeyState(VK_F3) & 0x8000)
-			mChosenChar = Character::Marle;
-
+			mChosenChar = Character::Robo;
 
 		if (GetKeyState(VK_SPACE) & 0x8000)		//Attack
 		{
 			if (mChosenChar == HyeonBattlePlayerScript::Character::Chrono)
 			{
-				playerToMonster = Vector2(650.0f, 750.0f) - Vector2(900.0f, 1200.0f);
-				playerToMonster.normalize();
+				
+				playerToMonster = Vector2(650.0f, 800.0f) - Vector2(900.0f, 1000.0f);
+				playerToMonster.normalize(); //추후 벡터로 위치 계산해서 이동해서 공격을 구현 예정
 
-
+				HyeonTransform* tr = GetOwner()->GetComponent<HyeonTransform>();
+				Vector2 pos = tr->GetPosition();
+				
 				mState = HyeonBattlePlayerScript::eState::Attack;
 				mAnimator->PlayAnimation(L"ChronoLeftAttack", false);
 			}
@@ -73,6 +95,12 @@ namespace Hyeon
 			{
 				mState = HyeonBattlePlayerScript::eState::Attack;
 				mAnimator->PlayAnimation(L"AylaRightAttack", false);
+			}
+
+			else if (mChosenChar == HyeonBattlePlayerScript::Character::Robo)
+			{
+				mState = HyeonBattlePlayerScript::eState::Attack;
+				mAnimator->PlayAnimation(L"RoboAttack", false);
 			}
 		}
 
@@ -86,8 +114,16 @@ namespace Hyeon
 			else if (mChosenChar == HyeonBattlePlayerScript::Character::Ayla)
 			{
 				mState = HyeonBattlePlayerScript::eState::Attack;
+				isAylaUseSkill1 = true;
 				mAnimator->PlayAnimation(L"AylaRightSkill1", false);
 			}
+			else if (mChosenChar == HyeonBattlePlayerScript::Character::Robo)
+			{
+				mState = HyeonBattlePlayerScript::eState::Attack;
+				isRoboUseSkill = true;
+				mAnimator->PlayAnimation(L"RoboSkill1", false);
+			}
+			
 		}
 
 		if (HyeonInput::GetKeyDown(eKeyCode::L))
@@ -98,13 +134,43 @@ namespace Hyeon
 				mAnimator->PlayAnimation(L"ChronoLeftSkill2", false);
 			}
 			
+			else if (mChosenChar == HyeonBattlePlayerScript::Character::Ayla)
+			{
+				mState = HyeonBattlePlayerScript::eState::Attack;
+				mAnimator->PlayAnimation(L"AylaRightSkill2", false);
+			}
+		}
+
+		if (HyeonInput::GetKeyDown(eKeyCode::X))	//Dead
+		{
+			if (mChosenChar == HyeonBattlePlayerScript::Character::Chrono)
+			{
+				mState = HyeonBattlePlayerScript::eState::Dead;
+				mAnimator->PlayAnimation(L"ChronoDead", false);
+				mChosenChar = HyeonBattlePlayerScript::Character::Ayla;
+				mState = HyeonBattlePlayerScript::eState::DrawWeapon;
+			}
+			else if (mChosenChar == HyeonBattlePlayerScript::Character::Ayla)
+			{
+				mState = HyeonBattlePlayerScript::eState::Dead;
+				mAnimator->PlayAnimation(L"AylaDead", false);
+				mChosenChar = HyeonBattlePlayerScript::Character::Robo;
+				mState = HyeonBattlePlayerScript::eState::DrawWeapon;
+			}
+			else if (mChosenChar == HyeonBattlePlayerScript::Character::Robo)
+			{
+				mState = HyeonBattlePlayerScript::eState::Dead;
+				mAnimator->PlayAnimation(L"RoboDead", false);
+				mChosenChar = HyeonBattlePlayerScript::Character::Chrono;
+				mState = HyeonBattlePlayerScript::eState::DrawWeapon;
+			}
 		}
 	}
 	void HyeonBattlePlayerScript::afterAttack()
 	{
 		mTime += HyeonTime::GetDelataTime();
 
-		if (mTime > 0.8f)
+		if ((mTime > 0.8f && isRoboUseSkill == false) && (mTime > 0.8f && isAylaUseSkill1 == false))
 		{
 			//DrawWeapon
 			if (mChosenChar == HyeonBattlePlayerScript::Character::Chrono)
@@ -117,6 +183,29 @@ namespace Hyeon
 			{
 				mState = HyeonBattlePlayerScript::eState::DrawWeapon;
 				mAnimator->PlayAnimation(L"AylaRightDrawWeapon", false);
+			}
+
+			else if (mChosenChar == HyeonBattlePlayerScript::Character::Robo)
+			{
+				mState = HyeonBattlePlayerScript::eState::DrawWeapon;
+				mAnimator->PlayAnimation(L"RoboDrawWeapon", false);
+			}
+			mTime = 0.0f;
+		}
+
+		else if ((isRoboUseSkill == true && mTime > 5.5f) || (isAylaUseSkill1 == true && mTime > 1.5f))
+		{
+			if (mChosenChar == HyeonBattlePlayerScript::Character::Ayla)
+			{
+				mState = HyeonBattlePlayerScript::eState::DrawWeapon;
+				mAnimator->PlayAnimation(L"AylaRightDrawWeapon", false);
+				isAylaUseSkill1 = false;
+			}
+			else if (mChosenChar == HyeonBattlePlayerScript::Character::Robo)
+			{
+				mState = HyeonBattlePlayerScript::eState::DrawWeapon;
+				mAnimator->PlayAnimation(L"RoboDrawWeapon", false);
+				isRoboUseSkill = false;
 			}
 			mTime = 0.0f;
 		}
