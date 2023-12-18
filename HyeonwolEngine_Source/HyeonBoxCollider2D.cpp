@@ -1,11 +1,13 @@
 #include "HyeonBoxCollider2D.h"
 #include "HyeonTransform.h"
 #include "HyeonGameObject.h"
+#include "HyeonRenderer.h"
+#include "HyeonCamera.h"
 
 namespace Hyeon
 {
 	HyeonBoxCollider2D::HyeonBoxCollider2D()
-		:HyeonCollider()
+		:HyeonCollider(enums::eCollidertype::Rect2D)
 	{
 	}
 	HyeonBoxCollider2D::~HyeonBoxCollider2D()
@@ -24,6 +26,9 @@ namespace Hyeon
 	{
 		HyeonTransform* tr = GetOwner()->GetComponent<HyeonTransform>();
 		Vector2 pos = tr->GetPosition();
+
+		if (renderer::mainCamera)
+			pos = renderer::mainCamera->CalculatePos(pos);
 
 		Vector2 offset = GetOffset();
 

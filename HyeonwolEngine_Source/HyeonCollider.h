@@ -6,7 +6,7 @@ namespace Hyeon
     class HyeonCollider : public HyeonComponent
     {
     public:
-        HyeonCollider();
+        HyeonCollider(eCollidertype type);
         ~HyeonCollider();
 
         virtual void Initialize();
@@ -23,11 +23,13 @@ namespace Hyeon
         UINT32 GetID() { return mID; }
         Vector2 GetSize() { return mSize; }
         void SetSize(Vector2 size) { mSize = size; }
+        eCollidertype GetColliderType() { return mType; }
 
     private:
         static UINT CollisionID;
         Vector2 mOffset;
         UINT32 mID;
         Vector2 mSize;
+        eCollidertype mType;
     };
 }

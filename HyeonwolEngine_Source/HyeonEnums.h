@@ -34,4 +34,11 @@ namespace Hyeon::enums
 		Prefab,
 		End
 	};
+
+	enum class eCollidertype
+	{
+		Circle2D, 
+		Rect2D, 
+		End
+	};
 }

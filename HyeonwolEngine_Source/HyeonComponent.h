@@ -4,6 +4,8 @@
 
 namespace Hyeon
 {
+	using namespace enums;
+
 	class HyeonGameObject;
 	class HyeonComponent : public HyeonEntity
 	{

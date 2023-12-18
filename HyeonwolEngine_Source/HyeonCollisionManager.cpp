@@ -136,10 +136,36 @@ namespace Hyeon
 		Vector2 rightSize = right->GetSize() * 100.0f;
 
 		//AABB Collision
-		if (fabs(leftPos.X - rightPos.X) < fabs(leftSize.X / 2.0f + rightSize.X / 2.0f)
-			&& fabs(leftPos.Y - rightPos.Y) < fabs(leftSize.Y / 2.0f + rightSize.Y / 2.0f))
+
+		enums::eCollidertype leftType = left->GetColliderType();
+		enums::eCollidertype rightType = right->GetColliderType();
+
+		if (leftType == enums::eCollidertype::Rect2D
+			&& rightType == enums::eCollidertype::Rect2D)
 		{
-			return true;
+			if (fabs(leftPos.X - rightPos.X) < fabs(leftSize.X / 2.0f + rightSize.X / 2.0f)
+				&& fabs(leftPos.Y - rightPos.Y) < fabs(leftSize.Y / 2.0f + rightSize.Y / 2.0f))
+			{
+				return true;
+			}
+		}
+
+		if (leftType == enums::eCollidertype::Circle2D
+			&& rightType == enums::eCollidertype::Circle2D)
+		{
+			Vector2 leftCirclePos = leftPos + (leftSize / 2.0f);
+			Vector2 rightCirclePos = rightPos + (rightSize / 2.0f);
+			float distance = (leftCirclePos - rightCirclePos).length();
+			if (distance <= (leftSize.X / 2.0f + rightSize.X / 2.0f))
+			{
+				return true;
+			}
+		}
+
+		if (leftType == enums::eCollidertype::Rect2D && rightType == enums::eCollidertype::Circle2D
+			|| leftType == enums::eCollidertype::Circle2D && rightType == enums::eCollidertype::Rect2D)
+		{
+			//¼÷Á¦
 		}
 
 		return false;

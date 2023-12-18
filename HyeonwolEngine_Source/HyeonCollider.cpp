@@ -5,10 +5,11 @@
 namespace Hyeon
 {
 	UINT HyeonCollider::CollisionID = 1;
-	HyeonCollider::HyeonCollider()
+	HyeonCollider::HyeonCollider(eCollidertype type)
 		:HyeonComponent(enums::eComponentType::Collider),
-		mID(CollisionID++),
-		mSize(Vector2::One)
+		 mType(type), 
+		 mID(CollisionID++),
+		 mSize(Vector2::One)
 	{
 	}
 	HyeonCollider::~HyeonCollider()

@@ -47,4 +47,12 @@ namespace Hyeon
 		wchar_t str[50] = L"Title Scene";
 		TextOut(hdc, 0, 0, str, 11);
 	}
+	void HyeonTitleScene::OnEnter()
+	{
+		HyeonScene::OnEnter();
+	}
+	void HyeonTitleScene::OnExit()
+	{
+		HyeonScene::OnExit();
+	}
 }
