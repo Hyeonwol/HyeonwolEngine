@@ -21,6 +21,7 @@ namespace Hyeon
 
 		static HyeonScene* LoadScene(const wstring& name);
 		static HyeonScene* GetActiveScene() { return mActiveScene; }
+		static HyeonScene* GetDontDestroyOnLoad() { return mDontDestroyOnLoad; }
 
 		static void Initialize();
 		static void Update();
@@ -31,5 +32,6 @@ namespace Hyeon
 	private:
 		static std::map<std::wstring, HyeonScene*> mScene;
 		static HyeonScene* mActiveScene;
+		static HyeonScene* mDontDestroyOnLoad;
 	};
 }

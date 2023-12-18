@@ -68,6 +68,12 @@ namespace Hyeon
 		mLayers[(UINT)type]->AddGameObject(gameObject);
 	}
 
+	void HyeonScene::EraseGameObject(HyeonGameObject* gameObj)
+	{
+		eLayerType layerType = gameObj->GetLayerType();
+		mLayers[(UINT)layerType]->EraseGameObject(gameObj);
+	}
+
 	void HyeonScene::createLayers()
 	{
 		mLayers.resize((UINT)enums::eLayerType::Max);

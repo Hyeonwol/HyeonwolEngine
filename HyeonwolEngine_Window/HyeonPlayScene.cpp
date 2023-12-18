@@ -87,6 +87,11 @@ namespace Hyeon
 		//동료(에이라)
 		Ayla = object::Instantiate<HyeonPlayer>
 			(enums::eLayerType::Player, Vector2(0.0f, 0.0f));
+
+		//현재 옵션 켜면 임프와 에이라가 다른 씬에 위치해 있어 충돌 발생 X.
+		// 선생님께 여쭤볼 것.
+		//object::DontDestroyOnLoad(Ayla);
+
 		Ayla->AddComponent<HyeonMovePlayerScript>();
 		
 		cameraComp->SetTarget(Ayla);
@@ -101,7 +106,7 @@ namespace Hyeon
 			(L"AylaSheet2");
 		
 		HyeonAnimator* AylaAnimator = Ayla->AddComponent<HyeonAnimator>();
-		
+
 		//Relax
 		AylaAnimator->CreateAnimation(L"DownRelax", mAylaTexture,
 			Vector2(62.0f, 4.0f), Vector2(20.0f, 36.0f),

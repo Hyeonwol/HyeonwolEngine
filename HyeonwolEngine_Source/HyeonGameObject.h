@@ -66,11 +66,15 @@ namespace Hyeon
 		bool isActive() { return mState == eState::Active; }
 		bool isDead() { return mState == eState::Dead; }
 
+		void SetLayerType(eLayerType layerType) { mLayerType = layerType; }
+		eLayerType GetLayerType() { return mLayerType; }
+
 	private:
 		void initializeTransform();
 		void death() { mState = eState::Dead; }
 	private:
 		eState mState;
 		vector<HyeonComponent*> mComponents;
+		eLayerType mLayerType;
 	};
 }

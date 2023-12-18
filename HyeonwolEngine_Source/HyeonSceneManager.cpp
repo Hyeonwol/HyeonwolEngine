@@ -1,9 +1,11 @@
 #include "HyeonSceneManager.h"
+#include "HyeonDontDestroyOnLoad.h"
 
 namespace Hyeon
 {
 	map<wstring, HyeonScene*> HyeonSceneManager::mScene = {};
 	HyeonScene* HyeonSceneManager::mActiveScene = nullptr;
+	HyeonScene* HyeonSceneManager::mDontDestroyOnLoad = nullptr;
 
 	HyeonScene* HyeonSceneManager::LoadScene(const wstring& name)
 	{
@@ -26,26 +28,31 @@ namespace Hyeon
 
 	void HyeonSceneManager::Initialize()
 	{
+		mDontDestroyOnLoad = CreateScene<HyeonDontDestroyOnLoad>(L"DontDestroyOnLoad");
 	}
 
 	void HyeonSceneManager::Update()
 	{
 		mActiveScene->Update();
+		mDontDestroyOnLoad->Update();
 	}
 
 	void HyeonSceneManager::LateUpdate()
 	{
 		mActiveScene->LateUpdate();
+		mDontDestroyOnLoad->LateUpdate();
 	}
 
 	void HyeonSceneManager::Render(HDC hdc)
 	{
 		mActiveScene->Render(hdc);
+		mDontDestroyOnLoad->Render(hdc);
 	}
 
 	void HyeonSceneManager::Destroy()
 	{
 		mActiveScene->Destroy();
+		mDontDestroyOnLoad->Destroy();
 	}
 
 	void HyeonSceneManager::Release()
