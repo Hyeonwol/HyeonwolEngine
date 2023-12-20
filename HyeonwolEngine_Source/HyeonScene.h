@@ -21,7 +21,6 @@ namespace Hyeon
 		virtual void OnExit();
 
 		void AddGameObject(HyeonGameObject* gameObject, const enums::eLayerType type);
-		void EraseGameObject(HyeonGameObject* gameObj);
 		HyeonLayer* GetLayer(const enums::eLayerType type) { return mLayers[(UINT)type]; }
 
 	private:

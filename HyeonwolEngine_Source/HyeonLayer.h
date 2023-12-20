@@ -18,12 +18,11 @@ namespace Hyeon
 
 		void AddGameObject(HyeonGameObject* gameObject);
 		
-		void EraseGameObject(HyeonGameObject* eraseGameObj);
-		const vector<HyeonGameObject*> GetGameObject() { return mGameObjects; }
+		vector<HyeonGameObject*> GetGameObject() { return mGameObjects; }
 	private:
 		void findDeadGameObjects(OUT vector<HyeonGameObject*>& gameObjs);
 		void deleteGameObjects(vector<HyeonGameObject*> gameObjs);
-		void eraseDeadGameObject();
+		void eraseGameObject();
 	private:
 		vector<HyeonGameObject*> mGameObjects;
 		typedef vector<HyeonGameObject*>::iterator GameObjectIter;

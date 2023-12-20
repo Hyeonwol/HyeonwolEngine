@@ -73,9 +73,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonCollisionManager.cpp">
       <Filter>CollisionManager</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)HyeonDontDestroyOnLoad.cpp">
-      <Filter>DontDestroyOnLoad</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h" />
@@ -153,9 +150,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonCollisionManager.h">
       <Filter>CollisionManager</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)HyeonDontDestroyOnLoad.h">
-      <Filter>DontDestroyOnLoad</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Application">
@@ -226,9 +220,6 @@
     </Filter>
     <Filter Include="CollisionManager">
       <UniqueIdentifier>{4b925cdd-e6ac-436a-ba99-7a52f3c700ee}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="DontDestroyOnLoad">
-      <UniqueIdentifier>{83becc5a-95ea-4bea-ab90-708dd7075c19}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

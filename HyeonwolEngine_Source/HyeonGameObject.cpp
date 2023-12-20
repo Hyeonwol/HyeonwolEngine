@@ -15,9 +15,7 @@ namespace Hyeon::object
 namespace Hyeon
 {
 	HyeonGameObject::HyeonGameObject()
-		:mState(eState::Active), 
-		 mLayerType(eLayerType::None)
-
+		: mState(eState::Active)
 	{
 		mComponents.resize((UINT)enums::eComponentType::End);
 		initializeTransform();
