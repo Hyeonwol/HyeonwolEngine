@@ -16,7 +16,8 @@
 #include "HyeonMonsterScript.h"
 #include "HyeonBoxCollider2D.h"
 #include "HyeonCollisionManager.h"
-
+#include "HyeonTile.h"
+#include "HyeonTileMapRenderer.h"
 
 namespace Hyeon
 {
@@ -28,6 +29,36 @@ namespace Hyeon
 	}
 	void HyeonPlayScene::Initialize()
 	{
+		//FILE* pFile = nullptr;
+		//_wfopen_s(&pFile, L"..//", L"rb");		//저장된 타일 맵의 이름을 넣을 것
+
+		//while (true)
+		//{
+		//	int idxX = 0;
+		//	int idxY = 0;
+
+		//	int posX = 0;
+		//	int posY = 0;
+
+		//	if (fread(&idxX, sizeof(int), 1, pFile) == NULL)
+		//		break;
+		//	if (fread(&idxY, sizeof(int), 1, pFile) == NULL)
+		//		break;
+		//	if (fread(&posX, sizeof(int), 1, pFile) == NULL)
+		//		break;
+		//	if (fread(&posY, sizeof(int), 1, pFile) == NULL)
+		//		break;
+
+		//	HyeonTile* tile = object::Instantiate<HyeonTile>(eLayerType::Tile);
+		//	HyeonTileMapRenderer* tmr = tile->AddComponent<HyeonTileMapRenderer>();
+		//	tmr->SetTexture(HyeonResources::Find<graphics::HyeonTexture>(L"BlackOmen"));
+		//	tmr->SetIndex(Vector2(idxX, idxY));
+
+		//	tile->SetPosition(posX, posY);
+		//}
+
+		//fclose(pFile);
+
 		HyeonCollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Monster, true);
 		
 		//메인 카메라

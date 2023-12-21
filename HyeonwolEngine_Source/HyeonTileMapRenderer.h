@@ -18,6 +18,7 @@ namespace Hyeon
 
         void SetTexture(graphics::HyeonTexture* texture) { mTexture = texture; }
         void SetSize(Vector2 size) { mSize = size; }
+        Vector2 GetIndex() { return mIndex; }
         void SetIndex(Vector2 index) { mIndex = index; }
 
     public:

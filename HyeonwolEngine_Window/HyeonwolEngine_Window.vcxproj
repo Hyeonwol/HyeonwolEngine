@@ -131,6 +131,7 @@
   <ItemGroup>
     <ClInclude Include="HyeonBattleMonsterScript.h" />
     <ClInclude Include="HyeonBattleScene.h" />
+    <ClInclude Include="HyeonCameraScript.h" />
     <ClInclude Include="HyeonLoadResources.h" />
     <ClInclude Include="HyeonLoadScenes.h" />
     <ClInclude Include="HyeonMonster.h" />
@@ -146,6 +147,7 @@
   <ItemGroup>
     <ClCompile Include="HyeonBattleMonsterScript.cpp" />
     <ClCompile Include="HyeonBattleScene.cpp" />
+    <ClCompile Include="HyeonCameraScript.cpp" />
     <ClCompile Include="HyeonMonster.cpp" />
     <ClCompile Include="HyeonMonsterScript.cpp" />
     <ClCompile Include="HyeonMovePlayerScript.cpp" />

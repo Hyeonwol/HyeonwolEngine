@@ -9,6 +9,7 @@ namespace Hyeon
 	{
 	public:
 		Vector2 CalculatePos(Vector2 pos) { return pos - mDistance; }
+		Vector2 CalcualteTilePosition(Vector2 pos) { return pos + mDistance; }
 		
 		HyeonCamera();
 		~HyeonCamera();

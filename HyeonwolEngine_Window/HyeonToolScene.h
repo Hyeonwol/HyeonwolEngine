@@ -1,5 +1,6 @@
 #pragma once
 #include "..//HyeonwolEngine_Source/HyeonScene.h"
+#include "HyeonTile.h"
 
 namespace Hyeon
 {
@@ -16,8 +17,12 @@ namespace Hyeon
 
 		void OnEnter() override;
 		void OnExit() override;
-	private:
 
+		void Save();
+		void Load();
+
+	private:
+		vector<HyeonTile*> mTiles;
 	};
 }
 

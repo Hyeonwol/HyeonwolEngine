@@ -92,8 +92,17 @@ namespace Hyeon
 		GetCursorPos(&mousePos);
 		ScreenToClient(Application.GetHwnd(), &mousePos);
 
-		mMousePosition.X = mousePos.x;
-		mMousePosition.Y = mousePos.y;
+		UINT width = Application.GetWidth();
+		UINT height = Application.GetHeight();
+
+		mMousePosition.X = -1.0f;
+		mMousePosition.Y = -1.0f;
+
+		if (mousePos.x > 0 && mousePos.x < width)
+			mMousePosition.X = mousePos.x;
+
+		if (mousePos.y > 0 && mousePos.y < height)
+			mMousePosition.Y = mousePos.y;
 	}
 	void HyeonInput::clearKeys()
 	{

@@ -36,6 +36,9 @@
     <ClInclude Include="HyeonToolScene.h">
       <Filter>ToolScene</Filter>
     </ClInclude>
+    <ClInclude Include="HyeonCameraScript.h">
+      <Filter>CameraScript</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HyeonPlayScene.cpp">
@@ -71,6 +74,9 @@
     <ClCompile Include="HyeonToolScene.cpp">
       <Filter>ToolScene</Filter>
     </ClCompile>
+    <ClCompile Include="HyeonCameraScript.cpp">
+      <Filter>CameraScript</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Player">
@@ -99,6 +105,9 @@
     </Filter>
     <Filter Include="ToolScene">
       <UniqueIdentifier>{d1485002-d0fd-4552-bc05-3c2855db0abd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CameraScript">
+      <UniqueIdentifier>{313e86f5-a3b5-4877-a8b5-777689667581}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -7,7 +7,7 @@ namespace Hyeon
 {
 	Vector2 HyeonTileMapRenderer::TileSize = Vector2::One;
 	Vector2 HyeonTileMapRenderer::OriginTileSize = Vector2::One;
-	Vector2 HyeonTileMapRenderer::SelectedIndex = Vector2(-1.0f, -1.0f);
+	Vector2 HyeonTileMapRenderer::SelectedIndex = Vector2::One;
 
 	HyeonTileMapRenderer::HyeonTileMapRenderer()
 		:HyeonComponent(enums::eComponentType::SpriteRenderer), 
