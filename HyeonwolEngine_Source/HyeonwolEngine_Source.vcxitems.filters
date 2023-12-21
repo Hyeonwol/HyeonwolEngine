@@ -73,6 +73,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonCollisionManager.cpp">
       <Filter>CollisionManager</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)HyeonTileMapRenderer.cpp">
+      <Filter>TileMapRenderer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h" />
@@ -150,6 +153,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonCollisionManager.h">
       <Filter>CollisionManager</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)HyeonTileMapRenderer.h">
+      <Filter>TileMapRenderer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Application">
@@ -220,6 +226,9 @@
     </Filter>
     <Filter Include="CollisionManager">
       <UniqueIdentifier>{4b925cdd-e6ac-436a-ba99-7a52f3c700ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TileMapRenderer">
+      <UniqueIdentifier>{f5394aec-5b09-45af-9964-545e65b58d33}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

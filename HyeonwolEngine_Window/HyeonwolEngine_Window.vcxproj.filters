@@ -30,6 +30,12 @@
       <Filter>MonsterScript</Filter>
     </ClInclude>
     <ClInclude Include="HyeonLoadResources.h" />
+    <ClInclude Include="HyeonTile.h">
+      <Filter>Tile</Filter>
+    </ClInclude>
+    <ClInclude Include="HyeonToolScene.h">
+      <Filter>ToolScene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HyeonPlayScene.cpp">
@@ -59,6 +65,12 @@
     <ClCompile Include="HyeonBattleMonsterScript.cpp">
       <Filter>MonsterScript</Filter>
     </ClCompile>
+    <ClCompile Include="HyeonTile.cpp">
+      <Filter>Tile</Filter>
+    </ClCompile>
+    <ClCompile Include="HyeonToolScene.cpp">
+      <Filter>ToolScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Player">
@@ -81,6 +93,12 @@
     </Filter>
     <Filter Include="BattleScene">
       <UniqueIdentifier>{e751a363-c4da-4426-b26b-276f54e0122e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tile">
+      <UniqueIdentifier>{8823726c-f954-468a-b1ea-d4bde5d86d8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ToolScene">
+      <UniqueIdentifier>{d1485002-d0fd-4552-bc05-3c2855db0abd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

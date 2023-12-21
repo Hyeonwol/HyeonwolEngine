@@ -139,7 +139,9 @@
     <ClInclude Include="HyeonPlayer.h" />
     <ClInclude Include="HyeonBattlePlayerScript.h" />
     <ClInclude Include="HyeonPlayScene.h" />
+    <ClInclude Include="HyeonTile.h" />
     <ClInclude Include="HyeonTitleScene.h" />
+    <ClInclude Include="HyeonToolScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HyeonBattleMonsterScript.cpp" />
@@ -150,7 +152,9 @@
     <ClCompile Include="HyeonPlayer.cpp" />
     <ClCompile Include="HyeonBattlePlayerScript.cpp" />
     <ClCompile Include="HyeonPlayScene.cpp" />
+    <ClCompile Include="HyeonTile.cpp" />
     <ClCompile Include="HyeonTitleScene.cpp" />
+    <ClCompile Include="HyeonToolScene.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

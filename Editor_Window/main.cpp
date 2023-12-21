@@ -4,8 +4,11 @@
 #include "framework.h"
 #include "Editor_Window.h"
 #include "..\\HyeonwolEngine_Source\HyeonApplication.h"
+#include "..\\HyeonwolEngine_Source\HyeonResources.h"
+#include "..\\HyeonwolEngine_Source\HyeonTexture.h"
 #include "..\\HyeonwolEngine_Window\HyeonLoadResources.h"
 #include "..\\HyeonwolEngine_Window\HyeonLoadScenes.h"
+#include "..\\HyeonwolEngine_Window\HyeonToolScene.h"
 
 Hyeon::HyeonApplication Application;
 
@@ -19,7 +22,7 @@ HINSTANCE hInst;                                // 현재 인스턴스입니다.
 WCHAR szTitle[MAX_LOADSTRING];                  // 제목 표시줄 텍스트입니다.
 WCHAR szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름입니다.
 // 이 코드 모듈에 포함된 함수의 선언을 전달합니다:
-ATOM                MyRegisterClass(HINSTANCE hInstance);
+ATOM                MyRegisterClass(HINSTANCE hInstance, const wchar_t* name, WNDPROC);
 BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
@@ -40,7 +43,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, //프로그램의 인스턴스 �
     // 전역 문자열을 초기화합니다.
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
     LoadStringW(hInstance, IDC_EDITORWINDOW, szWindowClass, MAX_LOADSTRING);
-    MyRegisterClass(hInstance);
+    MyRegisterClass(hInstance, szWindowClass, WndProc);
+    MyRegisterClass(hInstance, L"TILEWINDOW", WndTileProc);
+
     // 애플리케이션 초기화를 수행합니다:
     if (!InitInstance(hInstance, nCmdShow))
     {
@@ -77,14 +82,14 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, //프로그램의 인스턴스 �
 //
 //  용도: 창 클래스를 등록합니다.
 //
-ATOM MyRegisterClass(HINSTANCE hInstance)
+ATOM MyRegisterClass(HINSTANCE hInstance, const wchar_t* name, WNDPROC proc)
 {
     WNDCLASSEXW wcex;
 
     wcex.cbSize = sizeof(WNDCLASSEX);
 
     wcex.style          = CS_HREDRAW | CS_VREDRAW;
-    wcex.lpfnWndProc    = WndProc;
+    wcex.lpfnWndProc    = proc;
     wcex.cbClsExtra     = 0;
     wcex.cbWndExtra     = 0;
     wcex.hInstance      = hInstance;
@@ -92,7 +97,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     wcex.hCursor        = LoadCursor(nullptr, IDC_ARROW);
     wcex.hbrBackground  = (HBRUSH)(COLOR_WINDOW+1);
     wcex.lpszMenuName   = NULL;//MAKEINTRESOURCEW(IDC_EDITORWINDOW);
-    wcex.lpszClassName  = szWindowClass;
+    wcex.lpszClassName  = name;
     wcex.hIconSm        = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
 
     return RegisterClassExW(&wcex);
@@ -124,6 +129,10 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
       CW_USEDEFAULT, 0, width, height, nullptr, nullptr, hInstance, nullptr);
 
+   HWND ToolHWnd = CreateWindowW(L"TILEWINDOW", L"Tilewindow", WS_OVERLAPPEDWINDOW,
+       0, 0, width, height, nullptr, nullptr, hInstance, nullptr);
+
+
    Application.Initialize(hWnd, width, height);
 
    if (!hWnd)
@@ -141,6 +150,20 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    int a = 0;
    srand(UINT(&a));
+
+   Hyeon::graphics::HyeonTexture* texture
+       = Hyeon::HyeonResources::Find<Hyeon::graphics::HyeonTexture>(L"BlackOmen");
+
+   RECT rect = { 0, 0, texture->GetWidth(), texture->GetHeight() };
+   AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
+
+   UINT toolWidth = rect.right - rect.left;
+   UINT toolHeight = rect.bottom - rect.top;
+
+   SetWindowPos(ToolHWnd, nullptr, width, 0, toolWidth, toolHeight, 0);
+   ShowWindow(ToolHWnd, true);
+   UpdateWindow(ToolHWnd);
+
    return TRUE;
 }
 

@@ -17,6 +17,7 @@ namespace Hyeon::enums
 	{
 		None, 
 		BackGround, 
+		Tile, 
 		Object, 
 		Monster, 
 		//Tree(Map?)

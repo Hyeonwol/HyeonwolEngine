@@ -39,6 +39,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonScript.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonSpriteRenderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonTexture.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)HyeonTileMapRenderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonTime.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonTransform.h" />
   </ItemGroup>
@@ -65,6 +66,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonScript.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonSpriteRenderer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonTexture.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)HyeonTileMapRenderer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonTime.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonTransform.cpp" />
   </ItemGroup>

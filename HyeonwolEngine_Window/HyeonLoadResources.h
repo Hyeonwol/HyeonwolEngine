@@ -39,5 +39,8 @@ namespace Hyeon
 		HyeonResources::Load<graphics::HyeonTexture>(L"Imp",
 			L"..\\Resources\\Chrono Trigger\\SNES - Chrono Trigger - Blue Imp Green Imp Mud Imp & Stone Imp.bmp");
 
+		HyeonResources::Load<graphics::HyeonTexture>(L"BlackOmen",
+			L"..\\Resources\\Chrono Trigger\\BlackOmen01.bmp");
+
 	}
 }
