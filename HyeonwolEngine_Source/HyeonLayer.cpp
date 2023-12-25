@@ -72,7 +72,7 @@ namespace Hyeon
 	{
 		vector<HyeonGameObject*> deleteObjects = {};
 		findDeadGameObjects(deleteObjects);
-		eraseGameObject();
+		eraseDeadGameObject();
 		deleteGameObjects(deleteObjects);
 	}
 
@@ -81,6 +81,15 @@ namespace Hyeon
 		if (gameObject == nullptr)
 			return;
 		mGameObjects.push_back(gameObject);
+	}
+
+	void HyeonLayer::EraseGameObject(HyeonGameObject* eraseGameObj)
+	{
+		erase_if(mGameObjects,
+			[=](HyeonGameObject* gameObj)
+			{
+				return gameObj == eraseGameObj;
+			});
 	}
 
 	void HyeonLayer::findDeadGameObjects(OUT vector<HyeonGameObject*>& gameObjs)
@@ -102,7 +111,7 @@ namespace Hyeon
 		}
 	}
 
-	void HyeonLayer::eraseGameObject()
+	void HyeonLayer::eraseDeadGameObject()
 	{
 		erase_if(mGameObjects,
 			[](HyeonGameObject* gameObj)

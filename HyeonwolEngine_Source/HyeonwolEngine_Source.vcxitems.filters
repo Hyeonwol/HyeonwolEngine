@@ -76,6 +76,15 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonTileMapRenderer.cpp">
       <Filter>TileMapRenderer</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)HyeonDontDestroyOnLoad.cpp">
+      <Filter>DontDestroyOnLoad</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)HyeonUIBase.cpp">
+      <Filter>UIBase</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)HyeonUIManager.cpp">
+      <Filter>UIManager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h" />
@@ -156,6 +165,15 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonTileMapRenderer.h">
       <Filter>TileMapRenderer</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)HyeonDontDestroyOnLoad.h">
+      <Filter>DontDestroyOnLoad</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)HyeonUIBase.h">
+      <Filter>UIBase</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)HyeonUIManager.h">
+      <Filter>UIManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Application">
@@ -229,6 +247,15 @@
     </Filter>
     <Filter Include="TileMapRenderer">
       <UniqueIdentifier>{f5394aec-5b09-45af-9964-545e65b58d33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DontDestroyOnLoad">
+      <UniqueIdentifier>{6ff7e937-c397-44a5-9bfc-5064160b6f1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UIBase">
+      <UniqueIdentifier>{307122bb-e844-4a28-8f7c-1c8f550a0fd3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UIManager">
+      <UniqueIdentifier>{b8b2ad61-f08a-4f42-8310-f1bad673c637}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -21,6 +21,8 @@ namespace Hyeon
 
 		static HyeonScene* LoadScene(const wstring& name);
 		static HyeonScene* GetActiveScene() { return mActiveScene; }
+		static HyeonScene* GetDontDestroyOnLoad() { return mDontDestroyOnLoad; }
+		static vector<HyeonGameObject*> GetGameObjects(eLayerType layer);
 
 		static void Initialize();
 		static void Update();
@@ -28,8 +30,10 @@ namespace Hyeon
 		static void Render(HDC hdc);
 		static void Destroy();
 		static void Release();
+
 	private:
 		static std::map<std::wstring, HyeonScene*> mScene;
 		static HyeonScene* mActiveScene;
+		static HyeonScene* mDontDestroyOnLoad;
 	};
 }

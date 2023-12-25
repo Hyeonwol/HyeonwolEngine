@@ -37,26 +37,7 @@ namespace Hyeon
 
 		if (HyeonInput::GetKeyDown(eKeyCode::LButton))
 		{
-			Vector2 pos = HyeonInput::GetMousePosition();
-			pos = renderer::mainCamera->CalcualteTilePosition(pos);
-
-			if (pos.X >= 0.0f && pos.Y >= 0.0f)
-			{
-				int idxX = pos.X / HyeonTileMapRenderer::TileSize.X;
-				int idxY = pos.Y / HyeonTileMapRenderer::TileSize.Y;
-
-				HyeonTile* tile = object::Instantiate<HyeonTile>(eLayerType::Tile);
-				HyeonTileMapRenderer* tileMapRenderer = tile->AddComponent<HyeonTileMapRenderer>();
-				tileMapRenderer->SetTexture(HyeonResources::Find<graphics::HyeonTexture>(L"BlackOmen"));
-				tileMapRenderer->SetIndex(HyeonTileMapRenderer::SelectedIndex);
-
-				tile->SetPosition(idxX, idxY);
-				mTiles.push_back(tile);
-			}
-			else
-			{
-
-			}
+			createTileObject();
 		}
 
 		if (HyeonInput::GetKeyDown(eKeyCode::S))
@@ -67,29 +48,7 @@ namespace Hyeon
 	}
 	void HyeonToolScene::Render(HDC hdc)
 	{
-		HyeonScene::Render(hdc);
-
-		for (size_t i = 0; i < 50; i++)
-		{
-			Vector2 pos = renderer::mainCamera->CalculatePos
-			(
-				Vector2(HyeonTileMapRenderer::TileSize.X * i, 0.0f)
-			);
-
-			MoveToEx(hdc, HyeonTileMapRenderer::TileSize.X * i, 0, NULL);
-			LineTo(hdc, HyeonTileMapRenderer::TileSize.X * i, 2000);
-		}
-
-		for (size_t i = 0; i < 50; i++)
-		{
-			Vector2 pos = renderer::mainCamera->CalculatePos
-			(
-				Vector2(0.0f, HyeonTileMapRenderer::TileSize.Y * i)
-			);
-
-			MoveToEx(hdc, 0, HyeonTileMapRenderer::TileSize.Y * i, NULL);
-			LineTo(hdc, 2000, HyeonTileMapRenderer::TileSize.Y * i);
-		}
+		renderGreed(hdc);
 	}
 	void HyeonToolScene::OnEnter()
 	{
@@ -197,6 +156,55 @@ namespace Hyeon
 
 		fclose(pFile);
 	}
+	void HyeonToolScene::renderGreed(HDC hdc)
+	{
+		HyeonScene::Render(hdc);
+
+		for (size_t i = 0; i < 50; i++)
+		{
+			Vector2 pos = renderer::mainCamera->CalculatePos
+			(
+				Vector2(HyeonTileMapRenderer::TileSize.X * i, 0.0f)
+			);
+
+			MoveToEx(hdc, HyeonTileMapRenderer::TileSize.X * i, 0, NULL);
+			LineTo(hdc, HyeonTileMapRenderer::TileSize.X * i, 2000);
+		}
+
+		for (size_t i = 0; i < 50; i++)
+		{
+			Vector2 pos = renderer::mainCamera->CalculatePos
+			(
+				Vector2(0.0f, HyeonTileMapRenderer::TileSize.Y * i)
+			);
+
+			MoveToEx(hdc, 0, HyeonTileMapRenderer::TileSize.Y * i, NULL);
+			LineTo(hdc, 2000, HyeonTileMapRenderer::TileSize.Y * i);
+		}
+	}
+	void HyeonToolScene::createTileObject()
+	{
+		Vector2 pos = HyeonInput::GetMousePosition();
+			pos = renderer::mainCamera->CalcualteTilePosition(pos);
+
+			if (pos.X >= 0.0f && pos.Y >= 0.0f)
+			{
+				int idxX = pos.X / HyeonTileMapRenderer::TileSize.X;
+				int idxY = pos.Y / HyeonTileMapRenderer::TileSize.Y;
+
+				HyeonTile* tile = object::Instantiate<HyeonTile>(eLayerType::Tile);
+				HyeonTileMapRenderer* tileMapRenderer = tile->AddComponent<HyeonTileMapRenderer>();
+				tileMapRenderer->SetTexture(HyeonResources::Find<graphics::HyeonTexture>(L"BlackOmen"));
+				tileMapRenderer->SetIndex(HyeonTileMapRenderer::SelectedIndex);
+
+				tile->SetPosition(idxX, idxY);
+				mTiles.push_back(tile);
+			}
+			else
+			{
+
+			}
+	}
 }
 
 LRESULT CALLBACK WndTileProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
@@ -242,7 +250,6 @@ LRESULT CALLBACK WndTileProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 	break;
 	case WM_DESTROY:
 		PostQuitMessage(0);
-		KillTimer(hWnd, 0);
 		break;
 	default:
 		return DefWindowProc(hWnd, message, wParam, lParam);

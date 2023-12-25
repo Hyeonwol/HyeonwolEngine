@@ -33,6 +33,11 @@ namespace Hyeon
 	void HyeonCollisionManager::Render(HDC hdc)
 	{
 	}
+	void HyeonCollisionManager::Clear()
+	{
+		mCollisionMap.clear();
+		mCollisionLayerMatrix->reset();
+	}
 	void HyeonCollisionManager::CollisionLayerCheck(eLayerType left, eLayerType right, bool enable)
 	{
 		int row = 0;
@@ -53,8 +58,8 @@ namespace Hyeon
 	}
 	void HyeonCollisionManager::LayerCollision(HyeonScene* scene, eLayerType left, eLayerType right)
 	{
-		const vector<HyeonGameObject*>& lefts = scene->GetLayer(left)->GetGameObject();
-		const vector<HyeonGameObject*>& rights = scene->GetLayer(right)->GetGameObject();
+		const vector<HyeonGameObject*>& lefts = HyeonSceneManager::GetGameObjects(left);
+		const vector<HyeonGameObject*>& rights = HyeonSceneManager::GetGameObjects(right);
 
 		for (HyeonGameObject* left : lefts)
 		{

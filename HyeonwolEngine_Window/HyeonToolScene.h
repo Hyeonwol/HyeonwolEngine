@@ -22,6 +22,9 @@ namespace Hyeon
 		void Load();
 
 	private:
+		void renderGreed(HDC hdc);
+		void createTileObject();
+	private:
 		vector<HyeonTile*> mTiles;
 	};
 }

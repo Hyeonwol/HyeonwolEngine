@@ -5,6 +5,7 @@
 #include "HyeonSceneManager.h"
 #include "HyeonResources.h"
 #include "HyeonCollisionManager.h"
+#include "HyeonUIManager.h"
 
 namespace Hyeon
 {
@@ -31,6 +32,7 @@ namespace Hyeon
 		initializeEtc();
 
 		HyeonCollisionManager::Initialize();
+		HyeonUIManager::Initialize();
 		HyeonSceneManager::Initialize();
 	}
 	void HyeonApplication::Run()
@@ -46,11 +48,13 @@ namespace Hyeon
 		HyeonTime::Update();
 
 		HyeonCollisionManager::Update();
+		HyeonUIManager::Update();
 		HyeonSceneManager::Update();
 	}
 	void HyeonApplication::LateUpdate()
 	{
 		HyeonCollisionManager::LateUpdate();
+		HyeonUIManager::LateUpdate();
 		HyeonSceneManager::LateUpdate();
 	}
 	void HyeonApplication::Render()
@@ -60,6 +64,7 @@ namespace Hyeon
 
 		HyeonTime::Render(mBackHdc);
 		HyeonCollisionManager::Render(mBackHdc);
+		HyeonUIManager::Render(mBackHdc);
 		HyeonSceneManager::Render(mBackHdc);
 		copyRenderTarget(mBackHdc, mHdc);
 	}
@@ -71,6 +76,7 @@ namespace Hyeon
 	void HyeonApplication::Release()
 	{
 		HyeonSceneManager::Release();
+		//HyeonUIManager::Release();
 		HyeonResources::Release();
 	}
 

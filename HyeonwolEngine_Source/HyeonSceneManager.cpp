@@ -1,9 +1,11 @@
 #include "HyeonSceneManager.h"
+#include "HyeonDontDestroyOnLoad.h"
 
 namespace Hyeon
 {
 	map<wstring, HyeonScene*> HyeonSceneManager::mScene = {};
 	HyeonScene* HyeonSceneManager::mActiveScene = nullptr;
+	HyeonScene* HyeonSceneManager::mDontDestroyOnLoad = nullptr;
 
 	HyeonScene* HyeonSceneManager::LoadScene(const wstring& name)
 	{
@@ -24,28 +26,46 @@ namespace Hyeon
 		return iter->second;
 	}
 
+	vector<HyeonGameObject*> HyeonSceneManager::GetGameObjects(eLayerType layer)
+	{
+		vector<HyeonGameObject*> gameObjects 
+			= mActiveScene->GetLayer(layer)->GetGameObject();
+		vector<HyeonGameObject*> dontDestroyOnLoad 
+			= mDontDestroyOnLoad->GetLayer(layer)->GetGameObject();
+
+		gameObjects.insert(gameObjects.end(), dontDestroyOnLoad.begin(), dontDestroyOnLoad.end());
+
+		return gameObjects;
+
+	}
+
 	void HyeonSceneManager::Initialize()
 	{
+		mDontDestroyOnLoad = CreateScene<HyeonDontDestroyOnLoad>(L"DontDestroyOnLoad");
 	}
 
 	void HyeonSceneManager::Update()
 	{
 		mActiveScene->Update();
+		mDontDestroyOnLoad->Update();
 	}
 
 	void HyeonSceneManager::LateUpdate()
 	{
 		mActiveScene->LateUpdate();
+		mDontDestroyOnLoad->LateUpdate();
 	}
 
 	void HyeonSceneManager::Render(HDC hdc)
 	{
 		mActiveScene->Render(hdc);
+		mDontDestroyOnLoad->Render(hdc);
 	}
 
 	void HyeonSceneManager::Destroy()
 	{
 		mActiveScene->Destroy();
+		mDontDestroyOnLoad->Destroy();
 	}
 
 	void HyeonSceneManager::Release()

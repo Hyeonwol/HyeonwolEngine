@@ -24,6 +24,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonCollider.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonCollisionManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonComponent.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)HyeonDontDestroyOnLoad.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonEnums.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonGameObject.h" />
@@ -42,6 +43,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonTileMapRenderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonTime.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonTransform.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)HyeonUIBase.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)HyeonUIManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonAnimation.cpp" />
@@ -53,6 +56,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonCollider.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonCollisionManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonComponent.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)HyeonDontDestroyOnLoad.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonEntity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonGameObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonInput.cpp" />
@@ -69,5 +73,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonTileMapRenderer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonTime.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonTransform.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)HyeonUIBase.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)HyeonUIManager.cpp" />
   </ItemGroup>
 </Project>

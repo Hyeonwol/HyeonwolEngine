@@ -18,6 +18,7 @@
 #include "HyeonCollisionManager.h"
 #include "HyeonTile.h"
 #include "HyeonTileMapRenderer.h"
+#include "HyeonUIManager.h"
 
 namespace Hyeon
 {
@@ -59,8 +60,6 @@ namespace Hyeon
 
 		//fclose(pFile);
 
-		HyeonCollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Monster, true);
-		
 		//메인 카메라
 		HyeonGameObject* camera = object::Instantiate<HyeonGameObject>
 			(enums::eLayerType::None);
@@ -118,6 +117,9 @@ namespace Hyeon
 		//동료(에이라)
 		Ayla = object::Instantiate<HyeonPlayer>
 			(enums::eLayerType::Player, Vector2(0.0f, 0.0f));
+
+		object::DontDestroyOnLoad(Ayla);
+
 		Ayla->AddComponent<HyeonMovePlayerScript>();
 		
 		cameraComp->SetTarget(Ayla);
@@ -204,11 +206,13 @@ namespace Hyeon
 	void HyeonPlayScene::OnEnter()
 	{
 		HyeonScene::OnEnter();
+		HyeonCollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Monster, true);
 		renderer::mainCamera->SetTarget(Ayla);
 		renderer::mainCamera->Update();
 	}
 	void HyeonPlayScene::OnExit()
 	{
-		HyeonScene::OnExit();
+		//HyeonScene::OnExit();		//현재 활성화하면 collisionManager::Clear에서 잘못되어
+									//크래시 나는 오류 있음. 질문드릴 것
 	}
 }

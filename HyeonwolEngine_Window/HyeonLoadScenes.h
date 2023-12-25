@@ -9,14 +9,14 @@ namespace Hyeon
 {
 	void LoadScenes()
 	{
+		HyeonSceneManager::CreateScene<HyeonToolScene>(L"ToolScene");
 		HyeonSceneManager::CreateScene<HyeonTitleScene>(L"TitleScene");
 		HyeonSceneManager::CreateScene<HyeonPlayScene>(L"PlayScene");
 		HyeonSceneManager::CreateScene<HyeonBattleScene>(L"ForestBattleScene");
-		HyeonSceneManager::CreateScene< HyeonToolScene>(L"ToolScene");
 
 		//HyeonSceneManager::LoadScene(L"TitleScene");
-		//HyeonSceneManager::LoadScene(L"PlayScene");
+		HyeonSceneManager::LoadScene(L"PlayScene");
 		//HyeonSceneManager::LoadScene(L"ForestBattleScene");
-		HyeonSceneManager::LoadScene(L"ToolScene");
+		//HyeonSceneManager::LoadScene(L"ToolScene");
 	}
 }

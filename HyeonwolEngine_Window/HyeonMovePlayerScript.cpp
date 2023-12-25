@@ -6,6 +6,7 @@
 #include "HyeonCollider.h"
 #include "HyeonTime.h"
 #include "HyeonSceneManager.h"
+#include "HyeonUIManager.h"
 
 namespace Hyeon
 {

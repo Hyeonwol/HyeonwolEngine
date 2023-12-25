@@ -6,6 +6,8 @@
 #include "..\\HyeonwolEngine_Source\HyeonApplication.h"
 #include "..\\HyeonwolEngine_Source\HyeonResources.h"
 #include "..\\HyeonwolEngine_Source\HyeonTexture.h"
+#include "..\\HyeonwolEngine_Source\HyeonSceneManager.h"
+
 #include "..\\HyeonwolEngine_Window\HyeonLoadResources.h"
 #include "..\\HyeonwolEngine_Window\HyeonLoadScenes.h"
 #include "..\\HyeonwolEngine_Window\HyeonToolScene.h"
@@ -22,8 +24,9 @@ HINSTANCE hInst;                                // 현재 인스턴스입니다.
 WCHAR szTitle[MAX_LOADSTRING];                  // 제목 표시줄 텍스트입니다.
 WCHAR szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름입니다.
 // 이 코드 모듈에 포함된 함수의 선언을 전달합니다:
-ATOM                MyRegisterClass(HINSTANCE hInstance, const wchar_t* name, WNDPROC);
+ATOM                MyRegisterClass(HINSTANCE hInstance, const wchar_t* name, WNDPROC proc);
 BOOL                InitInstance(HINSTANCE, int);
+BOOL                InitToolScene(HINSTANCE);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance, //프로그램의 인스턴스 핸들
@@ -72,6 +75,10 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, //프로그램의 인스턴스 �
         }
     }
     Gdiplus::GdiplusShutdown(gpToken);
+
+    Gdiplus::GdiplusShutdown(gpToken);
+    Application.Release();
+
     return (int)msg.wParam;
 }
 
@@ -115,56 +122,68 @@ ATOM MyRegisterClass(HINSTANCE hInstance, const wchar_t* name, WNDPROC proc)
 //
 BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
-   hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
+    hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
-   const UINT width = 1200;
-   const UINT height = 1000;
-   
-   //배경 원래 해상도
-   //766, 752
+    const UINT width = 1200;
+    const UINT height = 1000;
 
-   //const UINT width = 300;    //원래 해상도
-   //const UINT height = 250;
+    //배경 원래 해상도
+    //766, 752
 
-   HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
-      CW_USEDEFAULT, 0, width, height, nullptr, nullptr, hInstance, nullptr);
+    //const UINT width = 300;    //원래 해상도
+    //const UINT height = 250;
 
-   HWND ToolHWnd = CreateWindowW(L"TILEWINDOW", L"Tilewindow", WS_OVERLAPPEDWINDOW,
-       0, 0, width, height, nullptr, nullptr, hInstance, nullptr);
+    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
+        CW_USEDEFAULT, 0, width, height, nullptr, nullptr, hInstance, nullptr);
 
+    Application.Initialize(hWnd, width, height);
 
-   Application.Initialize(hWnd, width, height);
+    if (!hWnd)
+    {
+        return FALSE;
+    }
 
-   if (!hWnd)
-   {
-      return FALSE;
-   }
+    ShowWindow(hWnd, nCmdShow);
+    UpdateWindow(hWnd);
 
-   ShowWindow(hWnd, nCmdShow);
-   UpdateWindow(hWnd);
+    Gdiplus::GdiplusStartup(&gpToken, &gpsi, NULL);
 
-   Gdiplus::GdiplusStartup(&gpToken, &gpsi, NULL);
+    Hyeon::LoadResources();
+    Hyeon::LoadScenes();
 
-   Hyeon::LoadResources();
-   Hyeon::LoadScenes();
+    InitToolScene(hInstance);
 
-   int a = 0;
-   srand(UINT(&a));
+    int a = 0;
+    srand(UINT(&a));
 
-   Hyeon::graphics::HyeonTexture* texture
-       = Hyeon::HyeonResources::Find<Hyeon::graphics::HyeonTexture>(L"BlackOmen");
+    return TRUE;
+}
 
-   RECT rect = { 0, 0, texture->GetWidth(), texture->GetHeight() };
-   AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
+BOOL InitToolScene(HINSTANCE hInstance)
+{
+    Hyeon::HyeonScene* activeScene = Hyeon::HyeonSceneManager::GetActiveScene();
+    wstring name = activeScene->GetName();
 
-   UINT toolWidth = rect.right - rect.left;
-   UINT toolHeight = rect.bottom - rect.top;
+    if (name == L"ToolScene")
+    {
+        HWND ToolHWnd = CreateWindowW(L"TILEWINDOW", L"Tilewindow", WS_OVERLAPPEDWINDOW,
+            0, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
 
-   SetWindowPos(ToolHWnd, nullptr, width, 0, toolWidth, toolHeight, 0);
-   ShowWindow(ToolHWnd, true);
-   UpdateWindow(ToolHWnd);
+        Hyeon::graphics::HyeonTexture* texture
+            = Hyeon::HyeonResources::Find<Hyeon::graphics::HyeonTexture>(L"BlackOmen");
 
-   return TRUE;
+        RECT rect = { 0, 0, texture->GetWidth(), texture->GetHeight() };
+        AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
+
+        UINT toolWidth = rect.right - rect.left;
+        UINT toolHeight = rect.bottom - rect.top;
+
+        SetWindowPos(ToolHWnd, nullptr, 1200, 0, toolWidth, toolHeight, 0);
+        ShowWindow(ToolHWnd, true);
+        UpdateWindow(ToolHWnd);
+    }
+
+    return TRUE;
 }
 
 //
@@ -208,7 +227,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         break;
     case WM_DESTROY:
         PostQuitMessage(0);
-        KillTimer(hWnd, 0);
         break;
     default:
         return DefWindowProc(hWnd, message, wParam, lParam);
