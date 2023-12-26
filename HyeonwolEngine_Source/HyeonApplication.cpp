@@ -64,8 +64,9 @@ namespace Hyeon
 
 		HyeonTime::Render(mBackHdc);
 		HyeonCollisionManager::Render(mBackHdc);
-		HyeonUIManager::Render(mBackHdc);
 		HyeonSceneManager::Render(mBackHdc);
+		HyeonUIManager::Render(mBackHdc);
+		
 		copyRenderTarget(mBackHdc, mHdc);
 	}
 	void HyeonApplication::Destroy()
@@ -76,7 +77,7 @@ namespace Hyeon
 	void HyeonApplication::Release()
 	{
 		HyeonSceneManager::Release();
-		//HyeonUIManager::Release();
+		HyeonUIManager::Release();
 		HyeonResources::Release();
 	}
 

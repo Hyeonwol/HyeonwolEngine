@@ -85,6 +85,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonUIManager.cpp">
       <Filter>UIManager</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)HyeonUIHUD.cpp">
+      <Filter>UIHUD</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h" />
@@ -174,6 +177,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonUIManager.h">
       <Filter>UIManager</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)HyeonUIHUD.h">
+      <Filter>UIHUD</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Application">
@@ -256,6 +262,9 @@
     </Filter>
     <Filter Include="UIManager">
       <UniqueIdentifier>{b8b2ad61-f08a-4f42-8310-f1bad673c637}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UIHUD">
+      <UniqueIdentifier>{b2407bcf-36e2-47c1-809d-1538aa8d1558}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

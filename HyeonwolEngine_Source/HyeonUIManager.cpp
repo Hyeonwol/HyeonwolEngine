@@ -1,4 +1,6 @@
-#include "HyeonUIManager.h"
+﻿#include "HyeonUIManager.h"
+#include "HyeonUIHUD.h"
+
 namespace Hyeon
 {
 	unordered_map<eUIType, HyeonUIBase*> HyeonUIManager::mUIs = {};
@@ -8,11 +10,15 @@ namespace Hyeon
 
 	void HyeonUIManager::Initialize()
 	{
+		// UI 객체 생성해주기
+		HyeonUIHUD* hud = new HyeonUIHUD();
+		mUIs.insert(make_pair(eUIType::Hpbar, hud));
 	}
+
 	void HyeonUIManager::OnLoad(eUIType type)
 	{
-		unordered_map<eUIType, HyeonUIBase*>::iterator iter =
-			mUIs.find(type);
+		unordered_map<eUIType, HyeonUIBase*>::iterator iter
+			= mUIs.find(type);
 
 		if (iter == mUIs.end())
 		{
@@ -22,16 +28,16 @@ namespace Hyeon
 
 		OnComplete(iter->second);
 	}
+
 	void HyeonUIManager::Update()
 	{
 		stack<HyeonUIBase*> uiBases = mUIBases;
 		while (!uiBases.empty())
 		{
-			HyeonUIBase* UIBase = uiBases.top();
-
-			if (UIBase)
+			HyeonUIBase* uiBase = uiBases.top();
+			if (uiBase)
 			{
-				UIBase->Update();
+				uiBase->Update();
 				uiBases.pop();
 			}
 		}
@@ -43,29 +49,29 @@ namespace Hyeon
 			OnLoad(requestUI);
 		}
 	}
+
 	void HyeonUIManager::LateUpdate()
 	{
 		stack<HyeonUIBase*> uiBases = mUIBases;
 		while (!uiBases.empty())
 		{
-			HyeonUIBase* UIBase = uiBases.top();
-
-			if (UIBase)
+			HyeonUIBase* uiBase = uiBases.top();
+			if (uiBase)
 			{
-				UIBase->LateUpdate();
+				uiBase->LateUpdate();
 				uiBases.pop();
 			}
 		}
 	}
+
 	void HyeonUIManager::Render(HDC hdc)
 	{
 		if (mUIBases.size() <= 0)
 			return;
 
-		//stack<HyeonUIBase*> uiBases = mUIBases;
 		vector<HyeonUIBase*> buff;
-		HyeonUIBase* uibase = nullptr;
 
+		HyeonUIBase* uibase = nullptr;
 		while (mUIBases.size() > 0)
 		{
 			uibase = mUIBases.top();
@@ -73,7 +79,6 @@ namespace Hyeon
 
 			buff.push_back(uibase);
 		}
-
 		reverse(buff.begin(), buff.end());
 
 		for (HyeonUIBase* ui : buff)
@@ -82,6 +87,7 @@ namespace Hyeon
 			mUIBases.push(ui);
 		}
 	}
+
 	void HyeonUIManager::OnComplete(HyeonUIBase* addUI)
 	{
 		if (addUI == nullptr)
@@ -91,17 +97,18 @@ namespace Hyeon
 		addUI->Active();
 		addUI->Update();
 
-		if (addUI->IsFullScreen())	//UI�� ��üȭ���̸� �ڿ� �ִ� ��� UI�� ��Ȱ��ȭ
+		// 만약에 현재 추가된 ui가 전체화면이라면
+		// 전체화면인 ui 말고 나머지를 전부 비활성화
+		if (addUI->IsFullScreen())
 		{
 			stack<HyeonUIBase*> uiBases = mUIBases;
 			while (!uiBases.empty())
 			{
-				HyeonUIBase* UIBase = uiBases.top();
-
-				if (UIBase)
+				HyeonUIBase* uiBase = uiBases.top();
+				uiBases.pop();
+				if (uiBase)
 				{
-					UIBase->InActive();
-					uiBases.pop();
+					uiBase->InActive();
 				}
 			}
 		}
@@ -109,10 +116,12 @@ namespace Hyeon
 		mUIBases.push(addUI);
 		mActiveUI = nullptr;
 	}
+
 	void HyeonUIManager::OnFail()
 	{
 		mActiveUI = nullptr;
 	}
+
 	void HyeonUIManager::Release()
 	{
 		for (auto iter : mUIs)
@@ -121,10 +130,12 @@ namespace Hyeon
 			iter.second = nullptr;
 		}
 	}
+
 	void HyeonUIManager::Push(eUIType type)
 	{
 		mRequestUIQueue.push(type);
 	}
+
 	void HyeonUIManager::Pop(eUIType type)
 	{
 		if (mUIBases.size() <= 0)
@@ -132,42 +143,43 @@ namespace Hyeon
 
 		stack<HyeonUIBase*> tempStack;
 
-		HyeonUIBase* uiBase = nullptr;
+		HyeonUIBase* uibase = nullptr;
 		while (mUIBases.size() > 0)
 		{
-			uiBase = mUIBases.top();
+			uibase = mUIBases.top();
 			mUIBases.pop();
 
-			if (uiBase->GetType() != type)
+			if (uibase->GetType() != type)
 			{
-				tempStack.push(uiBase);
+				tempStack.push(uibase);
 				continue;
 			}
 
-			if (uiBase->IsFullScreen())
+			if (uibase->IsFullScreen())
 			{
 				stack<HyeonUIBase*> uiBases = mUIBases;
 				while (!uiBases.empty())
 				{
-					HyeonUIBase* UIBase = uiBases.top();
+					HyeonUIBase* uiBase = uiBases.top();
 					uiBases.pop();
-
-					if (UIBase)
+					if (uiBase)
 					{
-						UIBase->Active();
+						uiBase->Active();
 						break;
 					}
 				}
 			}
 
-			uiBase->UIClear();
+			uibase->UIClear();
 		}
+
 
 		while (tempStack.size() > 0)
 		{
-			uiBase = tempStack.top();
+			uibase = tempStack.top();
 			tempStack.pop();
-			mUIBases.push(uiBase);
+			mUIBases.push(uibase);
 		}
 	}
+
 }

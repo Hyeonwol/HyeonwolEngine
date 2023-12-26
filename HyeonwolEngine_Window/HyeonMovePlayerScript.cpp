@@ -81,6 +81,14 @@ namespace Hyeon
 		{
 			runnungAnimation();
 		}
+		/*else if (HyeonInput::GetKeyPressed(eKeyCode::I))
+		{
+			HyeonUIManager::Push(eUIType::Hpbar);
+		}
+		else if (HyeonInput::GetKeyPressed(eKeyCode::O))
+		{
+			HyeonUIManager::Pop(eUIType::Hpbar);
+		}*/
 	}
 	void HyeonMovePlayerScript::moving()
 	{

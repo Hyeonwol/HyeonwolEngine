@@ -42,5 +42,8 @@ namespace Hyeon
 		HyeonResources::Load<graphics::HyeonTexture>(L"BlackOmen",
 			L"..\\Resources\\Chrono Trigger\\BlackOmen01.bmp");
 
+		HyeonResources::Load<graphics::HyeonTexture>(L"HPBar",
+			L"..\\Resources\\Chrono Trigger\\HPBAR.bmp");
+
 	}
 }

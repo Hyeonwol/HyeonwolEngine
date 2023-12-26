@@ -45,6 +45,7 @@ namespace Hyeon::enums
 
 	enum class eUIType
 	{
+		Hpbar, 
 		End
 	};
 }

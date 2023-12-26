@@ -44,6 +44,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonTime.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonTransform.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonUIBase.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)HyeonUIHUD.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HyeonUIManager.h" />
   </ItemGroup>
   <ItemGroup>
@@ -74,6 +75,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonTime.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonTransform.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonUIBase.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)HyeonUIHUD.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HyeonUIManager.cpp" />
   </ItemGroup>
 </Project>

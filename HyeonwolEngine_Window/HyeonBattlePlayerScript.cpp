@@ -81,15 +81,22 @@ namespace Hyeon
 		{
 			if (mChosenChar == HyeonBattlePlayerScript::Character::Chrono)
 			{
-				
+				//벡터로 이동해서 공격 구현 중
 				playerToMonster = Vector2(650.0f, 800.0f) - Vector2(900.0f, 1000.0f);
-				playerToMonster.normalize(); //추후 벡터로 위치 계산해서 이동해서 공격을 구현 예정
+				playerToMonster.normalize();
 
 				HyeonTransform* tr = GetOwner()->GetComponent<HyeonTransform>();
 				Vector2 pos = tr->GetPosition();
 				
-				mState = HyeonBattlePlayerScript::eState::Attack;
-				mAnimator->PlayAnimation(L"ChronoLeftAttack", false);
+				while (pos.X > 700.0f && pos.Y > 800.0f)
+				{
+					pos.X += playerToMonster.X;
+					pos.Y += playerToMonster.Y;
+					tr->SetPosition(pos);
+				}
+
+				/*mState = HyeonBattlePlayerScript::eState::Attack;
+				mAnimator->PlayAnimation(L"ChronoLeftAttack", false);*/
 			}
 			
 			else if (mChosenChar == HyeonBattlePlayerScript::Character::Ayla)

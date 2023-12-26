@@ -207,6 +207,7 @@ namespace Hyeon
 	{
 		HyeonScene::OnEnter();
 		HyeonCollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Monster, true);
+		HyeonUIManager::Push(eUIType::Hpbar);
 		renderer::mainCamera->SetTarget(Ayla);
 		renderer::mainCamera->Update();
 	}
@@ -214,5 +215,6 @@ namespace Hyeon
 	{
 		//HyeonScene::OnExit();		//현재 활성화하면 collisionManager::Clear에서 잘못되어
 									//크래시 나는 오류 있음. 질문드릴 것
+		HyeonUIManager::Pop(eUIType::Hpbar);
 	}
 }
