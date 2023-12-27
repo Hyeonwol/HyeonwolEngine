@@ -35,6 +35,7 @@ namespace Hyeon
 	private:
 		void afterDrawWeapon();
 		void afterAttack();
+		Vector2 calculatingVector();
 
 	private:
 		eState mState;
@@ -46,5 +47,6 @@ namespace Hyeon
 		bool isAylaUseSkill1;
 		bool isRoboUseSkill;
 		Vector2 playerToMonster;
+		Vector2 MonsterToPlayer = Vector2(-playerToMonster.X, -playerToMonster.Y);
 	};
 }

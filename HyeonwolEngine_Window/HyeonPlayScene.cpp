@@ -89,7 +89,7 @@ namespace Hyeon
 
 		HyeonBoxCollider2D* impBoxCollider = imp->AddComponent<HyeonBoxCollider2D>();
 		//impBoxCollider->SetSize(Vector2(0.8f, 0.8f));
-		impBoxCollider->SetOffset(Vector2(-10, 10));
+		//impBoxCollider->SetOffset(Vector2(-10, 10));
 
 		graphics::HyeonTexture* ImpTex = HyeonResources::Find<graphics::HyeonTexture>
 			(L"Imp");
@@ -126,7 +126,7 @@ namespace Hyeon
 
 		HyeonBoxCollider2D* AylaBoxCollider = Ayla->AddComponent<HyeonBoxCollider2D>();
 		AylaBoxCollider->SetSize(Vector2(0.8f, 1.6f));
-		AylaBoxCollider->SetOffset(Vector2(-10, -10));
+		//AylaBoxCollider->SetOffset(Vector2(-10, -10));
 
 		graphics::HyeonTexture* mAylaTexture = HyeonResources::Find<graphics::HyeonTexture>
 			(L"Ayla");
@@ -207,7 +207,7 @@ namespace Hyeon
 	{
 		HyeonScene::OnEnter();
 		HyeonCollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Monster, true);
-		HyeonUIManager::Push(eUIType::Hpbar);
+		//HyeonUIManager::Push(eUIType::Hpbar);
 		renderer::mainCamera->SetTarget(Ayla);
 		renderer::mainCamera->Update();
 	}

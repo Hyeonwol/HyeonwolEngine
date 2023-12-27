@@ -12,7 +12,8 @@ namespace Hyeon
 	}
 	void HyeonUIHUD::OnInit()
 	{
-		mTexture = HyeonResources::Find<graphics::HyeonTexture>(L"HPBar");
+		// 나중에 리소스 더하고 바꿔서 띄울 것
+		// mTexture = HyeonResources::Find<graphics::HyeonTexture>(L"HPBar");
 	}
 	void HyeonUIHUD::OnActive()
 	{

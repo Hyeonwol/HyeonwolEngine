@@ -20,6 +20,8 @@
 
 namespace Hyeon
 {
+	Vector2 HyeonBattleScene::ImpPos = Vector2::Zero;
+
 	HyeonBattleScene::HyeonBattleScene()
 	{
 		
@@ -47,7 +49,6 @@ namespace Hyeon
 			(L"Imp");
 
 		HyeonBoxCollider2D* ImpBoxCollider = GreenImp->AddComponent<HyeonBoxCollider2D>();
-		
 
 		HyeonAnimator* GreenImpAnimator = GreenImp->AddComponent<HyeonAnimator>();
 
@@ -71,6 +72,9 @@ namespace Hyeon
 
 		GreenImp->GetComponent<HyeonTransform>()->SetPosition(Vector2(650.0f, 800.0f));
 		GreenImp->GetComponent<HyeonTransform>()->SetScale(Vector2(6.0f, 6.0f));
+		ImpPos.X = GreenImp->GetComponent<HyeonTransform>()->GetPosition().X;
+		ImpPos.Y = GreenImp->GetComponent<HyeonTransform>()->GetPosition().Y;
+
 
 		//플레이어(크로노)
 		Chrono = object::Instantiate<HyeonPlayer>

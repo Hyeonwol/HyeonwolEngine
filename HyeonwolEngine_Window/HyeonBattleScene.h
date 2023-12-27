@@ -17,10 +17,13 @@ namespace Hyeon
         void OnEnter() override;
         void OnExit() override;
 
+        static Vector2 GetMonsterPos() { return ImpPos; }
+
     private:
         class HyeonPlayer* Chrono;
         class HyeonPlayer* Ayla;
         class HyeonPlayer* Robo;
         class HyeonMonster* GreenImp;
+        static Vector2 ImpPos;
     };
 }

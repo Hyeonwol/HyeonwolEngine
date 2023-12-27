@@ -56,8 +56,18 @@ namespace Hyeon
 
 	void HyeonBattlePlayerScript::OnCollisionEnter(HyeonCollider* other)
 	{
-		mState = HyeonBattlePlayerScript::eState::Attack;
-		mAnimator->PlayAnimation(L"ChronoLeftAttack", false);
+		/*mState = HyeonBattlePlayerScript::eState::Attack;
+		mAnimator->PlayAnimation(L"ChronoLeftAttack", false);*/
+
+		/*HyeonTransform* tr = GetOwner()->GetComponent<HyeonTransform>();
+		Vector2 pos = tr->GetPosition();
+
+		while (pos.X < 900.0f && pos.Y < 1000.0f)
+		{
+			pos.X += MonsterToPlayer.X;
+			pos.Y += MonsterToPlayer.Y;
+			tr->SetPosition(pos);
+		}*/
 	}
 
 	void HyeonBattlePlayerScript::OnCollisionStay(HyeonCollider* other)
@@ -66,6 +76,7 @@ namespace Hyeon
 
 	void HyeonBattlePlayerScript::OnCollisionExit(HyeonCollider* other)
 	{
+		
 	}
 
 	void HyeonBattlePlayerScript::afterDrawWeapon()
@@ -82,21 +93,16 @@ namespace Hyeon
 			if (mChosenChar == HyeonBattlePlayerScript::Character::Chrono)
 			{
 				//벡터로 이동해서 공격 구현 중
-				playerToMonster = Vector2(650.0f, 800.0f) - Vector2(900.0f, 1000.0f);
-				playerToMonster.normalize();
-
 				HyeonTransform* tr = GetOwner()->GetComponent<HyeonTransform>();
 				Vector2 pos = tr->GetPosition();
-				
-				while (pos.X > 700.0f && pos.Y > 800.0f)
+				playerToMonster = calculatingVector();
+
+				while (pos.X > 650.0f && pos.Y > 800.0f)
 				{
-					pos.X += playerToMonster.X;
-					pos.Y += playerToMonster.Y;
+					pos.X += HyeonTime::GetDelataTime() * playerToMonster.X;
+					pos.Y += HyeonTime::GetDelataTime() * playerToMonster.Y;
 					tr->SetPosition(pos);
 				}
-
-				/*mState = HyeonBattlePlayerScript::eState::Attack;
-				mAnimator->PlayAnimation(L"ChronoLeftAttack", false);*/
 			}
 			
 			else if (mChosenChar == HyeonBattlePlayerScript::Character::Ayla)
@@ -219,67 +225,13 @@ namespace Hyeon
 		}
 	}
 
-	/*void HyeonPlayerScript::walking()
+	Vector2 HyeonBattlePlayerScript::calculatingVector()
 	{
-		if (HyeonInput::GetKeyPressed(eKeyCode::D))
-		{
-			mState = HyeonPlayerScript::eState::Walk;
-			mAnimator->PlayAnimation(L"ChronoRightWalk");
-		}
-		else if (HyeonInput::GetKeyPressed(eKeyCode::A))
-		{
-			mState = HyeonPlayerScript::eState::Walk;
-			mAnimator->PlayAnimation(L"ChronoLeftWalk");
-		}
-		else if (HyeonInput::GetKeyPressed(eKeyCode::W))
-		{
-			mState = HyeonPlayerScript::eState::Walk;
-			mAnimator->PlayAnimation(L"ChronoUpWalk");
-		}
-		else if (HyeonInput::GetKeyPressed(eKeyCode::S))
-		{
-			mState = HyeonPlayerScript::eState::Walk;
-			mAnimator->PlayAnimation(L"ChronoDownWalk");
-		}
-	}*/
-	/*void HyeonPlayerScript::relaxing()
-	{
-		if (HyeonInput::GetKeyUp(eKeyCode::W))
-		{
-			mState = HyeonPlayerScript::eState::Relax;
-			mDir = HyeonPlayerScript::eDir::Up;
-			mAnimator->PlayAnimation(L"ChronoUpRelax", false);
-		}
-		else if (HyeonInput::GetKeyUp(eKeyCode::S))
-		{
-			mState = HyeonPlayerScript::eState::Relax;
-			mDir = HyeonPlayerScript::eDir::Down;
-			mAnimator->PlayAnimation(L"ChronoDownRelax", false);
-		}
+		HyeonTransform* tr = GetOwner()->GetComponent<HyeonTransform>();
+		Vector2 pos = tr->GetPosition();
+		
+		Vector2 MonsterPos = HyeonBattleScene::GetMonsterPos();
 
-		else if (HyeonInput::GetKeyUp(eKeyCode::D))
-		{
-			mState = HyeonPlayerScript::eState::Relax;
-			mDir = HyeonPlayerScript::eDir::Right;
-			mAnimator->PlayAnimation(L"ChronoRightRelax", false);
-		}
-		else if (HyeonInput::GetKeyUp(eKeyCode::A))
-		{
-			mState = HyeonPlayerScript::eState::Relax;
-			mDir = HyeonPlayerScript::eDir::Left;
-			mAnimator->PlayAnimation(L"ChronoLeftRelax", false);
-		}
-	}*/
-
-	/*void HyeonBattlePlayerScript::setDir()
-	{
-		if (HyeonInput::GetKeyDown(eKeyCode::W))
-			mDir = HyeonBattlePlayerScript::eDir::Up;
-		else if (HyeonInput::GetKeyDown(eKeyCode::A))
-			mDir = HyeonBattlePlayerScript::eDir::Left;
-		else if (HyeonInput::GetKeyDown(eKeyCode::S))
-			mDir = HyeonBattlePlayerScript::eDir::Down;
-		else if (HyeonInput::GetKeyDown(eKeyCode::D))
-			mDir = HyeonBattlePlayerScript::eDir::Right;
-	}*/
+		return (MonsterPos - pos).normalize();
+	}
 }

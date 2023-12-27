@@ -11,8 +11,8 @@ namespace Hyeon
 	void HyeonUIManager::Initialize()
 	{
 		// UI 객체 생성해주기
-		HyeonUIHUD* hud = new HyeonUIHUD();
-		mUIs.insert(make_pair(eUIType::Hpbar, hud));
+		/*HyeonUIHUD* hud = new HyeonUIHUD();
+		mUIs.insert(make_pair(eUIType::Hpbar, hud));*/
 	}
 
 	void HyeonUIManager::OnLoad(eUIType type)
