@@ -15,8 +15,8 @@ namespace Hyeon
 		HyeonSceneManager::CreateScene<HyeonBattleScene>(L"ForestBattleScene");
 
 		//HyeonSceneManager::LoadScene(L"TitleScene");
-		HyeonSceneManager::LoadScene(L"PlayScene");
+		//HyeonSceneManager::LoadScene(L"PlayScene");
 		//HyeonSceneManager::LoadScene(L"ForestBattleScene");
-		//HyeonSceneManager::LoadScene(L"ToolScene");
+		HyeonSceneManager::LoadScene(L"ToolScene");
 	}
 }

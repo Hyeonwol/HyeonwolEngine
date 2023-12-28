@@ -118,14 +118,16 @@ namespace Hyeon
 				right->OnCollisionStay(left);
 			}
 		}
-
-		//충돌한 상태에서 벗어남(충돌한 상태였다가 서로 떨어짐)
-		if (iter->second == true)
+		else
 		{
-			left->OnCollisionExit(right);
-			right->OnCollisionExit(left);
+			//충돌한 상태에서 벗어남(충돌한 상태였다가 서로 떨어짐)
+			if (iter->second == true)
+			{
+				left->OnCollisionExit(right);
+				right->OnCollisionExit(left);
 
-			iter->second = false;
+				iter->second = false;
+			}
 		}
 	}
 	bool HyeonCollisionManager::InterSect(HyeonCollider* left, HyeonCollider* right)

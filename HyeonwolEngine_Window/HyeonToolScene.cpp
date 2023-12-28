@@ -148,7 +148,7 @@ namespace Hyeon
 
 			HyeonTile* tile = object::Instantiate<HyeonTile>(eLayerType::Tile, Vector2(posX, posY));
 			HyeonTileMapRenderer* tmr = tile->AddComponent<HyeonTileMapRenderer>();
-			tmr->SetTexture(HyeonResources::Find<graphics::HyeonTexture>(L"BlackOmen"));
+			tmr->SetTexture(HyeonResources::Find<graphics::HyeonTexture>(L"Mountain"));
 			tmr->SetIndex(Vector2(idxX, idxY));
 
 			mTiles.push_back(tile);
@@ -194,7 +194,7 @@ namespace Hyeon
 
 				HyeonTile* tile = object::Instantiate<HyeonTile>(eLayerType::Tile);
 				HyeonTileMapRenderer* tileMapRenderer = tile->AddComponent<HyeonTileMapRenderer>();
-				tileMapRenderer->SetTexture(HyeonResources::Find<graphics::HyeonTexture>(L"BlackOmen"));
+				tileMapRenderer->SetTexture(HyeonResources::Find<graphics::HyeonTexture>(L"Mountain"));
 				tileMapRenderer->SetIndex(HyeonTileMapRenderer::SelectedIndex);
 
 				tile->SetPosition(idxX, idxY);
@@ -233,7 +233,7 @@ LRESULT CALLBACK WndTileProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 		HDC hdc = BeginPaint(hWnd, &ps);
 		
 		Hyeon::graphics::HyeonTexture* texture
-			= Hyeon::HyeonResources::Find<Hyeon::graphics::HyeonTexture>(L"BlackOmen");
+			= Hyeon::HyeonResources::Find<Hyeon::graphics::HyeonTexture>(L"Mountain");
 
 		TransparentBlt(hdc,
 			0,0,
@@ -243,7 +243,7 @@ LRESULT CALLBACK WndTileProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 			0, 0,
 			texture->GetWidth(),
 			texture->GetHeight(),
-			RGB(0, 158, 0));
+			RGB(179, 38, 195));
 
 		EndPaint(hWnd, &ps);
 	}

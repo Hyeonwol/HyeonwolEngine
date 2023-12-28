@@ -6,14 +6,32 @@ namespace Hyeon
 	class HyeonBattlePlayerScript : public HyeonScript
 	{
 	public:
+		/*struct CharacterState
+		{
+			enum class eState
+			{
+				DrawWeapon,
+				Move,
+				Attack,
+				Dead
+			};
+
+			enum class eCharacter
+			{
+				Chrono,
+				Ayla,
+				Robo,
+			};
+		};*/
 		enum class eState
 		{
 			DrawWeapon, 
+			Move, 
 			Attack, 
 			Dead
 		};
 
-		enum class Character
+		enum class eCharacter
 		{
 			Chrono, 
 			Ayla, 
@@ -33,13 +51,17 @@ namespace Hyeon
 		void OnCollisionExit(HyeonCollider* other) override;
 	
 	private:
+		void stateSwitching();
 		void afterDrawWeapon();
+		void moving(eCharacter chosenChar);
 		void afterAttack();
 		Vector2 calculatingVector();
 
 	private:
-		eState mState;
-		Character mChosenChar;
+		eState mChronoState;
+		eState mAylaState;
+		eState mRoboState;
+		eCharacter mChosenChar;
 		class HyeonAnimator* mAnimator;
 		float mTime;
 		int mHp;
@@ -47,6 +69,5 @@ namespace Hyeon
 		bool isAylaUseSkill1;
 		bool isRoboUseSkill;
 		Vector2 playerToMonster;
-		Vector2 MonsterToPlayer = Vector2(-playerToMonster.X, -playerToMonster.Y);
 	};
 }

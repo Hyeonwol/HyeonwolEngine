@@ -170,7 +170,7 @@ BOOL InitToolScene(HINSTANCE hInstance)
             0, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
 
         Hyeon::graphics::HyeonTexture* texture
-            = Hyeon::HyeonResources::Find<Hyeon::graphics::HyeonTexture>(L"BlackOmen");
+            = Hyeon::HyeonResources::Find<Hyeon::graphics::HyeonTexture>(L"Mountain");
 
         RECT rect = { 0, 0, texture->GetWidth(), texture->GetHeight() };
         AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);

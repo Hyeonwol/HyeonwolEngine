@@ -77,7 +77,7 @@ namespace Hyeon
 					mIndex.X * mTileSize.X, mIndex.Y * mTileSize.Y,
 					mTileSize.X,
 					mTileSize.Y,
-					RGB(0, 158, 0));
+					RGB(179, 38, 195));
 			}
 		}
 	}
