@@ -4,6 +4,7 @@
 #include "HyeonTitleScene.h"
 #include "HyeonForestBattleScene.h"
 #include "HyeonToolScene.h"
+#include "HyeonMtWoeScene.h"
 
 namespace Hyeon
 {
@@ -13,6 +14,7 @@ namespace Hyeon
 		HyeonSceneManager::CreateScene<HyeonTitleScene>(L"TitleScene");
 		HyeonSceneManager::CreateScene<HyeonForestScene>(L"ForestScene");
 		HyeonSceneManager::CreateScene<HyeonForestBattleScene>(L"ForestBattleScene");
+		HyeonSceneManager::CreateScene< HyeonMtWoeScene>(L"MtWoeScene");
 
 		//HyeonSceneManager::LoadScene(L"TitleScene");
 		HyeonSceneManager::LoadScene(L"ForestScene");

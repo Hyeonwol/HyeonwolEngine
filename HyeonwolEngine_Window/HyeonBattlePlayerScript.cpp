@@ -34,7 +34,7 @@ namespace Hyeon
 		if (mAnimator == nullptr)
 			mAnimator = GetOwner()->GetComponent<HyeonAnimator>();
 
-		stateSwitching();
+		//stateSwitching();
 	}
 	void HyeonBattlePlayerScript::LateUpdate()
 	{
@@ -67,25 +67,9 @@ namespace Hyeon
 	{
 	}
 
-	void HyeonBattlePlayerScript::stateSwitching()
+	/*void HyeonBattlePlayerScript::stateSwitching()
 	{
-		switch (mChronoState)
-		{
-		case eState::DrawWeapon:
-			afterDrawWeapon();
-			break;
-		case eState::Move:
-			moving(mChosenChar);
-			break;
-		case eState::Attack:
-			afterAttack();
-			break;
-		case eState::Dead:
-			break;
-		default:
-			assert(false);
-			break;
-		}
+		
 
 		switch (mAylaState)
 		{
@@ -122,7 +106,7 @@ namespace Hyeon
 			assert(false);
 			break;
 		}
-	}
+	}*/
 
 	void HyeonBattlePlayerScript::afterDrawWeapon()
 	{
@@ -137,9 +121,10 @@ namespace Hyeon
 		{
 			if (mChosenChar == HyeonBattlePlayerScript::eCharacter::Chrono)
 			{
-				playerToMonster = calculatingVector();
+				/*playerToMonster = calculatingVector();
 				mChronoState = HyeonBattlePlayerScript::eState::Move;
-				moving(mChosenChar);
+				moving();*/
+				
 			}
 			
 			else if (mChosenChar == HyeonBattlePlayerScript::eCharacter::Ayla)
@@ -217,7 +202,7 @@ namespace Hyeon
 		}
 	}
 
-	void HyeonBattlePlayerScript::moving(eCharacter chosenChar)
+	void HyeonBattlePlayerScript::moving()
 	{	
 		//벡터로 이동해서 공격 구현 중
 		HyeonTransform* tr = GetOwner()->GetComponent<HyeonTransform>();

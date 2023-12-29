@@ -42,6 +42,7 @@
     <ClInclude Include="HyeonMtWoeScene.h">
       <Filter>MtWoeScene</Filter>
     </ClInclude>
+    <ClInclude Include="HyeonForestBattleChrono.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HyeonForestScene.cpp">
@@ -83,6 +84,7 @@
     <ClCompile Include="HyeonMtWoeScene.cpp">
       <Filter>MtWoeScene</Filter>
     </ClCompile>
+    <ClCompile Include="HyeonForestBattleChrono.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Player">

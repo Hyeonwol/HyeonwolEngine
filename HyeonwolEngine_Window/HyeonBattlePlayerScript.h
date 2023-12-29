@@ -6,23 +6,6 @@ namespace Hyeon
 	class HyeonBattlePlayerScript : public HyeonScript
 	{
 	public:
-		/*struct CharacterState
-		{
-			enum class eState
-			{
-				DrawWeapon,
-				Move,
-				Attack,
-				Dead
-			};
-
-			enum class eCharacter
-			{
-				Chrono,
-				Ayla,
-				Robo,
-			};
-		};*/
 		enum class eState
 		{
 			DrawWeapon, 
@@ -41,21 +24,21 @@ namespace Hyeon
 		HyeonBattlePlayerScript();
 		~HyeonBattlePlayerScript();
 
-		void Initialize() override;
-		void Update() override;
-		void LateUpdate() override;
-		void Render(HDC hdc) override;
+		virtual void Initialize() override;
+		virtual void Update() override;
+		virtual void LateUpdate() override;
+		virtual void Render(HDC hdc) override;
 
-		void OnCollisionEnter(HyeonCollider* other) override;
-		void OnCollisionStay(HyeonCollider* other) override;
-		void OnCollisionExit(HyeonCollider* other) override;
+		virtual void OnCollisionEnter(HyeonCollider* other) override;
+		virtual void OnCollisionStay(HyeonCollider* other) override;
+		virtual void OnCollisionExit(HyeonCollider* other) override;
 	
-	private:
-		void stateSwitching();
-		void afterDrawWeapon();
-		void moving(eCharacter chosenChar);
-		void afterAttack();
-		Vector2 calculatingVector();
+	protected:
+		//virtual void stateSwitching();
+		virtual void afterDrawWeapon();
+		virtual void moving();
+		virtual void afterAttack();
+		virtual Vector2 calculatingVector();
 
 	private:
 		eState mChronoState;

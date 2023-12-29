@@ -17,6 +17,7 @@
 #include "HyeonBoxCollider2D.h"
 #include "HyeonCollisionManager.h"
 #include "HyeonMovePlayerScript.h"
+#include "HyeonForestBattleChrono.h"
 
 namespace Hyeon
 {
@@ -24,7 +25,6 @@ namespace Hyeon
 
 	HyeonForestBattleScene::HyeonForestBattleScene()
 	{
-		
 	}
 	HyeonForestBattleScene::~HyeonForestBattleScene()
 	{
@@ -49,7 +49,7 @@ namespace Hyeon
 			(L"Imp");
 
 		HyeonBoxCollider2D* ImpBoxCollider = GreenImp->AddComponent<HyeonBoxCollider2D>();
-
+		ImpBoxCollider->SetOffset(Vector2(-50.0f, -50.0f));
 		HyeonAnimator* GreenImpAnimator = GreenImp->AddComponent<HyeonAnimator>();
 
 		GreenImpAnimator->CreateAnimation(L"GreenImpIdle", ImpTex, 
@@ -79,7 +79,7 @@ namespace Hyeon
 		//플레이어(크로노)
 		Chrono = object::Instantiate<HyeonPlayer>
 			(enums::eLayerType::Player, Vector2(0.0f, 0.0f));
-		Chrono->AddComponent<HyeonBattlePlayerScript>();
+		Chrono->AddComponent<HyeonForestBattleChrono>();
 
 		graphics::HyeonTexture* mChronoTexture = HyeonResources::Find<graphics::HyeonTexture>
 			(L"Chrono");
@@ -219,7 +219,7 @@ namespace Hyeon
 	void HyeonForestBattleScene::Render(HDC hdc)
 	{
 		HyeonScene::Render(hdc);
-		wchar_t str[50] = L"Battle Scene";
+		wchar_t str[50] = L"Forest Battle Scene";
 		TextOut(hdc, 0, 0, str, 13);
 	}
 	void HyeonForestBattleScene::OnEnter()

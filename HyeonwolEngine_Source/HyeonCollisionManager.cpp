@@ -139,8 +139,8 @@ namespace Hyeon
 		Vector2 rightPos = rightTr->GetPosition() + right->GetOffset();
 
 		//size 세팅을 1, 1로 하면 기본 크기는 100pixel
-		Vector2 leftSize = left->GetSize() * 100.0f;
-		Vector2 rightSize = right->GetSize() * 100.0f;
+		Vector2 leftSize = left->GetSize() * 70.0f;
+		Vector2 rightSize = right->GetSize() * 70.0f;
 
 		//AABB Collision
 

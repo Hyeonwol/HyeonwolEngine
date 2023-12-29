@@ -6,6 +6,7 @@ namespace Hyeon
 {
 	void LoadResources()
 	{
+		//BackGround & Object & Image
 		HyeonResources::Load<graphics::HyeonTexture>(L"ForestBG",
 			L"..\\Resources\\Chrono Trigger\\SNES - Chrono Trigger - Guardia Forest.bmp");
 
@@ -15,6 +16,10 @@ namespace Hyeon
 		HyeonResources::Load<graphics::HyeonTexture>(L"Title",
 			L"..\\Resources\\Chrono Trigger\\Title.bmp");
 
+		HyeonResources::Load<graphics::HyeonTexture>(L"MountainBG",
+			L"..\\Resources\\Chrono Trigger\\SNES - Chrono Trigger - Mt Woe.bmp");
+		
+		//Character
 		HyeonResources::Load<graphics::HyeonTexture>(L"Chrono",
 			L"..\\Resources\\Chrono Trigger\\SNES - Chrono Trigger - Crono.bmp");
 		
@@ -35,12 +40,14 @@ namespace Hyeon
 
 		HyeonResources::Load<graphics::HyeonTexture>(L"RoboSheet2",
 			L"..\\Resources\\Chrono Trigger\\RoboSheet2.bmp");
-
+		
+		//Monster
 		HyeonResources::Load<graphics::HyeonTexture>(L"Imp",
 			L"..\\Resources\\Chrono Trigger\\SNES - Chrono Trigger - Blue Imp Green Imp Mud Imp & Stone Imp.bmp");
 
-		HyeonResources::Load<graphics::HyeonTexture>(L"MountainBG",
-			L"..\\Resources\\Chrono Trigger\\SNES - Chrono Trigger - Mt Woe.bmp");
+		HyeonResources::Load<graphics::HyeonTexture>(L"Gargoyle",
+			L"..\\Resources\\Chrono Trigger\\SNES - Chrono Trigger - Gargoyle.bmp");
+
 
 
 	}

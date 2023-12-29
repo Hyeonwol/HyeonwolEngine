@@ -162,13 +162,13 @@ namespace Hyeon
 
 		if (HyeonInput::GetKeyDown(eKeyCode::N))
 		{
-			HyeonSceneManager::LoadScene(L"TitleScene");
+			HyeonSceneManager::LoadScene(L"MtWoeScene");
 		}
 	}
 	void HyeonForestScene::Render(HDC hdc)
 	{
 		HyeonScene::Render(hdc);
-		wchar_t str[50] = L"Play Scene";
+		wchar_t str[50] = L"Forest Scene";
 		TextOut(hdc, 0, 0, str, 11);
 	}
 	void HyeonForestScene::OnEnter()
