@@ -6,8 +6,8 @@ namespace Hyeon
 {
 	void LoadResources()
 	{
-		HyeonResources::Load<graphics::HyeonTexture>(L"BG",
-			L"..\\Resources\\Chrono Trigger\\SNES - Chrono Trigger - Guardia Forest.png");
+		HyeonResources::Load<graphics::HyeonTexture>(L"ForestBG",
+			L"..\\Resources\\Chrono Trigger\\SNES - Chrono Trigger - Guardia Forest.bmp");
 
 		HyeonResources::Load<graphics::HyeonTexture>(L"Portal",
 			L"..\\Resources\\Chrono Trigger\\Chrono Trigger - Gate.png");
@@ -39,8 +39,8 @@ namespace Hyeon
 		HyeonResources::Load<graphics::HyeonTexture>(L"Imp",
 			L"..\\Resources\\Chrono Trigger\\SNES - Chrono Trigger - Blue Imp Green Imp Mud Imp & Stone Imp.bmp");
 
-		HyeonResources::Load<graphics::HyeonTexture>(L"Mountain",
-			L"..\\Resources\\Chrono Trigger\\SNES - Chrono Trigger - Mountains.bmp");
+		HyeonResources::Load<graphics::HyeonTexture>(L"MountainBG",
+			L"..\\Resources\\Chrono Trigger\\SNES - Chrono Trigger - Mt Woe.bmp");
 
 
 	}

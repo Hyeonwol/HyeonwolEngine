@@ -130,30 +130,32 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="HyeonBattleMonsterScript.h" />
-    <ClInclude Include="HyeonBattleScene.h" />
+    <ClInclude Include="HyeonForestBattleScene.h" />
     <ClInclude Include="HyeonCameraScript.h" />
     <ClInclude Include="HyeonLoadResources.h" />
     <ClInclude Include="HyeonLoadScenes.h" />
     <ClInclude Include="HyeonMonster.h" />
     <ClInclude Include="HyeonMonsterScript.h" />
     <ClInclude Include="HyeonMovePlayerScript.h" />
+    <ClInclude Include="HyeonMtWoeScene.h" />
     <ClInclude Include="HyeonPlayer.h" />
     <ClInclude Include="HyeonBattlePlayerScript.h" />
-    <ClInclude Include="HyeonPlayScene.h" />
+    <ClInclude Include="HyeonForestScene.h" />
     <ClInclude Include="HyeonTile.h" />
     <ClInclude Include="HyeonTitleScene.h" />
     <ClInclude Include="HyeonToolScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HyeonBattleMonsterScript.cpp" />
-    <ClCompile Include="HyeonBattleScene.cpp" />
+    <ClCompile Include="HyeonForestBattleScene.cpp" />
     <ClCompile Include="HyeonCameraScript.cpp" />
     <ClCompile Include="HyeonMonster.cpp" />
     <ClCompile Include="HyeonMonsterScript.cpp" />
     <ClCompile Include="HyeonMovePlayerScript.cpp" />
+    <ClCompile Include="HyeonMtWoeScene.cpp" />
     <ClCompile Include="HyeonPlayer.cpp" />
     <ClCompile Include="HyeonBattlePlayerScript.cpp" />
-    <ClCompile Include="HyeonPlayScene.cpp" />
+    <ClCompile Include="HyeonForestScene.cpp" />
     <ClCompile Include="HyeonTile.cpp" />
     <ClCompile Include="HyeonTitleScene.cpp" />
     <ClCompile Include="HyeonToolScene.cpp" />

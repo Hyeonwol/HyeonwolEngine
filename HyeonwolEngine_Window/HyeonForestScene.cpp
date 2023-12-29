@@ -1,4 +1,4 @@
-#include "HyeonPlayScene.h"
+#include "HyeonForestScene.h"
 #include "HyeonPlayer.h"
 #include "HyeonTransform.h"
 #include "HyeonSpriteRenderer.h"
@@ -22,44 +22,14 @@
 
 namespace Hyeon
 {
-	HyeonPlayScene::HyeonPlayScene()
+	HyeonForestScene::HyeonForestScene()
 	{
 	}
-	HyeonPlayScene::~HyeonPlayScene()
+	HyeonForestScene::~HyeonForestScene()
 	{
 	}
-	void HyeonPlayScene::Initialize()
+	void HyeonForestScene::Initialize()
 	{
-		//FILE* pFile = nullptr;
-		//_wfopen_s(&pFile, L"..//", L"rb");		//저장된 타일 맵의 이름을 넣을 것
-
-		//while (true)
-		//{
-		//	int idxX = 0;
-		//	int idxY = 0;
-
-		//	int posX = 0;
-		//	int posY = 0;
-
-		//	if (fread(&idxX, sizeof(int), 1, pFile) == NULL)
-		//		break;
-		//	if (fread(&idxY, sizeof(int), 1, pFile) == NULL)
-		//		break;
-		//	if (fread(&posX, sizeof(int), 1, pFile) == NULL)
-		//		break;
-		//	if (fread(&posY, sizeof(int), 1, pFile) == NULL)
-		//		break;
-
-		//	HyeonTile* tile = object::Instantiate<HyeonTile>(eLayerType::Tile);
-		//	HyeonTileMapRenderer* tmr = tile->AddComponent<HyeonTileMapRenderer>();
-		//	tmr->SetTexture(HyeonResources::Find<graphics::HyeonTexture>(L"BlackOmen"));
-		//	tmr->SetIndex(Vector2(idxX, idxY));
-
-		//	tile->SetPosition(posX, posY);
-		//}
-
-		//fclose(pFile);
-
 		//메인 카메라
 		HyeonGameObject* camera = object::Instantiate<HyeonGameObject>
 			(enums::eLayerType::None);
@@ -71,8 +41,8 @@ namespace Hyeon
 			(enums::eLayerType::BackGround/*, Vector2(-230.0f, -130)*/);
 		HyeonSpriteRenderer* bgSr = bg->AddComponent<HyeonSpriteRenderer>();
 		bgSr->SetSize(Vector2(6.0f, 6.0f));
-	
-		graphics::HyeonTexture* bgTexture = HyeonResources::Find<graphics::HyeonTexture>(L"BG");
+		
+		graphics::HyeonTexture* bgTexture = HyeonResources::Find<graphics::HyeonTexture>(L"ForestBG");
 		bgSr->SetTexture(bgTexture);
 
 		//포탈이미지
@@ -121,8 +91,6 @@ namespace Hyeon
 		object::DontDestroyOnLoad(Ayla);
 
 		Ayla->AddComponent<HyeonMovePlayerScript>();
-		
-		cameraComp->SetTarget(Ayla);
 
 		HyeonBoxCollider2D* AylaBoxCollider = Ayla->AddComponent<HyeonBoxCollider2D>();
 		AylaBoxCollider->SetSize(Vector2(0.8f, 1.6f));
@@ -184,11 +152,11 @@ namespace Hyeon
 		
 		HyeonScene::Initialize();
 	}
-	void HyeonPlayScene::Update()
+	void HyeonForestScene::Update()
 	{
 		HyeonScene::Update();
 	}
-	void HyeonPlayScene::LateUpdate()
+	void HyeonForestScene::LateUpdate()
 	{
 		HyeonScene::LateUpdate();
 
@@ -197,13 +165,13 @@ namespace Hyeon
 			HyeonSceneManager::LoadScene(L"TitleScene");
 		}
 	}
-	void HyeonPlayScene::Render(HDC hdc)
+	void HyeonForestScene::Render(HDC hdc)
 	{
 		HyeonScene::Render(hdc);
 		wchar_t str[50] = L"Play Scene";
 		TextOut(hdc, 0, 0, str, 11);
 	}
-	void HyeonPlayScene::OnEnter()
+	void HyeonForestScene::OnEnter()
 	{
 		HyeonScene::OnEnter();
 		HyeonCollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Monster, true);
@@ -211,7 +179,7 @@ namespace Hyeon
 		renderer::mainCamera->SetTarget(Ayla);
 		renderer::mainCamera->Update();
 	}
-	void HyeonPlayScene::OnExit()
+	void HyeonForestScene::OnExit()
 	{
 		//HyeonScene::OnExit();		//현재 활성화하면 collisionManager::Clear에서 잘못되어
 									//크래시 나는 오류 있음. 질문드릴 것

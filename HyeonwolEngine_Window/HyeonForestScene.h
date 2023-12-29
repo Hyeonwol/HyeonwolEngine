@@ -3,11 +3,11 @@
 
 namespace Hyeon
 {
-	class HyeonPlayScene : public HyeonScene
+	class HyeonForestScene: public HyeonScene
 	{
 	public:
-		HyeonPlayScene();
-		~HyeonPlayScene();
+		HyeonForestScene();
+		~HyeonForestScene();
 
 		void Initialize() override;
 		void Update() override;

@@ -1,8 +1,8 @@
 #pragma once
 #include "..\\HyeonwolEngine_Source\HyeonSceneManager.h"
-#include "HyeonPlayScene.h"
+#include "HyeonForestScene.h"
 #include "HyeonTitleScene.h"
-#include "HyeonBattleScene.h"
+#include "HyeonForestBattleScene.h"
 #include "HyeonToolScene.h"
 
 namespace Hyeon
@@ -11,12 +11,12 @@ namespace Hyeon
 	{
 		HyeonSceneManager::CreateScene<HyeonToolScene>(L"ToolScene");
 		HyeonSceneManager::CreateScene<HyeonTitleScene>(L"TitleScene");
-		HyeonSceneManager::CreateScene<HyeonPlayScene>(L"PlayScene");
-		HyeonSceneManager::CreateScene<HyeonBattleScene>(L"ForestBattleScene");
+		HyeonSceneManager::CreateScene<HyeonForestScene>(L"ForestScene");
+		HyeonSceneManager::CreateScene<HyeonForestBattleScene>(L"ForestBattleScene");
 
 		//HyeonSceneManager::LoadScene(L"TitleScene");
-		//HyeonSceneManager::LoadScene(L"PlayScene");
+		HyeonSceneManager::LoadScene(L"ForestScene");
 		//HyeonSceneManager::LoadScene(L"ForestBattleScene");
-		HyeonSceneManager::LoadScene(L"ToolScene");
+		//HyeonSceneManager::LoadScene(L"ToolScene");
 	}
 }

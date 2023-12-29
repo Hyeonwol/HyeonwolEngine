@@ -3,12 +3,9 @@
 
 namespace Hyeon
 {
-    class HyeonBattleScene : public HyeonScene
+    class HyeonMtWoeScene : public HyeonScene
     {
     public:
-        HyeonBattleScene();
-        ~HyeonBattleScene();
-
         void Initialize() override;
         void Update() override;
         void LateUpdate() override;
@@ -17,13 +14,8 @@ namespace Hyeon
         void OnEnter() override;
         void OnExit() override;
 
-        static Vector2 GetMonsterPos() { return ImpPos; }
-
     private:
         class HyeonPlayer* Chrono;
-        class HyeonPlayer* Ayla;
-        class HyeonPlayer* Robo;
-        class HyeonMonster* GreenImp;
-        static Vector2 ImpPos;
     };
+
 }

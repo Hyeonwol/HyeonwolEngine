@@ -5,7 +5,7 @@
 #include "HyeonAnimator.h"
 #include "HyeonTime.h"
 #include "HyeonEntity.h"
-#include "HyeonBattleScene.h"
+#include "HyeonForestBattleScene.h"
 #include "HyeonUIManager.h"
 
 namespace Hyeon
@@ -35,23 +35,6 @@ namespace Hyeon
 			mAnimator = GetOwner()->GetComponent<HyeonAnimator>();
 
 		stateSwitching();
-		/*switch (mState)
-		{
-		case eState::DrawWeapon:
-			afterDrawWeapon();
-			break;
-		case eState::Move:
-			moving(mChosenChar);
-			break;
-		case eState::Attack:
-			afterAttack();
-			break;
-		case eState::Dead:
-			break;
-		default:
-			assert(false);
-			break;
-		}*/
 	}
 	void HyeonBattlePlayerScript::LateUpdate()
 	{
@@ -241,8 +224,8 @@ namespace Hyeon
 		Vector2 pos = tr->GetPosition();
 
 		//if (chosenChar)
-		pos.X += playerToMonster.X * HyeonTime::GetDelataTime() * 500.0f;
-		pos.Y += playerToMonster.Y * HyeonTime::GetDelataTime() * 500.0f;
+		pos.X += playerToMonster.X * HyeonTime::GetDelataTime() * 400.0f;
+		pos.Y += playerToMonster.Y * HyeonTime::GetDelataTime() * 400.0f;
 
 		tr->SetPosition(pos);
 		
@@ -297,7 +280,7 @@ namespace Hyeon
 		HyeonTransform* tr = GetOwner()->GetComponent<HyeonTransform>();
 		Vector2 pos = tr->GetPosition();
 		
-		Vector2 MonsterPos = HyeonBattleScene::GetMonsterPos();
+		Vector2 MonsterPos = HyeonForestBattleScene::GetMonsterPos();
 
 		return (MonsterPos - pos).normalize();
 	}

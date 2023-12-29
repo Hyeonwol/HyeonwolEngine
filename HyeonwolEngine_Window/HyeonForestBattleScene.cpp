@@ -1,4 +1,4 @@
-#include "HyeonBattleScene.h"
+#include "HyeonForestBattleScene.h"
 #include "HyeonPlayer.h"
 #include "HyeonTransform.h"
 #include "HyeonSpriteRenderer.h"
@@ -20,16 +20,16 @@
 
 namespace Hyeon
 {
-	Vector2 HyeonBattleScene::ImpPos = Vector2::Zero;
+	Vector2 HyeonForestBattleScene::ImpPos = Vector2::Zero;
 
-	HyeonBattleScene::HyeonBattleScene()
+	HyeonForestBattleScene::HyeonForestBattleScene()
 	{
 		
 	}
-	HyeonBattleScene::~HyeonBattleScene()
+	HyeonForestBattleScene::~HyeonForestBattleScene()
 	{
 	}
-	void HyeonBattleScene::Initialize()
+	void HyeonForestBattleScene::Initialize()
 	{
 		//µÞ¹è°æ
 		HyeonGameObject* bg = object::Instantiate<HyeonGameObject>
@@ -37,7 +37,7 @@ namespace Hyeon
 		HyeonSpriteRenderer* bgSr = bg->AddComponent<HyeonSpriteRenderer>();
 		bgSr->SetSize(Vector2(6.0f, 6.0f));
 
-		graphics::HyeonTexture* bgTexture = HyeonResources::Find<graphics::HyeonTexture>(L"BG");
+		graphics::HyeonTexture* bgTexture = HyeonResources::Find<graphics::HyeonTexture>(L"ForestBG");
 		bgSr->SetTexture(bgTexture);
 
 		//imp
@@ -208,26 +208,26 @@ namespace Hyeon
 
 		HyeonScene::Initialize();
 	}
-	void HyeonBattleScene::Update()
+	void HyeonForestBattleScene::Update()
 	{
 		HyeonScene::Update();
 	}
-	void HyeonBattleScene::LateUpdate()
+	void HyeonForestBattleScene::LateUpdate()
 	{
 		HyeonScene::LateUpdate();
 	}
-	void HyeonBattleScene::Render(HDC hdc)
+	void HyeonForestBattleScene::Render(HDC hdc)
 	{
 		HyeonScene::Render(hdc);
 		wchar_t str[50] = L"Battle Scene";
 		TextOut(hdc, 0, 0, str, 13);
 	}
-	void HyeonBattleScene::OnEnter()
+	void HyeonForestBattleScene::OnEnter()
 	{
 		renderer::mainCamera->SetTarget(GreenImp);
 		renderer::mainCamera->Update();
 	}
-	void HyeonBattleScene::OnExit()
+	void HyeonForestBattleScene::OnExit()
 	{
 	}
 }

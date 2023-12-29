@@ -38,7 +38,7 @@ namespace Hyeon
 
 		if (HyeonInput::GetKeyDown(eKeyCode::N))
 		{
-			HyeonSceneManager::LoadScene(L"PlayScene");
+			HyeonSceneManager::LoadScene(L"ForestScene");
 		}
 	}
 	void HyeonTitleScene::Render(HDC hdc)

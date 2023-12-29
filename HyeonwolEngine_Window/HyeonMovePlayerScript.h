@@ -1,5 +1,6 @@
 #pragma once
 #include "..//HyeonwolEngine_Source/HyeonScript.h"
+#include "..//HyeonwolEngine_Source/HyeonTexture.h"
 
 namespace Hyeon
 {
@@ -32,6 +33,7 @@ namespace Hyeon
 		void OnCollisionStay(HyeonCollider* other) override;
 		void OnCollisionExit(HyeonCollider* other) override;
 
+		void SetPixelMapTexture(graphics::HyeonTexture* texture) { mPixelMap = texture; }
 	private:
 		void relaxing();
 		void moving();
@@ -45,5 +47,7 @@ namespace Hyeon
 		float mTime;
 		bool isRunning;
 		class HyeonAnimator* mAnimator;
+
+		graphics::HyeonTexture* mPixelMap;
 	};
 }

@@ -90,5 +90,10 @@ namespace Hyeon::graphics
 
 		return S_OK;
 	}
+
+	COLORREF HyeonTexture::GetPixel(int x, int y)
+	{
+		return ::GetPixel(mHDC, x, y);
+	}
 }
 

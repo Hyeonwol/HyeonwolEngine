@@ -2,8 +2,8 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClInclude Include="HyeonLoadScenes.h" />
-    <ClInclude Include="HyeonPlayScene.h">
-      <Filter>PlayScene</Filter>
+    <ClInclude Include="HyeonForestScene.h">
+      <Filter>ForestScene</Filter>
     </ClInclude>
     <ClInclude Include="HyeonPlayer.h">
       <Filter>Player</Filter>
@@ -20,7 +20,7 @@
     <ClInclude Include="HyeonMonsterScript.h">
       <Filter>MonsterScript</Filter>
     </ClInclude>
-    <ClInclude Include="HyeonBattleScene.h">
+    <ClInclude Include="HyeonForestBattleScene.h">
       <Filter>BattleScene</Filter>
     </ClInclude>
     <ClInclude Include="HyeonMovePlayerScript.h">
@@ -39,10 +39,13 @@
     <ClInclude Include="HyeonCameraScript.h">
       <Filter>CameraScript</Filter>
     </ClInclude>
+    <ClInclude Include="HyeonMtWoeScene.h">
+      <Filter>MtWoeScene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="HyeonPlayScene.cpp">
-      <Filter>PlayScene</Filter>
+    <ClCompile Include="HyeonForestScene.cpp">
+      <Filter>ForestScene</Filter>
     </ClCompile>
     <ClCompile Include="HyeonPlayer.cpp">
       <Filter>Player</Filter>
@@ -59,7 +62,7 @@
     <ClCompile Include="HyeonMonsterScript.cpp">
       <Filter>MonsterScript</Filter>
     </ClCompile>
-    <ClCompile Include="HyeonBattleScene.cpp">
+    <ClCompile Include="HyeonForestBattleScene.cpp">
       <Filter>BattleScene</Filter>
     </ClCompile>
     <ClCompile Include="HyeonMovePlayerScript.cpp">
@@ -77,13 +80,13 @@
     <ClCompile Include="HyeonCameraScript.cpp">
       <Filter>CameraScript</Filter>
     </ClCompile>
+    <ClCompile Include="HyeonMtWoeScene.cpp">
+      <Filter>MtWoeScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Player">
       <UniqueIdentifier>{276d15dd-4948-45a7-bd5c-9e490058af25}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PlayScene">
-      <UniqueIdentifier>{39250163-79fb-4864-ab0c-336dc921dd8b}</UniqueIdentifier>
     </Filter>
     <Filter Include="TitleScene">
       <UniqueIdentifier>{86f509b9-cc0a-4aa5-a570-f6fc12c25721}</UniqueIdentifier>
@@ -108,6 +111,12 @@
     </Filter>
     <Filter Include="CameraScript">
       <UniqueIdentifier>{313e86f5-a3b5-4877-a8b5-777689667581}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ForestScene">
+      <UniqueIdentifier>{39250163-79fb-4864-ab0c-336dc921dd8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MtWoeScene">
+      <UniqueIdentifier>{770978a1-db13-4e2f-92f9-d4b01682fc94}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
