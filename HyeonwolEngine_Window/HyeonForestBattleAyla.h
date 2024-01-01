@@ -3,16 +3,16 @@
 
 namespace Hyeon
 {
-    class HyeonForestBattleChrono : public HyeonBattlePlayerScript
+    class HyeonForestBattleAyla : public HyeonBattlePlayerScript
     {
 	public:
-        HyeonForestBattleChrono();
-        ~HyeonForestBattleChrono();
+		HyeonForestBattleAyla();
+		~HyeonForestBattleAyla();
 
 		enum class eUsedSkills
 		{
-			Attack, 
-			Skill1, 
+			Attack,
+			Skill1,
 			Skill2
 		};
 
@@ -32,12 +32,12 @@ namespace Hyeon
 		Vector2 calculatingVector();
 
 	private:
-		eState mChronoState;
+		eState mAylaState;
 		eUsedSkills mUsedSkills;
 		class HyeonAnimator* mAnimator;
 		float mTime;
 		int mHp;
 		int mStamina;
 		Vector2 playerToMonster;
-    };
+	};
 }

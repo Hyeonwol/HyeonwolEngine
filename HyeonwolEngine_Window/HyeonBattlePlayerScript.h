@@ -34,17 +34,9 @@ namespace Hyeon
 		virtual void OnCollisionExit(HyeonCollider* other) override;
 	
 	protected:
-		//virtual void stateSwitching();
-		virtual void afterDrawWeapon();
-		virtual void moving();
-		virtual void afterAttack();
-		virtual Vector2 calculatingVector();
+		eCharacter mChosenChar;
 
 	private:
-		eState mChronoState;
-		eState mAylaState;
-		eState mRoboState;
-		eCharacter mChosenChar;
 		class HyeonAnimator* mAnimator;
 		float mTime;
 		int mHp;

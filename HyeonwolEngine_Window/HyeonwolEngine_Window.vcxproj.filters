@@ -42,7 +42,15 @@
     <ClInclude Include="HyeonMtWoeScene.h">
       <Filter>MtWoeScene</Filter>
     </ClInclude>
-    <ClInclude Include="HyeonForestBattleChrono.h" />
+    <ClInclude Include="HyeonForestBattleChrono.h">
+      <Filter>PlayerScript</Filter>
+    </ClInclude>
+    <ClInclude Include="HyeonForestBattleAyla.h">
+      <Filter>PlayerScript</Filter>
+    </ClInclude>
+    <ClInclude Include="HyeonForestBattleRobo.h">
+      <Filter>PlayerScript</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HyeonForestScene.cpp">
@@ -84,7 +92,15 @@
     <ClCompile Include="HyeonMtWoeScene.cpp">
       <Filter>MtWoeScene</Filter>
     </ClCompile>
-    <ClCompile Include="HyeonForestBattleChrono.cpp" />
+    <ClCompile Include="HyeonForestBattleChrono.cpp">
+      <Filter>PlayerScript</Filter>
+    </ClCompile>
+    <ClCompile Include="HyeonForestBattleAyla.cpp">
+      <Filter>PlayerScript</Filter>
+    </ClCompile>
+    <ClCompile Include="HyeonForestBattleRobo.cpp">
+      <Filter>PlayerScript</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Player">

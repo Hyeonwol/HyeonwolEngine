@@ -134,8 +134,8 @@ namespace Hyeon
 		HyeonScene::OnEnter();
 		HyeonCollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Monster, true);
 		//HyeonUIManager::Push(eUIType::Hpbar);
-		renderer::mainCamera->SetTarget(Chrono);
-		renderer::mainCamera->Update();
+		/*renderer::mainCamera->SetTarget(Chrono);
+		renderer::mainCamera->Update();*/
 	}
 	void HyeonMtWoeScene::OnExit()
 	{

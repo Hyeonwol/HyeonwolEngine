@@ -1,5 +1,5 @@
 #pragma once
-#include "HyeonForestBattleChrono.h"
+#include "HyeonForestBattleAyla.h"
 #include "HyeonTransform.h"
 #include "HyeonGameObject.h"
 #include "HyeonForestBattleScene.h"
@@ -9,28 +9,28 @@
 
 namespace Hyeon
 {
-	HyeonForestBattleChrono::HyeonForestBattleChrono()
-		:mChronoState(HyeonBattlePlayerScript::eState::DrawWeapon),
-		 mUsedSkills(eUsedSkills::Attack), 
+	HyeonForestBattleAyla::HyeonForestBattleAyla()
+		:mAylaState(HyeonBattlePlayerScript::eState::DrawWeapon),
+		 mUsedSkills(eUsedSkills::Attack),
 		 mAnimator(nullptr),
 		 mTime(0.0f),
 		 mHp(0),
 		 mStamina(0)
 	{
 	}
-	HyeonForestBattleChrono::~HyeonForestBattleChrono()
+	HyeonForestBattleAyla::~HyeonForestBattleAyla()
 	{
 	}
-	void HyeonForestBattleChrono::Initialize()
+	void HyeonForestBattleAyla::Initialize()
 	{
 		HyeonBattlePlayerScript::Initialize();
 	}
-	void HyeonForestBattleChrono::Update()
+	void HyeonForestBattleAyla::Update()
 	{
 		if (mAnimator == nullptr)
 			mAnimator = GetOwner()->GetComponent<HyeonAnimator>();
 
-		switch (mChronoState)
+		switch (mAylaState)
 		{
 		case eState::DrawWeapon:
 			afterDrawWeapon();
@@ -47,22 +47,22 @@ namespace Hyeon
 			break;
 		}
 	}
-	void HyeonForestBattleChrono::LateUpdate()
+	void HyeonForestBattleAyla::LateUpdate()
 	{
 		HyeonBattlePlayerScript::LateUpdate();
 	}
-	void HyeonForestBattleChrono::Render(HDC hdc)
+	void HyeonForestBattleAyla::Render(HDC hdc)
 	{
 		HyeonBattlePlayerScript::Render(hdc);
 	}
-	void HyeonForestBattleChrono::OnCollisionEnter(HyeonCollider* other)
+	void HyeonForestBattleAyla::OnCollisionEnter(HyeonCollider* other)
 	{
 		switch (mUsedSkills)
 		{
 		case eUsedSkills::Attack:
-			mChronoState = eState::Attack;
-			mAnimator->PlayAnimation(L"ChronoLeftAttack", false);
-			
+			mAylaState = eState::Attack;
+			mAnimator->PlayAnimation(L"AylaRightAttack", false);
+
 			/*HyeonTransform* tr = GetOwner()->GetComponent<HyeonTransform>();
 			Vector2 pos = tr->GetPosition();
 
@@ -71,69 +71,62 @@ namespace Hyeon
 
 			break;
 		case eUsedSkills::Skill1:
-			mChronoState = eState::Attack;
-			mAnimator->PlayAnimation(L"ChronoLeftSkill1", false);
+			mAylaState = eState::Attack;
+			mAnimator->PlayAnimation(L"AylaRightSkill1", false);
 			break;
 		case eUsedSkills::Skill2:
-			mChronoState = eState::Attack;
-			mAnimator->PlayAnimation(L"ChronoLeftSkill2", false);
+			mAylaState = eState::Attack;
+			mAnimator->PlayAnimation(L"AylaRightSkill2", false);
 			break;
 		default:
 			break;
 		}
 	}
-	void HyeonForestBattleChrono::OnCollisionStay(HyeonCollider* other)
+	void HyeonForestBattleAyla::OnCollisionStay(HyeonCollider* other)
 	{
 	}
-	void HyeonForestBattleChrono::OnCollisionExit(HyeonCollider* other)
+	void HyeonForestBattleAyla::OnCollisionExit(HyeonCollider* other)
 	{
-		/*playerToMonster.X *= -1;
-		playerToMonster.Y *= -1;
-
-		mChronoState = HyeonBattlePlayerScript::eState::Move;
-
-		moving();*/
 	}
-	void HyeonForestBattleChrono::afterDrawWeapon()
+	void HyeonForestBattleAyla::afterDrawWeapon()
 	{
 		if (GetKeyState(VK_SPACE) & 0x8000 && 
-			HyeonBattlePlayerScript::mChosenChar == HyeonBattlePlayerScript::eCharacter::Chrono)
+			HyeonBattlePlayerScript::mChosenChar == HyeonBattlePlayerScript::eCharacter::Ayla)
 		{
 			mUsedSkills = eUsedSkills::Attack;
 			playerToMonster = calculatingVector();
-			mChronoState = HyeonBattlePlayerScript::eState::Move;
+			mAylaState = HyeonBattlePlayerScript::eState::Move;
 			moving();
 		}
 		else if (HyeonInput::GetKeyDown(eKeyCode::K) && 
-			HyeonBattlePlayerScript::mChosenChar == HyeonBattlePlayerScript::eCharacter::Chrono)
+			HyeonBattlePlayerScript::mChosenChar == HyeonBattlePlayerScript::eCharacter::Ayla)
 		{
 			mUsedSkills = eUsedSkills::Skill1;
 			playerToMonster = calculatingVector();
-			mChronoState = HyeonBattlePlayerScript::eState::Move;
+			mAylaState = HyeonBattlePlayerScript::eState::Move;
 			moving();
 		}
 		else if (HyeonInput::GetKeyDown(eKeyCode::L) && 
-			HyeonBattlePlayerScript::mChosenChar == HyeonBattlePlayerScript::eCharacter::Chrono)
+			HyeonBattlePlayerScript::mChosenChar == HyeonBattlePlayerScript::eCharacter::Ayla)
 		{
 			mUsedSkills = eUsedSkills::Skill2;
 			playerToMonster = calculatingVector();
-			mChronoState = HyeonBattlePlayerScript::eState::Move;
+			mAylaState = HyeonBattlePlayerScript::eState::Move;
 			moving();
 		}
 		else if (HyeonInput::GetKeyDown(eKeyCode::X) &&
-			HyeonBattlePlayerScript::mChosenChar == HyeonBattlePlayerScript::eCharacter::Chrono)
+			HyeonBattlePlayerScript::mChosenChar == HyeonBattlePlayerScript::eCharacter::Ayla)
 		{
-			mChronoState = HyeonBattlePlayerScript::eState::Dead;
-			mAnimator->PlayAnimation(L"ChronoDead", false);
-			mChosenChar = HyeonBattlePlayerScript::eCharacter::Ayla;
+			mAylaState = HyeonBattlePlayerScript::eState::Dead;
+			mAnimator->PlayAnimation(L"AylaDead", false);
+			mChosenChar = HyeonBattlePlayerScript::eCharacter::Robo;
 		}
 	}
-	void HyeonForestBattleChrono::afterAttack()
+	void HyeonForestBattleAyla::afterAttack()
 	{
 	}
-	void HyeonForestBattleChrono::moving()
+	void HyeonForestBattleAyla::moving()
 	{
-		//벡터로 이동해서 공격 구현 중
 		HyeonTransform* tr = GetOwner()->GetComponent<HyeonTransform>();
 		Vector2 pos = tr->GetPosition();
 
@@ -143,7 +136,7 @@ namespace Hyeon
 
 		tr->SetPosition(pos);
 	}
-	Vector2 HyeonForestBattleChrono::calculatingVector()
+	Vector2 HyeonForestBattleAyla::calculatingVector()
 	{
 		HyeonTransform* tr = GetOwner()->GetComponent<HyeonTransform>();
 		Vector2 pos = tr->GetPosition();

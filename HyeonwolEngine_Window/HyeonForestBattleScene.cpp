@@ -18,6 +18,8 @@
 #include "HyeonCollisionManager.h"
 #include "HyeonMovePlayerScript.h"
 #include "HyeonForestBattleChrono.h"
+#include "HyeonForestBattleAyla.h"
+#include "HyeonForestBattleRobo.h"
 
 namespace Hyeon
 {
@@ -49,7 +51,8 @@ namespace Hyeon
 			(L"Imp");
 
 		HyeonBoxCollider2D* ImpBoxCollider = GreenImp->AddComponent<HyeonBoxCollider2D>();
-		ImpBoxCollider->SetOffset(Vector2(-50.0f, -50.0f));
+		//ImpBoxCollider->SetSize(Vector2(1.2f, 1.2f));
+		//ImpBoxCollider->SetOffset(Vector2(20.0f, 0.0f));
 		HyeonAnimator* GreenImpAnimator = GreenImp->AddComponent<HyeonAnimator>();
 
 		GreenImpAnimator->CreateAnimation(L"GreenImpIdle", ImpTex, 
@@ -70,7 +73,7 @@ namespace Hyeon
 
 		GreenImpAnimator->PlayAnimation(L"GreenImpIdle");
 
-		GreenImp->GetComponent<HyeonTransform>()->SetPosition(Vector2(650.0f, 800.0f));
+		GreenImp->GetComponent<HyeonTransform>()->SetPosition(Vector2(650.0f, 900.0f));
 		GreenImp->GetComponent<HyeonTransform>()->SetScale(Vector2(6.0f, 6.0f));
 		ImpPos.X = GreenImp->GetComponent<HyeonTransform>()->GetPosition().X;
 		ImpPos.Y = GreenImp->GetComponent<HyeonTransform>()->GetPosition().Y;
@@ -127,7 +130,7 @@ namespace Hyeon
 		//ø°¿Ã∂Û
 		Ayla = object::Instantiate<HyeonPlayer>
 			(enums::eLayerType::Player, Vector2(0.0f, 0.0f));
-		Ayla->AddComponent<HyeonBattlePlayerScript>();
+		Ayla->AddComponent<HyeonForestBattleAyla>();
 
 		graphics::HyeonTexture* mAylaTexture = HyeonResources::Find<graphics::HyeonTexture>
 			(L"Ayla");
@@ -169,7 +172,7 @@ namespace Hyeon
 		//Robo
 		Robo = object::Instantiate<HyeonPlayer>
 			(enums::eLayerType::Player, Vector2(0.0f, 0.0f));
-		Robo->AddComponent<HyeonBattlePlayerScript>();
+		Robo->AddComponent<HyeonForestBattleRobo>();
 
 		graphics::HyeonTexture* mRoboTexture = HyeonResources::Find<graphics::HyeonTexture>
 			(L"Robo");

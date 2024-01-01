@@ -130,7 +130,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="HyeonBattleMonsterScript.h" />
+    <ClInclude Include="HyeonForestBattleAyla.h" />
     <ClInclude Include="HyeonForestBattleChrono.h" />
+    <ClInclude Include="HyeonForestBattleRobo.h" />
     <ClInclude Include="HyeonForestBattleScene.h" />
     <ClInclude Include="HyeonCameraScript.h" />
     <ClInclude Include="HyeonLoadResources.h" />
@@ -148,7 +150,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HyeonBattleMonsterScript.cpp" />
+    <ClCompile Include="HyeonForestBattleAyla.cpp" />
     <ClCompile Include="HyeonForestBattleChrono.cpp" />
+    <ClCompile Include="HyeonForestBattleRobo.cpp" />
     <ClCompile Include="HyeonForestBattleScene.cpp" />
     <ClCompile Include="HyeonCameraScript.cpp" />
     <ClCompile Include="HyeonMonster.cpp" />
