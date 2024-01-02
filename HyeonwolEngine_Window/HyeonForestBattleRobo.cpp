@@ -11,11 +11,11 @@ namespace Hyeon
 {
 	HyeonForestBattleRobo::HyeonForestBattleRobo()
 		:mRoboState(HyeonBattlePlayerScript::eState::DrawWeapon),
-		mUsedSkills(eUsedSkills::Attack),
-		mAnimator(nullptr),
-		mTime(0.0f),
-		mHp(0),
-		mStamina(0)
+		 mUsedSkills(eUsedSkills::Attack),
+		 mAnimator(nullptr),
+		 mTime(0.0f),
+		 mHp(0),
+		 mStamina(0)
 	{
 	}
 	HyeonForestBattleRobo::~HyeonForestBattleRobo()
@@ -35,7 +35,7 @@ namespace Hyeon
 		case eState::DrawWeapon:
 			afterDrawWeapon();
 			break;
-		case eState::Move:
+		case eState::MoveToMonster:
 			moving();
 			break;
 		case eState::Attack:
@@ -62,13 +62,6 @@ namespace Hyeon
 		case eUsedSkills::Attack:
 			mRoboState = eState::Attack;
 			mAnimator->PlayAnimation(L"RoboAttack", false);
-
-			/*HyeonTransform* tr = GetOwner()->GetComponent<HyeonTransform>();
-			Vector2 pos = tr->GetPosition();
-
-			pos.X -= playerToMonster.X;
-			pos.Y -= playerToMonster.Y;*/
-
 			break;
 		default:
 			break;
@@ -87,7 +80,7 @@ namespace Hyeon
 		{
 			mUsedSkills = eUsedSkills::Attack;
 			playerToMonster = calculatingVector();
-			mRoboState = HyeonBattlePlayerScript::eState::Move;
+			mRoboState = HyeonBattlePlayerScript::eState::MoveToMonster;
 			moving();
 		}
 		else if (HyeonInput::GetKeyDown(eKeyCode::K) &&
@@ -125,6 +118,7 @@ namespace Hyeon
 		Vector2 pos = tr->GetPosition();
 
 		Vector2 MonsterPos = HyeonForestBattleScene::GetMonsterPos();
+		MonsterPos.Y -= 250.0f;
 
 		return (MonsterPos - pos).normalize();
 	}

@@ -35,7 +35,7 @@ namespace Hyeon
 		case eState::DrawWeapon:
 			afterDrawWeapon();
 			break;
-		case eState::Move:
+		case eState::MoveToMonster:
 			moving();
 			break;
 		case eState::Attack:
@@ -62,13 +62,6 @@ namespace Hyeon
 		case eUsedSkills::Attack:
 			mAylaState = eState::Attack;
 			mAnimator->PlayAnimation(L"AylaRightAttack", false);
-
-			/*HyeonTransform* tr = GetOwner()->GetComponent<HyeonTransform>();
-			Vector2 pos = tr->GetPosition();
-
-			pos.X -= playerToMonster.X;
-			pos.Y -= playerToMonster.Y;*/
-
 			break;
 		case eUsedSkills::Skill1:
 			mAylaState = eState::Attack;
@@ -95,7 +88,7 @@ namespace Hyeon
 		{
 			mUsedSkills = eUsedSkills::Attack;
 			playerToMonster = calculatingVector();
-			mAylaState = HyeonBattlePlayerScript::eState::Move;
+			mAylaState = HyeonBattlePlayerScript::eState::MoveToMonster;
 			moving();
 		}
 		else if (HyeonInput::GetKeyDown(eKeyCode::K) && 
@@ -103,7 +96,7 @@ namespace Hyeon
 		{
 			mUsedSkills = eUsedSkills::Skill1;
 			playerToMonster = calculatingVector();
-			mAylaState = HyeonBattlePlayerScript::eState::Move;
+			mAylaState = HyeonBattlePlayerScript::eState::MoveToMonster;
 			moving();
 		}
 		else if (HyeonInput::GetKeyDown(eKeyCode::L) && 
@@ -111,7 +104,7 @@ namespace Hyeon
 		{
 			mUsedSkills = eUsedSkills::Skill2;
 			playerToMonster = calculatingVector();
-			mAylaState = HyeonBattlePlayerScript::eState::Move;
+			mAylaState = HyeonBattlePlayerScript::eState::MoveToMonster;
 			moving();
 		}
 		else if (HyeonInput::GetKeyDown(eKeyCode::X) &&

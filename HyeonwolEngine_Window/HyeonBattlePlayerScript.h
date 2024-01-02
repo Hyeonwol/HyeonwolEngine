@@ -9,8 +9,9 @@ namespace Hyeon
 		enum class eState
 		{
 			DrawWeapon, 
-			Move, 
+			MoveToMonster, 
 			Attack, 
+			MoveToStartPoint, 
 			Dead
 		};
 
@@ -44,5 +45,6 @@ namespace Hyeon
 		bool isAylaUseSkill1;
 		bool isRoboUseSkill;
 		Vector2 playerToMonster;
+		Vector2 startPosition;
 	};
 }

@@ -15,7 +15,8 @@ namespace Hyeon
 		 mAnimator(nullptr),
 		 mTime(0.0f),
 		 mHp(0),
-		 mStamina(0)
+		 mStamina(0), 
+		AnimationTimer(0.0f)
 	{
 	}
 	HyeonForestBattleChrono::~HyeonForestBattleChrono()
@@ -24,6 +25,8 @@ namespace Hyeon
 	void HyeonForestBattleChrono::Initialize()
 	{
 		HyeonBattlePlayerScript::Initialize();
+		HyeonTransform* tr = GetOwner()->GetComponent<HyeonTransform>();
+		startPosition = tr->GetPosition();
 	}
 	void HyeonForestBattleChrono::Update()
 	{
@@ -35,10 +38,14 @@ namespace Hyeon
 		case eState::DrawWeapon:
 			afterDrawWeapon();
 			break;
-		case eState::Move:
-			moving();
+		case eState::MoveToMonster:
+			moveToMonster();
 			break;
 		case eState::Attack:
+			afterAttack();
+			break;
+		case eState::MoveToStartPoint:
+			moveToStartPoint();
 			break;
 		case eState::Dead:
 			break;
@@ -62,13 +69,6 @@ namespace Hyeon
 		case eUsedSkills::Attack:
 			mChronoState = eState::Attack;
 			mAnimator->PlayAnimation(L"ChronoLeftAttack", false);
-			
-			/*HyeonTransform* tr = GetOwner()->GetComponent<HyeonTransform>();
-			Vector2 pos = tr->GetPosition();
-
-			pos.X -= playerToMonster.X;
-			pos.Y -= playerToMonster.Y;*/
-
 			break;
 		case eUsedSkills::Skill1:
 			mChronoState = eState::Attack;
@@ -81,18 +81,15 @@ namespace Hyeon
 		default:
 			break;
 		}
+
+		playerToMonster.X *= -1;
+		playerToMonster.Y *= -1;
 	}
 	void HyeonForestBattleChrono::OnCollisionStay(HyeonCollider* other)
 	{
 	}
 	void HyeonForestBattleChrono::OnCollisionExit(HyeonCollider* other)
 	{
-		/*playerToMonster.X *= -1;
-		playerToMonster.Y *= -1;
-
-		mChronoState = HyeonBattlePlayerScript::eState::Move;
-
-		moving();*/
 	}
 	void HyeonForestBattleChrono::afterDrawWeapon()
 	{
@@ -101,24 +98,24 @@ namespace Hyeon
 		{
 			mUsedSkills = eUsedSkills::Attack;
 			playerToMonster = calculatingVector();
-			mChronoState = HyeonBattlePlayerScript::eState::Move;
-			moving();
+			mChronoState = HyeonBattlePlayerScript::eState::MoveToMonster;
+			moveToMonster();
 		}
 		else if (HyeonInput::GetKeyDown(eKeyCode::K) && 
 			HyeonBattlePlayerScript::mChosenChar == HyeonBattlePlayerScript::eCharacter::Chrono)
 		{
 			mUsedSkills = eUsedSkills::Skill1;
 			playerToMonster = calculatingVector();
-			mChronoState = HyeonBattlePlayerScript::eState::Move;
-			moving();
+			mChronoState = HyeonBattlePlayerScript::eState::MoveToMonster;
+			moveToMonster();
 		}
 		else if (HyeonInput::GetKeyDown(eKeyCode::L) && 
 			HyeonBattlePlayerScript::mChosenChar == HyeonBattlePlayerScript::eCharacter::Chrono)
 		{
 			mUsedSkills = eUsedSkills::Skill2;
 			playerToMonster = calculatingVector();
-			mChronoState = HyeonBattlePlayerScript::eState::Move;
-			moving();
+			mChronoState = HyeonBattlePlayerScript::eState::MoveToMonster;
+			moveToMonster();
 		}
 		else if (HyeonInput::GetKeyDown(eKeyCode::X) &&
 			HyeonBattlePlayerScript::mChosenChar == HyeonBattlePlayerScript::eCharacter::Chrono)
@@ -130,8 +127,14 @@ namespace Hyeon
 	}
 	void HyeonForestBattleChrono::afterAttack()
 	{
+		AnimationTimer += HyeonTime::GetDelataTime();
+
+		if (AnimationTimer >= 1.0f)
+		{
+			mChronoState = HyeonBattlePlayerScript::eState::MoveToStartPoint;
+		}
 	}
-	void HyeonForestBattleChrono::moving()
+	void HyeonForestBattleChrono::moveToMonster()
 	{
 		//벡터로 이동해서 공격 구현 중
 		HyeonTransform* tr = GetOwner()->GetComponent<HyeonTransform>();
@@ -143,11 +146,30 @@ namespace Hyeon
 
 		tr->SetPosition(pos);
 	}
+	void HyeonForestBattleChrono::moveToStartPoint()
+	{
+		//벡터로 이동해서 공격 구현 중
+		HyeonTransform* tr = GetOwner()->GetComponent<HyeonTransform>();
+		Vector2 pos = tr->GetPosition();
+
+		//if (chosenChar)
+		pos.X += playerToMonster.X * HyeonTime::GetDelataTime() * 700.0f;
+		pos.Y += playerToMonster.Y * HyeonTime::GetDelataTime() * 700.0f;
+
+		tr->SetPosition(pos);
+
+		if (pos.X >= startPosition.X ||
+			pos.Y >= startPosition.Y)
+		{
+			mChronoState = HyeonBattlePlayerScript::eState::DrawWeapon;
+			mAnimator->PlayAnimation(L"ChronoLeftDrawWeapon", false);
+		}
+	}
 	Vector2 HyeonForestBattleChrono::calculatingVector()
 	{
 		HyeonTransform* tr = GetOwner()->GetComponent<HyeonTransform>();
 		Vector2 pos = tr->GetPosition();
-
+		
 		Vector2 MonsterPos = HyeonForestBattleScene::GetMonsterPos();
 		MonsterPos.X += 80.0f;
 		MonsterPos.Y -= 50.0f;
