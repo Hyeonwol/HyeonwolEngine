@@ -15,7 +15,8 @@ namespace Hyeon
 		 mAnimator(nullptr),
 		 mTime(0.0f),
 		 mHp(0),
-		 mStamina(0)
+		 mStamina(0), 
+		 AnimationTimer(0.0f)
 	{
 	}
 	HyeonForestBattleAyla::~HyeonForestBattleAyla()
@@ -24,6 +25,8 @@ namespace Hyeon
 	void HyeonForestBattleAyla::Initialize()
 	{
 		HyeonBattlePlayerScript::Initialize();
+		HyeonTransform* tr = GetOwner()->GetComponent<HyeonTransform>();
+		startPosition = tr->GetPosition();
 	}
 	void HyeonForestBattleAyla::Update()
 	{
@@ -36,9 +39,13 @@ namespace Hyeon
 			afterDrawWeapon();
 			break;
 		case eState::MoveToMonster:
-			moving();
+			moveToMonster();
 			break;
 		case eState::Attack:
+			afterAttack();
+			break;
+		case eState::MoveToStartPoint:
+			moveToStartPoint();
 			break;
 		case eState::Dead:
 			break;
@@ -74,6 +81,9 @@ namespace Hyeon
 		default:
 			break;
 		}
+
+		playerToMonster.X *= -1;
+		playerToMonster.Y *= -1;
 	}
 	void HyeonForestBattleAyla::OnCollisionStay(HyeonCollider* other)
 	{
@@ -89,7 +99,7 @@ namespace Hyeon
 			mUsedSkills = eUsedSkills::Attack;
 			playerToMonster = calculatingVector();
 			mAylaState = HyeonBattlePlayerScript::eState::MoveToMonster;
-			moving();
+			moveToMonster();
 		}
 		else if (HyeonInput::GetKeyDown(eKeyCode::K) && 
 			HyeonBattlePlayerScript::mChosenChar == HyeonBattlePlayerScript::eCharacter::Ayla)
@@ -97,7 +107,7 @@ namespace Hyeon
 			mUsedSkills = eUsedSkills::Skill1;
 			playerToMonster = calculatingVector();
 			mAylaState = HyeonBattlePlayerScript::eState::MoveToMonster;
-			moving();
+			moveToMonster();
 		}
 		else if (HyeonInput::GetKeyDown(eKeyCode::L) && 
 			HyeonBattlePlayerScript::mChosenChar == HyeonBattlePlayerScript::eCharacter::Ayla)
@@ -105,7 +115,7 @@ namespace Hyeon
 			mUsedSkills = eUsedSkills::Skill2;
 			playerToMonster = calculatingVector();
 			mAylaState = HyeonBattlePlayerScript::eState::MoveToMonster;
-			moving();
+			moveToMonster();
 		}
 		else if (HyeonInput::GetKeyDown(eKeyCode::X) &&
 			HyeonBattlePlayerScript::mChosenChar == HyeonBattlePlayerScript::eCharacter::Ayla)
@@ -117,8 +127,14 @@ namespace Hyeon
 	}
 	void HyeonForestBattleAyla::afterAttack()
 	{
+		AnimationTimer += HyeonTime::GetDelataTime();
+
+		if (AnimationTimer >= 1.5f)
+		{
+			mAylaState = HyeonBattlePlayerScript::eState::MoveToStartPoint;
+		}
 	}
-	void HyeonForestBattleAyla::moving()
+	void HyeonForestBattleAyla::moveToMonster()
 	{
 		HyeonTransform* tr = GetOwner()->GetComponent<HyeonTransform>();
 		Vector2 pos = tr->GetPosition();
@@ -128,6 +144,26 @@ namespace Hyeon
 		pos.Y += playerToMonster.Y * HyeonTime::GetDelataTime() * 700.0f;
 
 		tr->SetPosition(pos);
+	}
+	void HyeonForestBattleAyla::moveToStartPoint()
+	{
+		//벡터로 이동해서 공격 구현 중
+		HyeonTransform* tr = GetOwner()->GetComponent<HyeonTransform>();
+		Vector2 pos = tr->GetPosition();
+
+		//if (chosenChar)
+		pos.X += playerToMonster.X * HyeonTime::GetDelataTime() * 700.0f;
+		pos.Y += playerToMonster.Y * HyeonTime::GetDelataTime() * 700.0f;
+
+		tr->SetPosition(pos);
+
+		if (pos.X <= startPosition.X ||
+			pos.Y >= startPosition.Y)
+		{
+			mAylaState = HyeonBattlePlayerScript::eState::DrawWeapon;
+			mAnimator->PlayAnimation(L"AylaRightDrawWeapon", false);
+			AnimationTimer = 0.0f;
+		}
 	}
 	Vector2 HyeonForestBattleAyla::calculatingVector()
 	{

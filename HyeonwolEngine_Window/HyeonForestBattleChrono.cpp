@@ -16,7 +16,7 @@ namespace Hyeon
 		 mTime(0.0f),
 		 mHp(0),
 		 mStamina(0), 
-		AnimationTimer(0.0f)
+		 AnimationTimer(0.0f)
 	{
 	}
 	HyeonForestBattleChrono::~HyeonForestBattleChrono()
@@ -163,6 +163,7 @@ namespace Hyeon
 		{
 			mChronoState = HyeonBattlePlayerScript::eState::DrawWeapon;
 			mAnimator->PlayAnimation(L"ChronoLeftDrawWeapon", false);
+			AnimationTimer = 0.0f;
 		}
 	}
 	Vector2 HyeonForestBattleChrono::calculatingVector()

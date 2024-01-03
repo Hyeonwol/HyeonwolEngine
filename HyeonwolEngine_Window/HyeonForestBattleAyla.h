@@ -28,7 +28,8 @@ namespace Hyeon
 	private:
 		void afterDrawWeapon();
 		void afterAttack();
-		void moving();
+		void moveToMonster();
+		void moveToStartPoint();
 		Vector2 calculatingVector();
 
 	private:
@@ -39,5 +40,7 @@ namespace Hyeon
 		int mHp;
 		int mStamina;
 		Vector2 playerToMonster;
+		Vector2 startPosition;
+		float AnimationTimer;
 	};
 }

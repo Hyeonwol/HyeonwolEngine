@@ -13,7 +13,7 @@ namespace Hyeon
 	HyeonMovePlayerScript::HyeonMovePlayerScript()
 		:mState(HyeonMovePlayerScript::eState::Relax),
 		 mDir(HyeonMovePlayerScript::eDir::Down),
-		 isRunning(false), 
+		 isRunning(true), 
 		 mAnimator(nullptr)
 	{
 	}
