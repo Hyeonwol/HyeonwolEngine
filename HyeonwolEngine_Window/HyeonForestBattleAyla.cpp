@@ -33,6 +33,8 @@ namespace Hyeon
 		if (mAnimator == nullptr)
 			mAnimator = GetOwner()->GetComponent<HyeonAnimator>();
 
+		HyeonBattlePlayerScript::Update();
+
 		switch (mAylaState)
 		{
 		case eState::DrawWeapon:
@@ -93,7 +95,7 @@ namespace Hyeon
 	}
 	void HyeonForestBattleAyla::afterDrawWeapon()
 	{
-		if (GetKeyState(VK_SPACE) & 0x8000 && 
+ 		if (GetKeyState(VK_SPACE) & 0x8000 && 
 			HyeonBattlePlayerScript::mChosenChar == HyeonBattlePlayerScript::eCharacter::Ayla)
 		{
 			mUsedSkills = eUsedSkills::Attack;

@@ -33,6 +33,8 @@ namespace Hyeon
 		if (mAnimator == nullptr)
 			mAnimator = GetOwner()->GetComponent<HyeonAnimator>();
 
+		HyeonBattlePlayerScript::Update();
+
 		switch (mRoboState)
 		{
 		case eState::DrawWeapon:
@@ -114,6 +116,7 @@ namespace Hyeon
 
 		if (mUsedSkills == eUsedSkills::Skill1)
 		{
+			mAnimator->PlayAnimation(L"RoboSkillEffect", false);
 			if (AnimationTimer >= 4.5f)
 				mRoboState = HyeonBattlePlayerScript::eState::MoveToStartPoint;
 		}

@@ -129,7 +129,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="HyeonBattleMonsterScript.h" />
+    <ClInclude Include="HyeonBattleGreenImpScript.h" />
     <ClInclude Include="HyeonForestBattleAyla.h" />
     <ClInclude Include="HyeonForestBattleChrono.h" />
     <ClInclude Include="HyeonForestBattleRobo.h" />
@@ -149,7 +149,7 @@
     <ClInclude Include="HyeonToolScene.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="HyeonBattleMonsterScript.cpp" />
+    <ClCompile Include="HyeonBattleGreenImpScript.cpp" />
     <ClCompile Include="HyeonForestBattleAyla.cpp" />
     <ClCompile Include="HyeonForestBattleChrono.cpp" />
     <ClCompile Include="HyeonForestBattleRobo.cpp" />

@@ -29,22 +29,11 @@ namespace Hyeon
 		virtual void Update() override;
 		virtual void LateUpdate() override;
 		virtual void Render(HDC hdc) override;
-
-		virtual void OnCollisionEnter(HyeonCollider* other) override;
-		virtual void OnCollisionStay(HyeonCollider* other) override;
-		virtual void OnCollisionExit(HyeonCollider* other) override;
 	
 	protected:
 		eCharacter mChosenChar;
 
 	private:
-		class HyeonAnimator* mAnimator;
-		float mTime;
-		int mHp;
-		int mStamina;
-		bool isAylaUseSkill1;
-		bool isRoboUseSkill;
-		Vector2 playerToMonster;
-		Vector2 startPosition;
+		int mChosenCharNum;
 	};
 }

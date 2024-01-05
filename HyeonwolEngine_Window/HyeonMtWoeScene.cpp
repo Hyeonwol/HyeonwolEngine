@@ -67,7 +67,7 @@ namespace Hyeon
 		Chrono = object::Instantiate<HyeonPlayer>
 			(enums::eLayerType::Player, Vector2(0.0f, 0.0f));
 
-		object::DontDestroyOnLoad(Chrono);
+		//object::DontDestroyOnLoad(Chrono);
 
 		Chrono->AddComponent<HyeonMovePlayerScript>();
 
@@ -127,7 +127,7 @@ namespace Hyeon
 	}
 	void HyeonMtWoeScene::Render(HDC hdc)
 	{
-		HyeonScene::Render(hdc);
+		//HyeonScene::Render(hdc);
 	}
 	void HyeonMtWoeScene::OnEnter()
 	{

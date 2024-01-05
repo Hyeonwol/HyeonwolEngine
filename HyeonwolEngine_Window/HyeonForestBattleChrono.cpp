@@ -33,6 +33,8 @@ namespace Hyeon
 		if (mAnimator == nullptr)
 			mAnimator = GetOwner()->GetComponent<HyeonAnimator>();
 
+		HyeonBattlePlayerScript::Update();
+
 		switch (mChronoState)
 		{
 		case eState::DrawWeapon:

@@ -19,10 +19,14 @@ namespace Hyeon
 
         static Vector2 GetMonsterPos() { return ImpPos; }
 
+    protected:
+        bool isImpAttacked;
+
     private:
         class HyeonPlayer* Chrono;
         class HyeonPlayer* Ayla;
         class HyeonPlayer* Robo;
+        class HyeonPlayer* RoboEffector;
         class HyeonMonster* GreenImp;
         static Vector2 ImpPos;
     };

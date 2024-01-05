@@ -40,6 +40,9 @@ namespace Hyeon
 
 		HyeonResources::Load<graphics::HyeonTexture>(L"RoboSheet2",
 			L"..\\Resources\\Chrono Trigger\\RoboSheet2.bmp");
+
+		HyeonResources::Load<graphics::HyeonTexture>(L"RoboSheet3",
+			L"..\\Resources\\Chrono Trigger\\SNES - Chrono Trigger - Robos Techs.bmp");
 		
 		//Monster
 		HyeonResources::Load<graphics::HyeonTexture>(L"Imp",

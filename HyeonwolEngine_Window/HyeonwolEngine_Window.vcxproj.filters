@@ -26,7 +26,7 @@
     <ClInclude Include="HyeonMovePlayerScript.h">
       <Filter>PlayerScript</Filter>
     </ClInclude>
-    <ClInclude Include="HyeonBattleMonsterScript.h">
+    <ClInclude Include="HyeonBattleGreenImpScript.h">
       <Filter>MonsterScript</Filter>
     </ClInclude>
     <ClInclude Include="HyeonLoadResources.h" />
@@ -77,7 +77,7 @@
     <ClCompile Include="HyeonMovePlayerScript.cpp">
       <Filter>PlayerScript</Filter>
     </ClCompile>
-    <ClCompile Include="HyeonBattleMonsterScript.cpp">
+    <ClCompile Include="HyeonBattleGreenImpScript.cpp">
       <Filter>MonsterScript</Filter>
     </ClCompile>
     <ClCompile Include="HyeonTile.cpp">
@@ -109,9 +109,6 @@
     <Filter Include="TitleScene">
       <UniqueIdentifier>{86f509b9-cc0a-4aa5-a570-f6fc12c25721}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PlayerScript">
-      <UniqueIdentifier>{c654ddbe-07a4-4261-b3ce-3c4d1e8bb8a5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Monster">
       <UniqueIdentifier>{80da8c2e-1885-4ed7-a42b-340a17b5e6c9}</UniqueIdentifier>
     </Filter>
@@ -135,6 +132,9 @@
     </Filter>
     <Filter Include="MtWoeScene">
       <UniqueIdentifier>{770978a1-db13-4e2f-92f9-d4b01682fc94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlayerScript">
+      <UniqueIdentifier>{c654ddbe-07a4-4261-b3ce-3c4d1e8bb8a5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

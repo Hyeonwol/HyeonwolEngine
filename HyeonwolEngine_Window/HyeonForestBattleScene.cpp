@@ -13,7 +13,7 @@
 #include "HyeonAnimator.h"
 #include "HyeonMonster.h"
 #include "HyeonAnimation.h"
-#include "HyeonBattleMonsterScript.h"
+#include "HyeonBattleGreenImpScript.h"
 #include "HyeonBoxCollider2D.h"
 #include "HyeonCollisionManager.h"
 #include "HyeonMovePlayerScript.h"
@@ -45,7 +45,7 @@ namespace Hyeon
 		//imp
 		GreenImp = object::Instantiate<HyeonMonster>(enums::eLayerType::Monster);
 
-		GreenImp->AddComponent<HyeonBattleMonsterScript>();
+		GreenImp->AddComponent<HyeonBattleGreenImpScript>();
 
 		graphics::HyeonTexture* ImpTex = HyeonResources::Find<graphics::HyeonTexture>
 			(L"Imp");
@@ -58,9 +58,9 @@ namespace Hyeon
 		GreenImpAnimator->CreateAnimation(L"GreenImpIdle", ImpTex, 
 			Vector2(352.0f, 367.0f), Vector2(23.0f, 27.0f), 
 			Vector2::Zero, 1, 0.1f);
-		GreenImpAnimator->CreateAnimation(L"GreenImpLaugh", ImpTex,
-			Vector2(300.0f, 483.0f), Vector2(35.0f, 27.0f),
-			Vector2::Zero, 2, 0.1f);
+		//GreenImpAnimator->CreateAnimation(L"GreenImpLaugh", ImpTex,
+		//	Vector2(300.0f, 483.0f), Vector2(35.0f, 27.0f),
+		//	Vector2::Zero, 2, 0.1f);
 		GreenImpAnimator->CreateAnimation(L"GreenImpMove", ImpTex,
 			Vector2(208.0f, 357.0f), Vector2(30.0f, 30.0f),
 			Vector2::Zero, 3, 0.1f);
@@ -207,6 +207,7 @@ namespace Hyeon
 
 		Robo->GetComponent<HyeonTransform>()->SetPosition(Vector2(600.0f, 1100.0f));
 		Robo->GetComponent<HyeonTransform>()->SetScale(Vector2(6.0f, 6.0f));
+
 
 
 		HyeonScene::Initialize();
