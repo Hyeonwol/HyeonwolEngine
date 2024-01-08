@@ -18,6 +18,10 @@ namespace Hyeon
         void OnExit() override;
 
         static Vector2 GetMonsterPos() { return ImpPos; }
+        static Vector2 GetChronoPos() { return ChronoPos; }
+        static Vector2 GetAylaPos() { return AylaPos; }
+        static Vector2 GetRoboPos() { return RoboPos; }
+
 
     protected:
         bool isImpAttacked;
@@ -26,8 +30,11 @@ namespace Hyeon
         class HyeonPlayer* Chrono;
         class HyeonPlayer* Ayla;
         class HyeonPlayer* Robo;
-        class HyeonPlayer* RoboEffector;
+        class HyeonPlayer* SelectedChar;
         class HyeonMonster* GreenImp;
         static Vector2 ImpPos;
+        static Vector2 ChronoPos;
+        static Vector2 AylaPos;
+        static Vector2 RoboPos;
     };
 }

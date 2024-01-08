@@ -88,7 +88,7 @@ namespace Hyeon
 		Ayla = object::Instantiate<HyeonPlayer>
 			(enums::eLayerType::Player, Vector2(0.0f, 0.0f));
 
-		object::DontDestroyOnLoad(Ayla);
+		//object::DontDestroyOnLoad(Ayla);
 
 		Ayla->AddComponent<HyeonMovePlayerScript>();
 

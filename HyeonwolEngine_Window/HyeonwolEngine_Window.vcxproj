@@ -144,6 +144,7 @@
     <ClInclude Include="HyeonPlayer.h" />
     <ClInclude Include="HyeonBattlePlayerScript.h" />
     <ClInclude Include="HyeonForestScene.h" />
+    <ClInclude Include="HyeonSelectedChar.h" />
     <ClInclude Include="HyeonTile.h" />
     <ClInclude Include="HyeonTitleScene.h" />
     <ClInclude Include="HyeonToolScene.h" />
@@ -162,6 +163,7 @@
     <ClCompile Include="HyeonPlayer.cpp" />
     <ClCompile Include="HyeonBattlePlayerScript.cpp" />
     <ClCompile Include="HyeonForestScene.cpp" />
+    <ClCompile Include="HyeonSelectedChar.cpp" />
     <ClCompile Include="HyeonTile.cpp" />
     <ClCompile Include="HyeonTitleScene.cpp" />
     <ClCompile Include="HyeonToolScene.cpp" />

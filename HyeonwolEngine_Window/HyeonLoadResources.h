@@ -10,6 +10,9 @@ namespace Hyeon
 		HyeonResources::Load<graphics::HyeonTexture>(L"ForestBG",
 			L"..\\Resources\\Chrono Trigger\\SNES - Chrono Trigger - Guardia Forest.bmp");
 
+		HyeonResources::Load<graphics::HyeonTexture>(L"ForestBattleBG",
+			L"..\\Resources\\Chrono Trigger\\ForestBattleBG.bmp");
+
 		HyeonResources::Load<graphics::HyeonTexture>(L"Portal",
 			L"..\\Resources\\Chrono Trigger\\Chrono Trigger - Gate.png");
 

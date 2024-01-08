@@ -58,7 +58,7 @@ namespace Hyeon
 			Vector2(33.0f, 488.0f), Vector2(35.0f, 42.0f),
 			Vector2::Zero, 3, 0.1f);
 		
-		GargoyleAnimator->PlayAnimation(L"ImpLaugh", false);
+		GargoyleAnimator->PlayAnimation(L"GargoyleCome", false);
 		Gargoyle->GetComponent<HyeonTransform>()->SetPosition(Vector2(300.0f, 300.0f));
 		Gargoyle->GetComponent<HyeonTransform>()->SetScale(Vector2(6.0f, 6.0f));
 		
@@ -127,15 +127,15 @@ namespace Hyeon
 	}
 	void HyeonMtWoeScene::Render(HDC hdc)
 	{
-		//HyeonScene::Render(hdc);
+		HyeonScene::Render(hdc);
 	}
 	void HyeonMtWoeScene::OnEnter()
 	{
 		HyeonScene::OnEnter();
 		HyeonCollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Monster, true);
 		//HyeonUIManager::Push(eUIType::Hpbar);
-		/*renderer::mainCamera->SetTarget(Chrono);
-		renderer::mainCamera->Update();*/
+		renderer::mainCamera->SetTarget(Chrono);
+		renderer::mainCamera->Update();
 	}
 	void HyeonMtWoeScene::OnExit()
 	{

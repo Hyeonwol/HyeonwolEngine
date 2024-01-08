@@ -23,17 +23,25 @@ namespace Hyeon
 	}
 	void HyeonBattlePlayerScript::Update()
 	{
-		/*if (GetKeyState(VK_F1) & 0x8000)
-			mChosenChar = eCharacter::Chrono;
-		else if (GetKeyState(VK_F2) & 0x8000)
-			mChosenChar = eCharacter::Ayla;
-		else if (GetKeyState(VK_F3) & 0x8000)
-			mChosenChar = eCharacter::Robo;*/
 		mChosenCharNum = static_cast<int>(mChosenChar);
 
 		if (HyeonInput::GetKeyDown(eKeyCode::Right))
 		{
 			mChosenCharNum++;
+			if (mChosenCharNum == 3)
+			{
+				mChosenCharNum = 0;
+			}
+			mChosenChar = (eCharacter)mChosenCharNum;
+		}
+
+		if (HyeonInput::GetKeyDown(eKeyCode::Left))
+		{
+			mChosenCharNum--;
+			if (mChosenCharNum == -1)
+			{
+				mChosenCharNum = 2;
+			}
 			mChosenChar = (eCharacter)mChosenCharNum;
 		}
 	}

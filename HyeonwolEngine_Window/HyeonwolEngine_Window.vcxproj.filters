@@ -51,6 +51,9 @@
     <ClInclude Include="HyeonForestBattleRobo.h">
       <Filter>PlayerScript</Filter>
     </ClInclude>
+    <ClInclude Include="HyeonSelectedChar.h">
+      <Filter>SelectedChar</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HyeonForestScene.cpp">
@@ -101,6 +104,9 @@
     <ClCompile Include="HyeonForestBattleRobo.cpp">
       <Filter>PlayerScript</Filter>
     </ClCompile>
+    <ClCompile Include="HyeonSelectedChar.cpp">
+      <Filter>SelectedChar</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Player">
@@ -135,6 +141,9 @@
     </Filter>
     <Filter Include="PlayerScript">
       <UniqueIdentifier>{c654ddbe-07a4-4261-b3ce-3c4d1e8bb8a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SelectedChar">
+      <UniqueIdentifier>{d76e6455-3472-4264-8dff-fd1f18e3badf}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

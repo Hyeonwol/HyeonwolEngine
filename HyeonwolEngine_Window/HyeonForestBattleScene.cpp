@@ -20,10 +20,14 @@
 #include "HyeonForestBattleChrono.h"
 #include "HyeonForestBattleAyla.h"
 #include "HyeonForestBattleRobo.h"
+#include "HyeonSelectedChar.h"
 
 namespace Hyeon
 {
 	Vector2 HyeonForestBattleScene::ImpPos = Vector2::Zero;
+	Vector2 HyeonForestBattleScene::ChronoPos = Vector2::Zero;
+	Vector2 HyeonForestBattleScene::AylaPos = Vector2::Zero;
+	Vector2 HyeonForestBattleScene::RoboPos = Vector2::Zero;
 
 	HyeonForestBattleScene::HyeonForestBattleScene()
 	{
@@ -37,9 +41,9 @@ namespace Hyeon
 		HyeonGameObject* bg = object::Instantiate<HyeonGameObject>
 			(enums::eLayerType::BackGround);
 		HyeonSpriteRenderer* bgSr = bg->AddComponent<HyeonSpriteRenderer>();
-		bgSr->SetSize(Vector2(6.0f, 6.0f));
+		bgSr->SetSize(Vector2(5.0f, 5.0f));
 
-		graphics::HyeonTexture* bgTexture = HyeonResources::Find<graphics::HyeonTexture>(L"ForestBG");
+		graphics::HyeonTexture* bgTexture = HyeonResources::Find<graphics::HyeonTexture>(L"ForestBattleBG");
 		bgSr->SetTexture(bgTexture);
 
 		//imp
@@ -73,7 +77,7 @@ namespace Hyeon
 
 		GreenImpAnimator->PlayAnimation(L"GreenImpIdle");
 
-		GreenImp->GetComponent<HyeonTransform>()->SetPosition(Vector2(650.0f, 900.0f));
+		GreenImp->GetComponent<HyeonTransform>()->SetPosition(Vector2(650.0f, 550.0f));
 		GreenImp->GetComponent<HyeonTransform>()->SetScale(Vector2(6.0f, 6.0f));
 		ImpPos.X = GreenImp->GetComponent<HyeonTransform>()->GetPosition().X;
 		ImpPos.Y = GreenImp->GetComponent<HyeonTransform>()->GetPosition().Y;
@@ -124,8 +128,11 @@ namespace Hyeon
 
 		ChronoAnimator->PlayAnimation(L"ChronoLeftDrawWeapon", false);
 
-		Chrono->GetComponent<HyeonTransform>()->SetPosition(Vector2(900.0f, 1000.0f));
+		Chrono->GetComponent<HyeonTransform>()->SetPosition(Vector2(850.0f, 650.0f));
 		Chrono->GetComponent<HyeonTransform>()->SetScale(Vector2(6.0f, 6.0f));
+		ChronoPos.X = Chrono->GetComponent<HyeonTransform>()->GetPosition().X;
+		ChronoPos.Y = Chrono->GetComponent<HyeonTransform>()->GetPosition().Y;
+
 
 		//에이라
 		Ayla = object::Instantiate<HyeonPlayer>
@@ -166,8 +173,10 @@ namespace Hyeon
 
 		AylaAnimator->PlayAnimation(L"AylaRightDrawWeapon", false);
 
-		Ayla->GetComponent<HyeonTransform>()->SetPosition(Vector2(400.0f, 1000.0f));
+		Ayla->GetComponent<HyeonTransform>()->SetPosition(Vector2(400.0f, 650.0f));
 		Ayla->GetComponent<HyeonTransform>()->SetScale(Vector2(6.0f, 6.0f));
+		AylaPos.X = Ayla->GetComponent<HyeonTransform>()->GetPosition().X;
+		AylaPos.Y = Ayla->GetComponent<HyeonTransform>()->GetPosition().Y;
 
 		//Robo
 		Robo = object::Instantiate<HyeonPlayer>
@@ -205,10 +214,15 @@ namespace Hyeon
 
 		RoboAnimator->PlayAnimation(L"RoboDrawWeapon", false);
 
-		Robo->GetComponent<HyeonTransform>()->SetPosition(Vector2(600.0f, 1100.0f));
+		Robo->GetComponent<HyeonTransform>()->SetPosition(Vector2(600.0f, 750.0f));
 		Robo->GetComponent<HyeonTransform>()->SetScale(Vector2(6.0f, 6.0f));
+		RoboPos.X = Robo->GetComponent<HyeonTransform>()->GetPosition().X;
+		RoboPos.Y = Robo->GetComponent<HyeonTransform>()->GetPosition().Y;
 
-
+		//선택된 캐릭터 표시
+		SelectedChar = object::Instantiate<HyeonPlayer>
+			(eLayerType::Player, Vector2(0.0f, 0.0f));
+		SelectedChar->AddComponent<HyeonSelectedChar>();
 
 		HyeonScene::Initialize();
 	}
@@ -223,6 +237,7 @@ namespace Hyeon
 	void HyeonForestBattleScene::Render(HDC hdc)
 	{
 		HyeonScene::Render(hdc);
+		//HyeonSelectedChar::Render(hdc);
 		wchar_t str[50] = L"Forest Battle Scene";
 		TextOut(hdc, 0, 0, str, 13);
 	}
