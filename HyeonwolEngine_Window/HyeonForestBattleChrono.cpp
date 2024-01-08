@@ -6,6 +6,7 @@
 #include "HyeonTime.h"
 #include "HyeonAnimator.h"
 #include "HyeonInput.h"
+#include "HyeonBattleGreenImpScript.h"
 
 namespace Hyeon
 {
@@ -44,6 +45,7 @@ namespace Hyeon
 			moveToMonster();
 			break;
 		case eState::Attack:
+			mState = HyeonBattleGreenImpScript::eState::Attacked;
 			afterAttack();
 			break;
 		case eState::MoveToStartPoint:
@@ -95,31 +97,35 @@ namespace Hyeon
 	}
 	void HyeonForestBattleChrono::afterDrawWeapon()
 	{
-		if (GetKeyState(VK_SPACE) & 0x8000 && 
-			HyeonBattlePlayerScript::mChosenChar == HyeonBattlePlayerScript::eCharacter::Chrono)
+		if (isMonsterTurn == false)
 		{
-			mUsedSkills = eUsedSkills::Attack;
-			playerToMonster = calculatingVector();
-			mChronoState = HyeonBattlePlayerScript::eState::MoveToMonster;
-			moveToMonster();
+			if (GetKeyState(VK_SPACE) & 0x8000 &&
+				HyeonBattlePlayerScript::mChosenChar == HyeonBattlePlayerScript::eCharacter::Chrono)
+			{
+				mUsedSkills = eUsedSkills::Attack;
+				playerToMonster = calculatingVector();
+				mChronoState = HyeonBattlePlayerScript::eState::MoveToMonster;
+				moveToMonster();
+			}
+			else if (HyeonInput::GetKeyDown(eKeyCode::K) &&
+				HyeonBattlePlayerScript::mChosenChar == HyeonBattlePlayerScript::eCharacter::Chrono)
+			{
+				mUsedSkills = eUsedSkills::Skill1;
+				playerToMonster = calculatingVector();
+				mChronoState = HyeonBattlePlayerScript::eState::MoveToMonster;
+				moveToMonster();
+			}
+			else if (HyeonInput::GetKeyDown(eKeyCode::L) &&
+				HyeonBattlePlayerScript::mChosenChar == HyeonBattlePlayerScript::eCharacter::Chrono)
+			{
+				mUsedSkills = eUsedSkills::Skill2;
+				playerToMonster = calculatingVector();
+				mChronoState = HyeonBattlePlayerScript::eState::MoveToMonster;
+				moveToMonster();
+			}
 		}
-		else if (HyeonInput::GetKeyDown(eKeyCode::K) && 
-			HyeonBattlePlayerScript::mChosenChar == HyeonBattlePlayerScript::eCharacter::Chrono)
-		{
-			mUsedSkills = eUsedSkills::Skill1;
-			playerToMonster = calculatingVector();
-			mChronoState = HyeonBattlePlayerScript::eState::MoveToMonster;
-			moveToMonster();
-		}
-		else if (HyeonInput::GetKeyDown(eKeyCode::L) && 
-			HyeonBattlePlayerScript::mChosenChar == HyeonBattlePlayerScript::eCharacter::Chrono)
-		{
-			mUsedSkills = eUsedSkills::Skill2;
-			playerToMonster = calculatingVector();
-			mChronoState = HyeonBattlePlayerScript::eState::MoveToMonster;
-			moveToMonster();
-		}
-		else if (HyeonInput::GetKeyDown(eKeyCode::X) &&
+
+		if (HyeonInput::GetKeyDown(eKeyCode::X) &&
 			HyeonBattlePlayerScript::mChosenChar == HyeonBattlePlayerScript::eCharacter::Chrono)
 		{
 			mChronoState = HyeonBattlePlayerScript::eState::Dead;
@@ -138,11 +144,8 @@ namespace Hyeon
 	}
 	void HyeonForestBattleChrono::moveToMonster()
 	{
-		//벡터로 이동해서 공격 구현 중
 		HyeonTransform* tr = GetOwner()->GetComponent<HyeonTransform>();
 		Vector2 pos = tr->GetPosition();
-
-		//if (chosenChar)
 		pos.X += playerToMonster.X * HyeonTime::GetDelataTime() * 700.0f;
 		pos.Y += playerToMonster.Y * HyeonTime::GetDelataTime() * 700.0f;
 
@@ -150,11 +153,8 @@ namespace Hyeon
 	}
 	void HyeonForestBattleChrono::moveToStartPoint()
 	{
-		//벡터로 이동해서 공격 구현 중
 		HyeonTransform* tr = GetOwner()->GetComponent<HyeonTransform>();
 		Vector2 pos = tr->GetPosition();
-
-		//if (chosenChar)
 		pos.X += playerToMonster.X * HyeonTime::GetDelataTime() * 700.0f;
 		pos.Y += playerToMonster.Y * HyeonTime::GetDelataTime() * 700.0f;
 
@@ -166,6 +166,8 @@ namespace Hyeon
 			mChronoState = HyeonBattlePlayerScript::eState::DrawWeapon;
 			mAnimator->PlayAnimation(L"ChronoLeftDrawWeapon", false);
 			AnimationTimer = 0.0f;
+			isMonsterTurn = true;
+			mState = HyeonBattleGreenImpScript::eState::MoveToPlayer;
 		}
 	}
 	Vector2 HyeonForestBattleChrono::calculatingVector()

@@ -48,15 +48,12 @@ namespace Hyeon
 
 		//imp
 		GreenImp = object::Instantiate<HyeonMonster>(enums::eLayerType::Monster);
-
 		GreenImp->AddComponent<HyeonBattleGreenImpScript>();
 
 		graphics::HyeonTexture* ImpTex = HyeonResources::Find<graphics::HyeonTexture>
 			(L"Imp");
 
 		HyeonBoxCollider2D* ImpBoxCollider = GreenImp->AddComponent<HyeonBoxCollider2D>();
-		//ImpBoxCollider->SetSize(Vector2(1.2f, 1.2f));
-		//ImpBoxCollider->SetOffset(Vector2(20.0f, 0.0f));
 		HyeonAnimator* GreenImpAnimator = GreenImp->AddComponent<HyeonAnimator>();
 
 		GreenImpAnimator->CreateAnimation(L"GreenImpIdle", ImpTex, 
@@ -70,7 +67,7 @@ namespace Hyeon
 			Vector2::Zero, 3, 0.1f);
 		GreenImpAnimator->CreateAnimation(L"GreenImpAttacked", ImpTex,
 			Vector2(340.0f, 514.0f), Vector2(24.0f, 37.0f),
-			Vector2::Zero, 1, 0.1f);
+			Vector2::Zero, 1, 1.0f);
 		GreenImpAnimator->CreateAnimation(L"GreenImpAttack", ImpTex,
 			Vector2(208.0f, 527.0f), Vector2(30.0f, 37.0f),
 			Vector2::Zero, 2, 0.1f);
@@ -237,7 +234,6 @@ namespace Hyeon
 	void HyeonForestBattleScene::Render(HDC hdc)
 	{
 		HyeonScene::Render(hdc);
-		//HyeonSelectedChar::Render(hdc);
 		wchar_t str[50] = L"Forest Battle Scene";
 		TextOut(hdc, 0, 0, str, 13);
 	}

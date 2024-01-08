@@ -50,8 +50,8 @@ namespace Hyeon
 
 		Rectangle(hdc, mChosenCharPos.X,
 			mChosenCharPos.Y,
-			mChosenCharPos.X + 30,
-			mChosenCharPos.Y + 40);
+			mChosenCharPos.X + 125,
+			mChosenCharPos.Y + 150);
 
 		SelectObject(hdc, oldBrush);
 		SelectObject(hdc, oldPen);

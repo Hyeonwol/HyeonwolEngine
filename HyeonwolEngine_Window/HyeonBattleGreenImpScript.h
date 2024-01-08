@@ -1,5 +1,6 @@
 #pragma once
-#include "HyeonScript.h"
+#include "..//HyeonwolEngine_Source/HyeonScript.h"
+#include "HyeonBattlePlayerScript.h"
 
 namespace Hyeon
 {
@@ -31,13 +32,20 @@ namespace Hyeon
 		void afterAttacked();
 		void moveToPlayer();
 		void moveToStartPoint();
+		Vector2 calculatingVector();
 
 	private:
-		eState mState;
 		class HyeonAnimator* mAnimator;
 		float mTime;
+		float AnimationTimer;
 		int mHp;
 		int mStamina;
-		int mTarget;
+		int mTargetNum;
+		Vector2 MonsterToPlayer;
+		Vector2 startPosition;
+		HyeonBattlePlayerScript::eCharacter mTarget;
     };
+
+	static HyeonBattleGreenImpScript::eState mState;
+	static bool isMonsterTurn = false;
 }
