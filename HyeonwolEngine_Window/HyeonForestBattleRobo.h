@@ -32,7 +32,6 @@ namespace Hyeon
 		Vector2 calculatingVector();
 
 	private:
-		eState mRoboState;
 		eUsedSkills mUsedSkills;
 		class HyeonAnimator* mAnimator;
 		float mTime;
@@ -42,4 +41,5 @@ namespace Hyeon
 		Vector2 startPosition;
 		float AnimationTimer;
 	};
+	extern HyeonBattlePlayerScript::eState mRoboState;
 }

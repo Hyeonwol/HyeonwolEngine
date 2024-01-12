@@ -26,6 +26,9 @@ namespace Hyeon
 		void OnCollisionEnter(HyeonCollider* other) override;
 		void OnCollisionStay(HyeonCollider* other) override;
 		void OnCollisionExit(HyeonCollider* other) override;
+		
+	public:
+		int mImpHp;
 
 	private:
 		void setAttackTarget();
@@ -38,7 +41,6 @@ namespace Hyeon
 		class HyeonAnimator* mAnimator;
 		float mTime;
 		float AnimationTimer;
-		int mHp;
 		int mTargetNum;
 		bool isSetTarget;
 		Vector2 MonsterToPlayer;

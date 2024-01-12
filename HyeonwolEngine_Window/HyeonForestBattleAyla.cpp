@@ -10,9 +10,10 @@
 
 namespace Hyeon
 {
+	HyeonBattlePlayerScript::eState mAylaState = HyeonBattlePlayerScript::eState::DrawWeapon;
+
 	HyeonForestBattleAyla::HyeonForestBattleAyla()
-		:mAylaState(HyeonBattlePlayerScript::eState::DrawWeapon),
-		 mUsedSkills(eUsedSkills::Attack),
+		:mUsedSkills(eUsedSkills::Attack),
 		 mAnimator(nullptr),
 		 mTime(0.0f),
 		 mHp(0),
@@ -29,7 +30,7 @@ namespace Hyeon
 		HyeonTransform* tr = GetOwner()->GetComponent<HyeonTransform>();
 		startPosition = tr->GetPosition();
 
-		mHp = 100;
+		mHp = 80;
 	}
 	void HyeonForestBattleAyla::Update()
 	{
@@ -92,6 +93,16 @@ namespace Hyeon
 
 			playerToMonster.X *= -1;
 			playerToMonster.Y *= -1;
+		}
+
+		else
+		{
+			mHp -= 30;
+			if (mHp <= 0)
+			{
+				mAnimator->PlayAnimation(L"AylaDead", false);
+				mAylaState = eState::Dead;
+			}
 		}
 	}
 	void HyeonForestBattleAyla::OnCollisionStay(HyeonCollider* other)

@@ -9,6 +9,9 @@
 #include "HyeonBattlePlayerScript.h"
 #include "HyeonTransform.h"
 #include "HyeonTime.h"
+#include "HyeonForestBattleChrono.h"
+#include "HyeonForestBattleAyla.h"
+#include "HyeonForestBattleRobo.h"
 
 extern Hyeon::HyeonCamera* Hyeon::renderer::mainCamera;
 
@@ -17,7 +20,7 @@ namespace Hyeon
 	HyeonBattleGreenImpScript::HyeonBattleGreenImpScript()
 		:mAnimator(nullptr),
 		 mTime(0.0f),
-		 mHp(0), 
+		 mImpHp(0), 
 		 mTargetNum(-1), 
 		 AnimationTimer(0.0f), 
 		 isSetTarget(false)
@@ -31,7 +34,7 @@ namespace Hyeon
 		HyeonTransform* tr = GetOwner()->GetComponent<HyeonTransform>();
 		startPosition = tr->GetPosition();
 
-		mHp = 300;
+		mImpHp = 300;
 	}
 	void HyeonBattleGreenImpScript::Update()
 	{
@@ -103,16 +106,13 @@ namespace Hyeon
 			isSetTarget = true;
 		}
 
-		//if (mChosenMonster == eChosenMonster::Imp1)
-		//{
-			HyeonTransform* tr = GetOwner()->GetComponent<HyeonTransform>();
-			Vector2 pos = tr->GetPosition();
+		HyeonTransform* tr = GetOwner()->GetComponent<HyeonTransform>();
+		Vector2 pos = tr->GetPosition();
 
-			pos.X += MonsterToPlayer.X * HyeonTime::GetDelataTime() * 2000.0f;
-			pos.Y += MonsterToPlayer.Y * HyeonTime::GetDelataTime() * 2000.0f;
+		pos.X += MonsterToPlayer.X * HyeonTime::GetDelataTime() * 2000.0f;
+		pos.Y += MonsterToPlayer.Y * HyeonTime::GetDelataTime() * 2000.0f;
 
-			tr->SetPosition(pos);
-		//}
+		tr->SetPosition(pos);
 	}
 
 	void HyeonBattleGreenImpScript::moveToStartPoint()
@@ -140,13 +140,22 @@ namespace Hyeon
 		switch (mTargetNum)
 		{
 		case 0:
-			mTarget = HyeonBattlePlayerScript::eCharacter::Chrono;
+			if (mChronoState != HyeonBattlePlayerScript::eState::Dead)
+				mTarget = HyeonBattlePlayerScript::eCharacter::Chrono;
+			else
+				setAttackTarget();
 			break;
 		case 1:
-			mTarget = HyeonBattlePlayerScript::eCharacter::Ayla;
+			if (mAylaState != HyeonBattlePlayerScript::eState::Dead)
+				mTarget = HyeonBattlePlayerScript::eCharacter::Ayla;
+			else
+				setAttackTarget();
 			break;
 		case 2:
-			mTarget = HyeonBattlePlayerScript::eCharacter::Robo;
+			if (mRoboState != HyeonBattlePlayerScript::eState::Dead)
+				mTarget = HyeonBattlePlayerScript::eCharacter::Robo;
+			else
+				setAttackTarget();
 			break;
 		}
 

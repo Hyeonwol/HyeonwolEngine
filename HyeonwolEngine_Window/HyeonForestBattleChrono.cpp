@@ -10,9 +10,10 @@
 
 namespace Hyeon
 {
+	HyeonBattlePlayerScript::eState mChronoState = HyeonBattlePlayerScript::eState::DrawWeapon;
+
 	HyeonForestBattleChrono::HyeonForestBattleChrono()
-		:mChronoState(HyeonBattlePlayerScript::eState::DrawWeapon),
-		 mUsedSkills(eUsedSkills::Attack), 
+		:mUsedSkills(eUsedSkills::Attack), 
 		 mAnimator(nullptr),
 		 mTime(0.0f),
 		 mHp(0),
@@ -94,12 +95,15 @@ namespace Hyeon
 			playerToMonster.Y *= -1;
 		}
 
-		/*else
+		else
 		{
 			mHp -= 30;
 			if (mHp <= 0)
+			{
+				mAnimator->PlayAnimation(L"ChronoDead", false);
 				mChronoState = eState::Dead;
-		}*/
+			}
+		}
 	}
 	void HyeonForestBattleChrono::OnCollisionStay(HyeonCollider* other)
 	{

@@ -10,9 +10,10 @@
 
 namespace Hyeon
 {
+	HyeonBattlePlayerScript::eState mRoboState = HyeonBattlePlayerScript::eState::DrawWeapon;
+	
 	HyeonForestBattleRobo::HyeonForestBattleRobo()
-		:mRoboState(HyeonBattlePlayerScript::eState::DrawWeapon),
-		 mUsedSkills(eUsedSkills::Attack),
+		:mUsedSkills(eUsedSkills::Attack),
 		 mAnimator(nullptr),
 		 mTime(0.0f),
 		 mHp(0),
@@ -29,7 +30,7 @@ namespace Hyeon
 		HyeonTransform* tr = GetOwner()->GetComponent<HyeonTransform>();
 		startPosition = tr->GetPosition();
 
-		mHp = 100;
+		mHp = 120;
 	}
 	void HyeonForestBattleRobo::Update()
 	{
@@ -84,6 +85,16 @@ namespace Hyeon
 
 			playerToMonster.X *= -1;
 			playerToMonster.Y *= -1;
+		}
+
+		else
+		{
+			mHp -= 30;
+			if (mHp <= 0)
+			{
+				mAnimator->PlayAnimation(L"RoboDead", false);
+				mRoboState = eState::Dead;
+			}
 		}
 	}
 	void HyeonForestBattleRobo::OnCollisionStay(HyeonCollider* other)
