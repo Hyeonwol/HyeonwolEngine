@@ -8,6 +8,7 @@ namespace Hyeon
 {
 	HyeonBoxCollider2D::HyeonBoxCollider2D()
 		:HyeonCollider(enums::eCollidertype::Rect2D)
+		 
 	{
 	}
 	HyeonBoxCollider2D::~HyeonBoxCollider2D()
@@ -38,10 +39,16 @@ namespace Hyeon
 		HPEN greenPen = CreatePen(PS_SOLID, 2, RGB(0, 255, 0));
 		HPEN oldPen = (HPEN)SelectObject(hdc, greenPen);
 
-		Rectangle(hdc, pos.X + offset.X,
+		/*Rectangle(hdc, pos.X + offset.X ,
 			pos.Y + offset.Y,
 			pos.X + offset.X + 70 * GetSize().X,
-			pos.Y + offset.Y + 70 * GetSize().Y);
+			pos.Y + offset.Y + 70 * GetSize().Y);*/
+		Rectangle(hdc,
+			pos.X + offset.X - ((100 * GetSize().X) / 2.0f),
+			pos.Y + offset.Y - ((100 * GetSize().Y) / 2.0f),
+			pos.X + offset.X + ((100 * GetSize().X) / 2.0f),
+			pos.Y + offset.Y + ((100 * GetSize().Y) / 2.0f)
+		);
 
 		SelectObject(hdc, oldBrush);
 		SelectObject(hdc, oldPen);

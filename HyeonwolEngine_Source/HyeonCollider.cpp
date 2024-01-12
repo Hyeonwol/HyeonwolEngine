@@ -9,7 +9,8 @@ namespace Hyeon
 		:HyeonComponent(enums::eComponentType::Collider),
 		 mType(type), 
 		 mID(CollisionID++),
-		 mSize(Vector2::One)
+		 mSize(Vector2::One), 
+		 mOffset(Vector2(40, 60))
 	{
 	}
 	HyeonCollider::~HyeonCollider()

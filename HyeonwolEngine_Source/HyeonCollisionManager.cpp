@@ -4,6 +4,7 @@
 #include "HyeonGameObject.h"
 #include "HyeonCollider.h"
 #include "HyeonTransform.h"
+#include "HyeonRenderer.h"
 
 namespace Hyeon
 {
@@ -141,6 +142,12 @@ namespace Hyeon
 		//size 세팅을 1, 1로 하면 기본 크기는 100pixel
 		Vector2 leftSize = left->GetSize() * 100.0f;
 		Vector2 rightSize = right->GetSize() * 100.0f;
+
+		if (renderer::mainCamera)
+		{
+			leftPos = renderer::mainCamera->CalculatePos(leftPos);
+			rightPos = renderer::mainCamera->CalculatePos(rightPos);
+		}
 
 		//AABB Collision
 

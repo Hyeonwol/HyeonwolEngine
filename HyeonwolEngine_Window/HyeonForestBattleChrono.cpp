@@ -28,6 +28,8 @@ namespace Hyeon
 		HyeonBattlePlayerScript::Initialize();
 		HyeonTransform* tr = GetOwner()->GetComponent<HyeonTransform>();
 		startPosition = tr->GetPosition();
+
+		mHp = 100;
 	}
 	void HyeonForestBattleChrono::Update()
 	{
@@ -45,7 +47,7 @@ namespace Hyeon
 			moveToMonster();
 			break;
 		case eState::Attack:
-			mState = HyeonBattleGreenImpScript::eState::Attacked;
+			Hyeon::GreenImpState = HyeonBattleGreenImpScript::eState::Attacked;
 			afterAttack();
 			break;
 		case eState::MoveToStartPoint:
@@ -68,26 +70,36 @@ namespace Hyeon
 	}
 	void HyeonForestBattleChrono::OnCollisionEnter(HyeonCollider* other)
 	{
-		switch (mUsedSkills)
+		if (isMonsterTurn == false)
 		{
-		case eUsedSkills::Attack:
-			mChronoState = eState::Attack;
-			mAnimator->PlayAnimation(L"ChronoLeftAttack", false);
-			break;
-		case eUsedSkills::Skill1:
-			mChronoState = eState::Attack;
-			mAnimator->PlayAnimation(L"ChronoLeftSkill1", false);
-			break;
-		case eUsedSkills::Skill2:
-			mChronoState = eState::Attack;
-			mAnimator->PlayAnimation(L"ChronoLeftSkill2", false);
-			break;
-		default:
-			break;
+			switch (mUsedSkills)
+			{
+			case eUsedSkills::Attack:
+				mChronoState = eState::Attack;
+				mAnimator->PlayAnimation(L"ChronoLeftAttack", false);
+				break;
+			case eUsedSkills::Skill1:
+				mChronoState = eState::Attack;
+				mAnimator->PlayAnimation(L"ChronoLeftSkill1", false);
+				break;
+			case eUsedSkills::Skill2:
+				mChronoState = eState::Attack;
+				mAnimator->PlayAnimation(L"ChronoLeftSkill2", false);
+				break;
+			default:
+				break;
+			}
+
+			playerToMonster.X *= -1;
+			playerToMonster.Y *= -1;
 		}
 
-		playerToMonster.X *= -1;
-		playerToMonster.Y *= -1;
+		/*else
+		{
+			mHp -= 30;
+			if (mHp <= 0)
+				mChronoState = eState::Dead;
+		}*/
 	}
 	void HyeonForestBattleChrono::OnCollisionStay(HyeonCollider* other)
 	{
@@ -167,7 +179,7 @@ namespace Hyeon
 			mAnimator->PlayAnimation(L"ChronoLeftDrawWeapon", false);
 			AnimationTimer = 0.0f;
 			isMonsterTurn = true;
-			mState = HyeonBattleGreenImpScript::eState::MoveToPlayer;
+			GreenImpState = HyeonBattleGreenImpScript::eState::MoveToPlayer;
 		}
 	}
 	Vector2 HyeonForestBattleChrono::calculatingVector()
@@ -176,8 +188,8 @@ namespace Hyeon
 		Vector2 pos = tr->GetPosition();
 		
 		Vector2 MonsterPos = HyeonForestBattleScene::GetMonsterPos();
-		MonsterPos.X += 80.0f;
-		MonsterPos.Y -= 50.0f;
+		/*MonsterPos.X += 80.0f;
+		MonsterPos.Y -= 50.0f;*/
 
 		return (MonsterPos - pos).normalize();
 	}

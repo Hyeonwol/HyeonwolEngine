@@ -54,6 +54,9 @@
     <ClInclude Include="HyeonSelectedChar.h">
       <Filter>SelectedChar</Filter>
     </ClInclude>
+    <ClInclude Include="HyeonForestImpsScript.h">
+      <Filter>MonsterScript</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HyeonForestScene.cpp">
@@ -106,6 +109,9 @@
     </ClCompile>
     <ClCompile Include="HyeonSelectedChar.cpp">
       <Filter>SelectedChar</Filter>
+    </ClCompile>
+    <ClCompile Include="HyeonForestImpsScript.cpp">
+      <Filter>MonsterScript</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

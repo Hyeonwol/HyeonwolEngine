@@ -39,13 +39,13 @@ namespace Hyeon
 		float mTime;
 		float AnimationTimer;
 		int mHp;
-		int mStamina;
 		int mTargetNum;
+		bool isSetTarget;
 		Vector2 MonsterToPlayer;
 		Vector2 startPosition;
 		HyeonBattlePlayerScript::eCharacter mTarget;
     };
 
-	static HyeonBattleGreenImpScript::eState mState;
-	static bool isMonsterTurn = false;
+	extern HyeonBattleGreenImpScript::eState GreenImpState;
+	extern bool isMonsterTurn;
 }

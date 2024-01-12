@@ -24,7 +24,12 @@
 
 namespace Hyeon
 {
+	HyeonBattleGreenImpScript::eState GreenImpState = HyeonBattleGreenImpScript::eState::Idle;
+	bool isMonsterTurn = false;
+
 	Vector2 HyeonForestBattleScene::ImpPos = Vector2::Zero;
+	Vector2 HyeonForestBattleScene::Imp2Pos = Vector2::Zero;
+	Vector2 HyeonForestBattleScene::Imp3Pos = Vector2::Zero;
 	Vector2 HyeonForestBattleScene::ChronoPos = Vector2::Zero;
 	Vector2 HyeonForestBattleScene::AylaPos = Vector2::Zero;
 	Vector2 HyeonForestBattleScene::RoboPos = Vector2::Zero;
@@ -46,14 +51,15 @@ namespace Hyeon
 		graphics::HyeonTexture* bgTexture = HyeonResources::Find<graphics::HyeonTexture>(L"ForestBattleBG");
 		bgSr->SetTexture(bgTexture);
 
-		//imp
-		GreenImp = object::Instantiate<HyeonMonster>(enums::eLayerType::Monster);
+		//imp1
+		GreenImp = object::Instantiate <HyeonMonster>
+			(enums::eLayerType::Monster);
 		GreenImp->AddComponent<HyeonBattleGreenImpScript>();
-
 		graphics::HyeonTexture* ImpTex = HyeonResources::Find<graphics::HyeonTexture>
-			(L"Imp");
+			(L"Imp"); 
 
 		HyeonBoxCollider2D* ImpBoxCollider = GreenImp->AddComponent<HyeonBoxCollider2D>();
+		//ImpBoxCollider->SetSize(Vector2(0.85, 0.85));
 		HyeonAnimator* GreenImpAnimator = GreenImp->AddComponent<HyeonAnimator>();
 
 		GreenImpAnimator->CreateAnimation(L"GreenImpIdle", ImpTex, 
@@ -79,7 +85,74 @@ namespace Hyeon
 		ImpPos.X = GreenImp->GetComponent<HyeonTransform>()->GetPosition().X;
 		ImpPos.Y = GreenImp->GetComponent<HyeonTransform>()->GetPosition().Y;
 
+		////imp2
+		//GreenImp2 = object::Instantiate <HyeonMonster>
+		//	(enums::eLayerType::Monster);
+		//GreenImp2->AddComponent<HyeonBattleGreenImpScript>();
+		//graphics::HyeonTexture* ImpTex2 = HyeonResources::Find<graphics::HyeonTexture>
+		//	(L"Imp");
 
+		//HyeonBoxCollider2D* ImpBoxCollider2 = GreenImp2->AddComponent<HyeonBoxCollider2D>();
+		////ImpBoxCollider->SetSize(Vector2(0.85, 0.85));
+		//HyeonAnimator* GreenImpAnimator2 = GreenImp2->AddComponent<HyeonAnimator>();
+
+		//GreenImpAnimator2->CreateAnimation(L"GreenImpIdle", ImpTex,
+		//	Vector2(352.0f, 367.0f), Vector2(23.0f, 27.0f),
+		//	Vector2::Zero, 1, 0.1f);
+		////GreenImpAnimator->CreateAnimation(L"GreenImpLaugh", ImpTex,
+		////	Vector2(300.0f, 483.0f), Vector2(35.0f, 27.0f),
+		////	Vector2::Zero, 2, 0.1f);
+		//GreenImpAnimator2->CreateAnimation(L"GreenImpMove", ImpTex,
+		//	Vector2(208.0f, 357.0f), Vector2(30.0f, 30.0f),
+		//	Vector2::Zero, 3, 0.1f);
+		//GreenImpAnimator2->CreateAnimation(L"GreenImpAttacked", ImpTex,
+		//	Vector2(340.0f, 514.0f), Vector2(24.0f, 37.0f),
+		//	Vector2::Zero, 1, 1.0f);
+		//GreenImpAnimator2->CreateAnimation(L"GreenImpAttack", ImpTex,
+		//	Vector2(208.0f, 527.0f), Vector2(30.0f, 37.0f),
+		//	Vector2::Zero, 2, 0.1f);
+
+		//GreenImpAnimator2->PlayAnimation(L"GreenImpIdle");
+
+		//GreenImp2->GetComponent<HyeonTransform>()->SetPosition(Vector2(500.0f, 550.0f));
+		//GreenImp2->GetComponent<HyeonTransform>()->SetScale(Vector2(6.0f, 6.0f));
+		//Imp2Pos.X = GreenImp2->GetComponent<HyeonTransform>()->GetPosition().X;
+		//Imp2Pos.Y = GreenImp2->GetComponent<HyeonTransform>()->GetPosition().Y;
+
+		////imp3
+		//GreenImp3 = object::Instantiate <HyeonMonster>
+		//	(enums::eLayerType::Monster);
+		//GreenImp3->AddComponent<HyeonBattleGreenImpScript>();
+		//graphics::HyeonTexture* ImpTex3 = HyeonResources::Find<graphics::HyeonTexture>
+		//	(L"Imp");
+
+		//HyeonBoxCollider2D* ImpBoxCollider3 = GreenImp3->AddComponent<HyeonBoxCollider2D>();
+		////ImpBoxCollider->SetSize(Vector2(0.85, 0.85));
+		//HyeonAnimator* GreenImpAnimator3 = GreenImp3->AddComponent<HyeonAnimator>();
+
+		//GreenImpAnimator3->CreateAnimation(L"GreenImpIdle", ImpTex,
+		//	Vector2(352.0f, 367.0f), Vector2(23.0f, 27.0f),
+		//	Vector2::Zero, 1, 0.1f);
+		////GreenImpAnimator->CreateAnimation(L"GreenImpLaugh", ImpTex,
+		////	Vector2(300.0f, 483.0f), Vector2(35.0f, 27.0f),
+		////	Vector2::Zero, 2, 0.1f);
+		//GreenImpAnimator3->CreateAnimation(L"GreenImpMove", ImpTex,
+		//	Vector2(208.0f, 357.0f), Vector2(30.0f, 30.0f),
+		//	Vector2::Zero, 3, 0.1f);
+		//GreenImpAnimator3->CreateAnimation(L"GreenImpAttacked", ImpTex,
+		//	Vector2(340.0f, 514.0f), Vector2(24.0f, 37.0f),
+		//	Vector2::Zero, 1, 1.0f);
+		//GreenImpAnimator3->CreateAnimation(L"GreenImpAttack", ImpTex,
+		//	Vector2(208.0f, 527.0f), Vector2(30.0f, 37.0f),
+		//	Vector2::Zero, 2, 0.1f);
+
+		//GreenImpAnimator3->PlayAnimation(L"GreenImpIdle");
+
+		//GreenImp3->GetComponent<HyeonTransform>()->SetPosition(Vector2(800.0f, 550.0f));
+		//GreenImp3->GetComponent<HyeonTransform>()->SetScale(Vector2(6.0f, 6.0f));
+		//Imp3Pos.X = GreenImp3->GetComponent<HyeonTransform>()->GetPosition().X;
+		//Imp3Pos.Y = GreenImp3->GetComponent<HyeonTransform>()->GetPosition().Y;
+		//
 		//플레이어(크로노)
 		Chrono = object::Instantiate<HyeonPlayer>
 			(enums::eLayerType::Player, Vector2(0.0f, 0.0f));
@@ -125,7 +198,7 @@ namespace Hyeon
 
 		ChronoAnimator->PlayAnimation(L"ChronoLeftDrawWeapon", false);
 
-		Chrono->GetComponent<HyeonTransform>()->SetPosition(Vector2(850.0f, 650.0f));
+		Chrono->GetComponent<HyeonTransform>()->SetPosition(Vector2(850.0f, 700.0f));
 		Chrono->GetComponent<HyeonTransform>()->SetScale(Vector2(6.0f, 6.0f));
 		ChronoPos.X = Chrono->GetComponent<HyeonTransform>()->GetPosition().X;
 		ChronoPos.Y = Chrono->GetComponent<HyeonTransform>()->GetPosition().Y;
@@ -170,7 +243,7 @@ namespace Hyeon
 
 		AylaAnimator->PlayAnimation(L"AylaRightDrawWeapon", false);
 
-		Ayla->GetComponent<HyeonTransform>()->SetPosition(Vector2(400.0f, 650.0f));
+		Ayla->GetComponent<HyeonTransform>()->SetPosition(Vector2(400.0f, 700.0f));
 		Ayla->GetComponent<HyeonTransform>()->SetScale(Vector2(6.0f, 6.0f));
 		AylaPos.X = Ayla->GetComponent<HyeonTransform>()->GetPosition().X;
 		AylaPos.Y = Ayla->GetComponent<HyeonTransform>()->GetPosition().Y;
@@ -211,7 +284,7 @@ namespace Hyeon
 
 		RoboAnimator->PlayAnimation(L"RoboDrawWeapon", false);
 
-		Robo->GetComponent<HyeonTransform>()->SetPosition(Vector2(600.0f, 750.0f));
+		Robo->GetComponent<HyeonTransform>()->SetPosition(Vector2(625.0f, 800.0f));
 		Robo->GetComponent<HyeonTransform>()->SetScale(Vector2(6.0f, 6.0f));
 		RoboPos.X = Robo->GetComponent<HyeonTransform>()->GetPosition().X;
 		RoboPos.Y = Robo->GetComponent<HyeonTransform>()->GetPosition().Y;
@@ -239,6 +312,7 @@ namespace Hyeon
 	}
 	void HyeonForestBattleScene::OnEnter()
 	{
+		HyeonCollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Monster, true);
 		renderer::mainCamera->SetTarget(GreenImp);
 		renderer::mainCamera->Update();
 	}

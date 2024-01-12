@@ -17,10 +17,10 @@ namespace Hyeon
 	HyeonBattleGreenImpScript::HyeonBattleGreenImpScript()
 		:mAnimator(nullptr),
 		 mTime(0.0f),
-		 mHp(0),
-		 mStamina(0), 
+		 mHp(0), 
 		 mTargetNum(-1), 
-		 AnimationTimer(0.0f)
+		 AnimationTimer(0.0f), 
+		 isSetTarget(false)
 	{
 	}
 	HyeonBattleGreenImpScript::~HyeonBattleGreenImpScript()
@@ -30,13 +30,17 @@ namespace Hyeon
 	{
 		HyeonTransform* tr = GetOwner()->GetComponent<HyeonTransform>();
 		startPosition = tr->GetPosition();
+
+		mHp = 300;
 	}
 	void HyeonBattleGreenImpScript::Update()
 	{
 		if (mAnimator == nullptr)
 			mAnimator = GetOwner()->GetComponent<HyeonAnimator>();
 
-		switch (mState)
+		//HyeonForestImpsScript::Update();
+
+		switch (GreenImpState)
 		{
 		case eState::Idle:
 			break;
@@ -45,7 +49,6 @@ namespace Hyeon
 			afterAttacked();
 			break;
 		case eState::MoveToPlayer:
-			setAttackTarget();
 			moveToPlayer();
 			break;
 		case eState::MoveToStartPoint:
@@ -65,8 +68,15 @@ namespace Hyeon
 
 	void HyeonBattleGreenImpScript::OnCollisionEnter(HyeonCollider* other)
 	{
-		MonsterToPlayer.X *= -1;
-		MonsterToPlayer.Y *= -1;
+		if (isMonsterTurn == true)
+		{
+			HyeonTransform* tr = GetOwner()->GetComponent<HyeonTransform>();
+			
+			MonsterToPlayer.X = HyeonForestBattleScene::GetMonsterPos().X - tr->GetPosition().X;
+			MonsterToPlayer.Y = HyeonForestBattleScene::GetMonsterPos().Y - tr->GetPosition().Y;
+			MonsterToPlayer.normalize();
+			GreenImpState = eState::MoveToStartPoint;
+		}
 	}
 
 	void HyeonBattleGreenImpScript::OnCollisionStay(HyeonCollider* other)
@@ -75,6 +85,53 @@ namespace Hyeon
 
 	void HyeonBattleGreenImpScript::OnCollisionExit(HyeonCollider* other)
 	{
+	}
+
+	void HyeonBattleGreenImpScript::afterAttacked()
+	{
+		AnimationTimer += HyeonTime::GetDelataTime();
+
+		if (AnimationTimer >= 0.5f)
+			mAnimator->PlayAnimation(L"GreenImpIdle");
+	}
+
+	void HyeonBattleGreenImpScript::moveToPlayer()
+	{
+		if (isSetTarget == false)
+		{
+			setAttackTarget();
+			isSetTarget = true;
+		}
+
+		//if (mChosenMonster == eChosenMonster::Imp1)
+		//{
+			HyeonTransform* tr = GetOwner()->GetComponent<HyeonTransform>();
+			Vector2 pos = tr->GetPosition();
+
+			pos.X += MonsterToPlayer.X * HyeonTime::GetDelataTime() * 2000.0f;
+			pos.Y += MonsterToPlayer.Y * HyeonTime::GetDelataTime() * 2000.0f;
+
+			tr->SetPosition(pos);
+		//}
+	}
+
+	void HyeonBattleGreenImpScript::moveToStartPoint()
+	{
+		HyeonTransform* tr = GetOwner()->GetComponent<HyeonTransform>();
+		Vector2 pos = tr->GetPosition();
+
+		pos.X += MonsterToPlayer.X * HyeonTime::GetDelataTime() * 2000.0f;
+		pos.Y += MonsterToPlayer.Y * HyeonTime::GetDelataTime() * 2000.0f;
+
+		tr->SetPosition(pos);
+
+		if (pos.Y <= startPosition.Y)
+		{
+			AnimationTimer = 0.0f;
+			GreenImpState = HyeonBattleGreenImpScript::eState::Idle;
+			isMonsterTurn = false;
+			isSetTarget = false;
+		}
 	}
 
 	void HyeonBattleGreenImpScript::setAttackTarget()
@@ -92,44 +149,10 @@ namespace Hyeon
 			mTarget = HyeonBattlePlayerScript::eCharacter::Robo;
 			break;
 		}
-	}
 
-	void HyeonBattleGreenImpScript::afterAttacked()
-	{
-		AnimationTimer += HyeonTime::GetDelataTime();
-
-		if (AnimationTimer >= 0.5f)
-			mAnimator->PlayAnimation(L"GreenImpIdle");
-	}
-
-	void HyeonBattleGreenImpScript::moveToPlayer()
-	{
 		MonsterToPlayer = calculatingVector();
-		HyeonTransform* tr = GetOwner()->GetComponent<HyeonTransform>();
-		Vector2 pos = tr->GetPosition();
-
-		pos.X += MonsterToPlayer.X * HyeonTime::GetDelataTime() * 1000.0f;
-		pos.Y += MonsterToPlayer.Y * HyeonTime::GetDelataTime() * 1000.0f;
-
-		tr->SetPosition(pos);
 	}
 
-	void HyeonBattleGreenImpScript::moveToStartPoint()
-	{
-		HyeonTransform* tr = GetOwner()->GetComponent<HyeonTransform>();
-		Vector2 pos = tr->GetPosition();
-
-		pos.X += MonsterToPlayer.X * HyeonTime::GetDelataTime() * 1000.0f;
-		pos.Y += MonsterToPlayer.Y * HyeonTime::GetDelataTime() * 1000.0f;
-
-		tr->SetPosition(pos);
-
-		if (pos.Y <= startPosition.Y)
-		{
-			AnimationTimer = 0.0f;
-			isMonsterTurn = false;
-		}
-	}
 	Vector2 HyeonBattleGreenImpScript::calculatingVector()
 	{
 		Vector2 MonsterPos = HyeonForestBattleScene::GetMonsterPos();
@@ -140,12 +163,17 @@ namespace Hyeon
 		switch (mTarget)
 		{
 		case HyeonBattlePlayerScript::eCharacter::Chrono:
+			/*MonsterPos.X += 80.0f;
+			MonsterPos.Y -= 50.0f;*/
 			return (ChronoPos - MonsterPos).normalize();
 			break;
 		case HyeonBattlePlayerScript::eCharacter::Ayla:
+			/*MonsterPos.X += 80.0f;
+			MonsterPos.Y -= 50.0f;*/
 			return (AylaPos - MonsterPos).normalize();
 			break;
 		case HyeonBattlePlayerScript::eCharacter::Robo:
+			/*MonsterPos.Y -= 250.0f;*/
 			return (RoboPos - MonsterPos).normalize();
 			break;
 		default:
